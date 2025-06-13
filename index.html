@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,20 +25,16 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-
         .nav-item.active {
             background-color: #3b82f6; /* bg-blue-600 */
             color: white;
         }
-
         .content-section {
             display: none;
         }
-
-            .content-section.active {
-                display: block;
-            }
-
+        .content-section.active {
+            display: block;
+        }
         .chart-container {
             position: relative;
             width: 100%;
@@ -48,7 +44,6 @@
             height: 300px;
             max-height: 400px;
         }
-
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
@@ -63,13 +58,12 @@
             padding-top: 0;
             padding-bottom: 0;
         }
-
-            .accordion-content.expanded {
-                max-height: 1000px; /* Increased max-height to accommodate new content */
-                opacity: 1;
-                padding-top: 1rem; /* Matches px-4 (16px) */
-                padding-bottom: 1rem; /* Matches pb-4 (16px) */
-            }
+        .accordion-content.expanded {
+            max-height: 1000px; /* Increased max-height to accommodate new content */
+            opacity: 1;
+            padding-top: 1rem; /* Matches px-4 (16px) */
+            padding-bottom: 1rem; /* Matches pb-4 (16px) */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -78,8 +72,9 @@
         <!-- Sidebar Navigation -->
         <aside class="w-64 bg-gray-800 text-white flex-shrink-0">
             <div class="p-4 border-b border-gray-700">
-                <h1 class="text-xl font-bold">DOJ Defense Guide</h1>
-                <p class="text-xs text-gray-400">Elevate RP Jurisdiction</p>
+                <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="w-16 h-16 mr-2 mb-2 rounded-full mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/000000?text=Image+Error';">
+                <h1 class="text-xl font-bold text-center">Defense Counsel Training</h1>
+                <p class="text-xs text-gray-400 text-center">Elevate RP Jurisdiction</p>
             </div>
             <nav class="mt-4 overflow-y-auto h-[calc(100vh-80px)]">
                 <a href="#introduction" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
@@ -120,12 +115,15 @@
 
         <!-- Main Content -->
         <main class="flex-1 p-6 md:p-8 lg:p-10 overflow-y-auto">
-
+            
             <div id="introduction" class="content-section">
-                <h2 class="text-3xl font-bold mb-4 text-gray-900">Introduction to the DOJ Defense Guide</h2>
+                <div class="clearfix">
+                    <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900">Introduction to the Defense Counsel Training Guide</h2>
+                </div>
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <p class="text-lg leading-relaxed mb-4">Welcome to the Department of Justice’s foundational guide for defense attorneys. This interactive tool is designed as a comprehensive learning resource to empower legal professionals within the Elevate RP jurisdiction. Its primary purpose is to provide clear, accessible, and practical information on legal concepts, defense strategies, procedural protections, and relevant case law, ensuring that attorneys can effectively represent their clients in an adversarial legal system. This guide aims to streamline research, enhance tactical decision-making, and promote a deeper understanding of legal precedents.</p>
-
+                    
                     <h3 class="text-xl font-bold mb-2">Creator & Key DOJ Positions</h3>
                     <p class="text-gray-700 mb-4">This interactive learning tool was created by <strong>Mike Ross</strong>, the Deputy Chief Justice of the Department of Justice.</p>
 
@@ -177,7 +175,7 @@
                                 <li>Assists with expungement hearings and other important legal matters in the state of San Andreas.</li>
                             </ul>
                         </div>
-                        <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+                         <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
                             <h4 class="font-semibold text-lg mb-2 text-teal-800">Municipal Security</h4>
                             <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
                                 <li>Tasked with guarding the courthouse.</li>
@@ -218,13 +216,13 @@
                         <h3 class="font-bold text-xl mb-2">Right to Property</h3>
                         <p class="text-gray-600">Citizens have the right to own material possessions and land, provided it does not infringe on others' rights.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                     <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                         <h3 class="font-bold text-xl mb-2">Right to Information</h3>
                         <p class="text-gray-600">Citizens have the right to access public information necessary for their well-being. This is the basis for FOIA requests.</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500 col-span-1 md:col-span-2 lg:col-span-3">
-                        <h3 class="font-bold text-xl mb-2">Attorney-Client Privilege</h3>
-                        <p class="text-gray-600">A critical right that safeguards all forms of confidential communications between a lawyer and client for legal advice. A breach is immediate grounds for a mistrial motion.</p>
+                         <h3 class="font-bold text-xl mb-2">Attorney-Client Privilege</h3>
+                         <p class="text-gray-600">A critical right that safeguards all forms of confidential communications between a lawyer and client for legal advice. A breach is immediate grounds for a mistrial motion.</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-orange-500 col-span-1 md:col-span-2 lg:col-span-3">
                         <h3 class="font-bold text-xl mb-2">Sixth Amendment Rights (Criminal Prosecutions)</h3>
@@ -334,12 +332,11 @@
                         <div class="accordion-content">
                             <h4 class="font-bold text-lg mt-4 mb-2">Overview</h4>
                             <p class="text-gray-700 text-sm">This document serves as an official announcement regarding the introduction and implementation of the Good Samaritan Act within the jurisdiction of Los Santos. As of [4/8/2025], the City of Los Santos has formally adopted the Good Samaritan Act, which provides legal protection to individuals who voluntarily offer assistance during emergencies.</p>
-
+                            
                             <h4 class="font-bold text-lg mt-4 mb-2">Key Provisions of the Act</h4>
                             <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
                                 <li><span class="font-bold">Legal Protection:</span> Individuals who act in good faith to provide assistance will not be held legally liable for any harm or damages that may occur as a result of their help, provided their actions are reasonable and not intentional or grossly negligent.</li>
-                                <li>
-                                    <span class="font-bold">Scope of Assistance:</span> The protections apply to a wide range of emergency interventions, including but not limited to:
+                                <li><span class="font-bold">Scope of Assistance:</span> The protections apply to a wide range of emergency interventions, including but not limited to:
                                     <ul class="list-circle list-inside ml-4 text-gray-700 text-sm">
                                         <li>Offering medical aid, such as performing CPR or first aid.</li>
                                         <li>Assisting in rescue efforts during accidents or natural disasters.</li>
@@ -467,7 +464,7 @@
                         </div>
                     </div>
 
-                    <!-- Court Proceedings & Appeals -->
+                     <!-- Court Proceedings & Appeals -->
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                         <h3 class="font-bold text-xl mb-3 text-center">Court Proceedings & Appeals</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -517,11 +514,11 @@
                     </div>
                 </div>
             </div>
-
+            
             <div id="search" class="content-section">
-                <h2 class="text-3xl font-bold mb-4 text-gray-900">Search & Seizure Protocols</h2>
-                <p class="mb-6 text-gray-600">Protecting clients from unlawful searches is a primary function of a defense attorney. This section outlines the strict requirements for a valid warrant and the specific, narrow exceptions where a warrantless search may be lawful. Always challenge searches that fall outside these clear boundaries.</p>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
+                 <h2 class="text-3xl font-bold mb-4 text-gray-900">Search & Seizure Protocols</h2>
+                 <p class="mb-6 text-gray-600">Protecting clients from unlawful searches is a primary function of a defense attorney. This section outlines the strict requirements for a valid warrant and the specific, narrow exceptions where a warrantless search may be lawful. Always challenge searches that fall outside these clear boundaries.</p>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="font-bold text-2xl mb-4 text-center">Search & Seizure Framework</h3>
                     <div class="space-y-6">
                         <div class="p-4 bg-blue-100 border-2 border-blue-500 rounded-lg text-center">
@@ -575,12 +572,12 @@
                         </div>
                     </div>
                     <p class="mt-6 text-center font-semibold text-red-600">Defense Note: Challenge any unlawful or overly broad search as unconstitutional under state and common law.</p>
-                </div>
+                 </div>
             </div>
 
             <div id="foia" class="content-section">
                 <h2 class="text-3xl font-bold mb-4 text-gray-900">FOIA Requests & Evidence Disclosure</h2>
-                <p class="mb-6 text-gray-600">The state's case is built on evidence, and you have a right to see it. This section details the formal process for requesting police reports via the Freedom of Information Act (FOIA) and the steps to take if your request is denied. Mastering this process is key to ensuring you have all necessary discovery.</p>
+                 <p class="mb-6 text-gray-600">The state's case is built on evidence, and you have a right to see it. This section details the formal process for requesting police reports via the Freedom of Information Act (FOIA) and the steps to take if your request is denied. Mastering this process is key to ensuring you have all necessary discovery.</p>
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="font-bold text-xl mb-4 text-center">FOIA Request Process</h3>
                     <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
@@ -600,20 +597,20 @@
                         </div>
                         <p class="text-2xl font-bold text-blue-500">→</p>
                         <div class="p-4 bg-yellow-100 rounded-lg shadow-sm">
-                            <p class="font-bold">Step 4: If Denied?</p>
-                            <p class="text-sm">File an appeal to a sitting Judge/Justice within 48 hours of denial. Determination made within 48 hours.</p>
+                             <p class="font-bold">Step 4: If Denied?</p>
+                             <p class="text-sm">File an appeal to a sitting Judge/Justice within 48 hours of denial. Determination made within 48 hours.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t">
                         <h4 class="font-semibold text-lg">Exemptions & Compelling Evidence:</h4>
                         <ul class="list-disc list-inside mt-2 text-gray-600 text-sm space-y-1">
-                            <li>Exemptions: Active Investigation, Active Arrest Warrant, Trade Secrets, Internal Government Communications, Warrant/Subpoena (separate provisions).</li>
-                            <li>Compelling Evidence: Use subpoenas or discovery orders when FOIA is insufficient.</li>
+                           <li>Exemptions: Active Investigation, Active Arrest Warrant, Trade Secrets, Internal Government Communications, Warrant/Subpoena (separate provisions).</li>
+                           <li>Compelling Evidence: Use subpoenas or discovery orders when FOIA is insufficient.</li>
                         </ul>
                     </div>
                 </div>
             </div>
-
+            
             <div id="caselaw" class="content-section">
                 <h2 class="text-3xl font-bold mb-4 text-gray-900">Case Law Library</h2>
                 <p class="mb-6 text-gray-600">Landmark common law and case precedents provide powerful tools to restrict police overreach and protect client rights. This interactive library details key cases recognized in San Andreas. Click on each case name to see its core principle and how to apply it in your defense strategy to suppress improperly obtained evidence or statements, and understand the nuances of the law.</p>
@@ -638,10 +635,10 @@
                             <p class="mt-2 text-gray-600">Statements from a defendant in custody during interrogation are admissible ONLY if law enforcement informed them of their right to remain silent and right to an attorney before interrogation, and these rights were exercised or waived knowingly, voluntarily, and intelligently.</p>
                             <p class="mt-4 font-semibold text-green-700">Defense Application: Suppress any statements taken from a client during a custodial interrogation where Miranda warnings were not properly given.</p>
                         </div>
-                        <div id="case-tekoh" class="case-content hidden">
+                         <div id="case-tekoh" class="case-content hidden">
                             <h4 class="font-bold text-xl">Un-Mirandized Statements Inadmissibility</h4>
                             <p class="mt-2 text-gray-600">Statements taken without Miranda warnings are only inadmissible if the prosecution attempts to use them for incriminating purposes. LEOs are not required to Mirandize someone if they don't intend to ask incriminating questions.</p>
-                            <p class="mt-4 font-semibold text-green-700">Defense Application: Argue for the suppression of any un-Mirandized statement if the prosecution attempts to introduce it, even indirectly, to incriminate your client. If questions are non-incriminating, the lack of Miranda may not be grounds for suppression.</p>
+                             <p class="mt-4 font-semibold text-green-700">Defense Application: Argue for the suppression of any un-Mirandized statement if the prosecution attempts to introduce it, even indirectly, to incriminate your client. If questions are non-incriminating, the lack of Miranda may not be grounds for suppression.</p>
                         </div>
                         <div id="case-garner" class="case-content hidden">
                             <h4 class="font-bold text-xl">Deadly Force Against Fleeing Suspects</h4>
@@ -673,7 +670,7 @@
                     Disclaimer: These are useful steps and potential defenses for your cases, but hard work, meticulous preparation, and extensive research are the only ways to ensure a successful case outcome. Each case is unique and requires a tailored approach.
                 </p>
                 <p class="mb-6 text-gray-600">High-stakes cases require tailored defense strategies that target common prosecution tactics. This section provides key strategic points for specific types of high-profile cases. Click each topic to expand and view critical areas to challenge, from search warrants to forensic evidence, and how to leverage specific legal concepts.</p>
-                <div class="space-y-4">
+                 <div class="space-y-4">
                     <div class="bg-white rounded-lg shadow-sm">
                         <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
                             <span>Drug Trafficking</span>
@@ -702,12 +699,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-sm">
+                     <div class="bg-white rounded-lg shadow-sm">
                         <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
                             <span>Grand Theft Auto</span>
-                            <span class="transform transition-transform duration-300">▼</span>
+                             <span class="transform transition-transform duration-300">▼</span>
                         </button>
-                        <div class="accordion-content">
+                         <div class="accordion-content">
                             <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                 <li>Challenge intent: Was there intent to permanently deprive the owner of the vehicle, or merely joyriding (temporary use)?</li>
                                 <li>Argue mistaken identity: Was the client clearly identified as the person who stole the vehicle?</li>
@@ -720,9 +717,9 @@
                     <div class="bg-white rounded-lg shadow-sm">
                         <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
                             <span>Obstruction of a Government Official & Obstruction of Justice</span>
-                            <span class="transform transition-transform duration-300">▼</span>
+                             <span class="transform transition-transform duration-300">▼</span>
                         </button>
-                        <div class="accordion-content">
+                         <div class="accordion-content">
                             <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                 <li>Dispute intent: Did the client specifically intend to obstruct an official act, or were their actions misinterpreted?</li>
                                 <li>Argue that actions were within legal rights: e.g., refusing a search without a warrant, or exercising right to remain silent (refer to <a href="#constitution" class="text-blue-600 hover:underline">Core Constitutional Rights</a> and <a href="#caselaw" class="text-blue-600 hover:underline">Miranda v. Arizona</a>).</li>
@@ -735,9 +732,9 @@
                     <div class="bg-white rounded-lg shadow-sm">
                         <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
                             <span>Murder & Attempted Murder</span>
-                            <span class="transform transition-transform duration-300">▼</span>
+                             <span class="transform transition-transform duration-300">▼</span>
                         </button>
-                        <div class="accordion-content">
+                         <div class="accordion-content">
                             <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                 <li>Demand full disclosure of all forensic evidence, including collection timelines and lab reports.</li>
                                 <li>Utilize the <a href="#laws" class="text-blue-600 hover:underline">Stand Your Ground Doctrine</a> where applicable to justify your client's actions, ensuring all "reasonable steps" were considered.</li>
@@ -839,8 +836,8 @@
 
             <div id="tools" class="content-section">
                 <h2 class="text-3xl font-bold mb-4 text-gray-900">Important Legal Tools and Administrative Processes</h2>
-                <p class="mb-6 text-gray-600">Beyond courtroom strategy, several administrative processes are vital for client advocacy. This section covers expungement, a tool for clearing a client's record, the protocols for accessing sensitive medical records, and the process for Authority Conduct Reviews/Impeachments. The charts visualize fee structures, providing a quick reference for client consultations.</p>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                 <p class="mb-6 text-gray-600">Beyond courtroom strategy, several administrative processes are vital for client advocacy. This section covers expungement, a tool for clearing a client's record, the protocols for accessing sensitive medical records, and the process for Authority Conduct Reviews/Impeachments. The charts visualize fee structures, providing a quick reference for client consultations.</p>
+                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                         <h3 class="font-bold text-xl mb-3 text-center">Expungement Fees</h3>
                         <p class="text-gray-600 mb-2 text-sm">Opportunity for rehabilitation, removing criminal conduct from record if crime-free for 20 days (excluding traffic citations).</p>
@@ -854,7 +851,7 @@
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-sm">
                         <h3 class="font-bold text-xl mb-3">Medical Record Access (Patient Information Privacy Protection Act)</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-600 text-sm">
+                         <ul class="list-disc list-inside space-y-2 text-gray-600 text-sm">
                             <li>Standard: Requires a signed medical release via contract app from patient or emergency contact. Release must state requester, dates of reports.</li>
                             <li>Unique Situations: If patient/emergency contact cannot/will will not sign, records must be subpoenaed through the Department of Justice.</li>
                             <li>Psych Department: Reports only released to Judge attached to case, docketed only if Judge deems necessary.</li>
@@ -930,7 +927,7 @@
 
             function updateContent(hash) {
                 const targetHash = hash || '#introduction';
-
+                
                 contentSections.forEach(section => {
                     if ('#' + section.id === targetHash) {
                         section.classList.add('active');
@@ -947,7 +944,7 @@
                     }
                 });
             }
-
+            
             navItems.forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1027,7 +1024,7 @@
             // Case Law Tabs
             const caseTabs = document.querySelectorAll('.case-tab');
             const caseContents = document.querySelectorAll('.case-content');
-
+            
             caseTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     const targetCase = this.dataset.case;
@@ -1055,7 +1052,7 @@
                 toggle.addEventListener('click', function() {
                     const content = this.nextElementSibling; // This is the .accordion-content div
                     const icon = this.querySelector('span:last-child');
-
+                    
                     content.classList.toggle('expanded'); // Toggle the expanded class
                     if (content.classList.contains('expanded')) {
                         icon.style.transform = 'rotate(180deg)';
