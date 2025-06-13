@@ -24,7 +24,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
+            height: 100%; /* Ensure html and body take full viewport height */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent default root scrolling */
             font-family: 'Inter', sans-serif;
         }
         .nav-item.active {
@@ -244,6 +248,7 @@
                     <p class="mb-6 text-gray-600">This section provides an overview of various charges, their categories, and typical sentencing guidelines in months, along with associated fines. Understanding these benchmarks is crucial for negotiating pleas, advising clients on potential outcomes, and challenging disproportionate sentences. The charts below visualize median sentencing times and fines across different charge categories.</p>
                     <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
                         <h3 class="font-bold text-xl mb-4 text-center">Charge Penalties Overview</h3>
+                        <p class="text-md text-gray-700 mb-4 text-center">Total Charges in List: <span id="totalChargesCount" class="font-bold text-blue-700"></span></p>
                         <div class="overflow-x-auto mb-6">
                             <table class="min-w-full bg-white border border-gray-200 rounded-lg">
                                 <thead class="bg-gray-100">
@@ -280,7 +285,7 @@
                         <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
                         <h2 class="text-3xl font-bold mb-4 text-gray-900">Charge Reduction Calculator</h2>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[calc(100vh-150px)]">
                         <div class="md:col-span-1">
                             <h3 class="font-bold text-xl mb-4">Select Charge(s) & Reduction</h3>
                             <div class="mb-4">
@@ -312,8 +317,13 @@
                         </div>
                         <div class="md:col-span-1 bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <h3 class="font-bold text-xl mb-4">Calculated Reductions</h3>
-                            <div id="reductionResults" class="space-y-4">
+                            <div id="reductionResults" class="space-y-4 h-64 overflow-y-auto">
                                 <p class="text-gray-600">Select charges and a reduction to see results.</p>
+                            </div>
+                            <div id="totalResults" class="mt-6 pt-4 border-t border-gray-300 hidden">
+                                <h4 class="font-bold text-lg mb-2">Final Totals</h4>
+                                <p>Total Sentencing: <span id="finalTotalSentencing" class="font-bold text-green-800"></span></p>
+                                <p>Total Fine: <span id="finalTotalFine" class="font-bold text-green-800"></span></p>
                             </div>
                         </div>
                     </div>
@@ -711,7 +721,7 @@
                                 <div class="p-4 bg-yellow-100 rounded-lg border">
                                     <h4 class="font-bold text-lg mb-1">Delayed Notice</h4>
                                     <p class="text-sm">Extra time before notification of signed warrant sent to citizen(s).</p>
-                                </div>
+                                    </div>
                             </div>
                         </div>
                         <p class="mt-6 text-center font-semibold text-red-600">Defense Note: Challenge any unlawful or overly broad search as unconstitutional under state and common law.</p>
@@ -1335,6 +1345,7 @@
                     populateSentencingTable();
                     createMedianSentencingChart();
                     createMedianFinesChart();
+                    document.getElementById('totalChargesCount').textContent = penalCodesData.length;
                 } else if (targetHash === '#dueprocess') {
                     createLimitationsChart();
                 } else if (targetHash === '#tools') {
@@ -1595,9 +1606,13 @@
                 const reductionSelect = document.getElementById('reductionSelect').value;
                 const customReductionInput = document.getElementById('customReductionInput').value;
                 const reductionResultsDiv = document.getElementById('reductionResults');
+                const totalResultsDiv = document.getElementById('totalResults');
+                const finalTotalSentencingSpan = document.getElementById('finalTotalSentencing');
+                const finalTotalFineSpan = document.getElementById('finalTotalFine');
 
                 // Clear previous results
                 reductionResultsDiv.innerHTML = '';
+                totalResultsDiv.classList.add('hidden'); // Hide totals until calculated
 
                 let reductionPercentage = parseFloat(reductionSelect);
                 if (reductionSelect === 'custom') {
@@ -1610,11 +1625,15 @@
                 }
 
                 if (selectedChargeNames.length === 0) {
-                    reductionResultsDiv.innerHTML = '<p class="text-red-500">Please select at least one charge.</p>';
+                    reductionResultsDiv.innerHTML = '<p class="text-gray-600">Select charges and a reduction to see results.</p>';
                     return;
                 }
 
                 let resultsHtml = '';
+                let overallTotalSentencing = 0;
+                let overallTotalFine = 0;
+                let hasLifeSentence = false;
+
                 selectedChargeNames.forEach(selectedChargeName => {
                     const matchedCharge = penalCodesData.find(data =>
                         data.charge.toLowerCase() === selectedChargeName.toLowerCase()
@@ -1625,46 +1644,50 @@
                         const originalFine = matchedCharge.fine;
                         const sacCode = matchedCharge.section || 'N/A'; // Get S.A.C. code
 
-                        let reducedSentencing = originalSentencing;
-                        let reducedFine = originalFine;
+                        let currentReducedSentencingText;
+                        let currentReducedFineText;
+                        let currentReducedSentencingValue = 0; // Value for total calculation
+                        let currentReducedFineValue = 0; // Value for total calculation
 
-                        // Handle 'Sexual Assault' as non-reducible sentence
+                        // Handle 'Sexual Assault' as non-reducible sentence and fine
                         if (matchedCharge.charge === "Sexual Assault") {
-                            reducedFine = originalFine * (1 - (reductionPercentage / 100)); // Fine can still be reduced
-                            resultsHtml += `
-                                <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                    <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
-                                    <p>Original Sentencing: Life</p>
-                                    <p class="font-bold text-red-700">Reduced Sentencing: This charge is not eligible for reduction</p>
-                                    <p>Original Fine: $${originalFine.toLocaleString()}</p>
-                                    <p>Reduced Fine (${reductionPercentage}% off): <span class="font-bold text-green-700">$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></p>
-                                </div>
-                            `;
-                        } else if (originalSentencing === 99999) {
-                            // This is for other "Life" sentences if any, not Sexual Assault specific
-                            reducedFine = originalFine * (1 - (reductionPercentage / 100));
-                            resultsHtml += `
-                                <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                    <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
-                                    <p>Original Sentencing: Life</p>
-                                    <p>Reduced Sentencing: Life (Fine Reduced)</p>
-                                    <p>Original Fine: $${originalFine.toLocaleString()}</p>
-                                    <p>Reduced Fine (${reductionPercentage}% off): <span class="font-bold text-green-700">$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></p>
-                                </div>
-                            `;
+                            currentReducedSentencingText = '<span class="font-bold text-red-700">This charge is not eligible for reduction</span>';
+                            currentReducedFineText = '<span class="font-bold text-red-700">This charge is not eligible for reduction</span>';
+                            hasLifeSentence = true; // Consider Sexual Assault as a "life" equivalent for total purposes
+                            currentReducedSentencingValue = 99999; // Set to indicate life for total calculation
+                            currentReducedFineValue = originalFine; // Fine is not reduced for sexual assault
+                        } else if (originalSentencing === 99999) { // Generic "Life" sentences
+                            currentReducedSentencingText = 'Life';
+                            currentReducedFineText = `<span class="font-bold text-green-700">$${(originalFine * (1 - (reductionPercentage / 100))).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>`;
+                            currentReducedFineValue = originalFine * (1 - (reductionPercentage / 100));
+                            hasLifeSentence = true;
+                            currentReducedSentencingValue = 99999; // Set to indicate life for total calculation
                         } else {
-                            reducedSentencing = originalSentencing * (1 - (reductionPercentage / 100));
-                            reducedFine = originalFine * (1 - (reductionPercentage / 100));
-                            resultsHtml += `
-                                <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                    <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
-                                    <p>Original Sentencing: ${originalSentencing} Months</p>
-                                    <p>Reduced Sentencing (${reductionPercentage}% off): <span class="font-bold text-green-700">${reducedSentencing.toFixed(0)} Months</span></p>
-                                    <p>Original Fine: $${originalFine.toLocaleString()}</p>
-                                    <p>Reduced Fine (${reductionPercentage}% off): <span class="font-bold text-green-700">$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></p>
-                                </div>
-                            `;
+                            const reducedSentencing = originalSentencing * (1 - (reductionPercentage / 100));
+                            const reducedFine = originalFine * (1 - (reductionPercentage / 100));
+                            currentReducedSentencingText = `<span class="font-bold text-green-700">${reducedSentencing.toFixed(0)} Months</span>`;
+                            currentReducedFineText = `<span class="font-bold text-green-700">$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>`;
+                            currentReducedSentencingValue = reducedSentencing;
+                            currentReducedFineValue = reducedFine;
                         }
+
+                        resultsHtml += `
+                            <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
+                                <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
+                                <p>Original Sentencing: ${originalSentencing === 99999 ? 'Life' : originalSentencing + ' Months'}</p>
+                                <p>Reduced Sentencing (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
+                                <p>Original Fine: $${originalFine.toLocaleString()}</p>
+                                <p>Reduced Fine (${reductionPercentage}% off): ${currentReducedFineText}</p>
+                            </div>
+                        `;
+                        // Accumulate totals
+                        if (currentReducedSentencingValue === 99999) {
+                            hasLifeSentence = true;
+                        } else {
+                            overallTotalSentencing += currentReducedSentencingValue;
+                        }
+                        overallTotalFine += currentReducedFineValue;
+
                     } else {
                         // This case should ideally not happen if options are from penalCodesData
                         resultsHtml += `
@@ -1675,6 +1698,15 @@
                     }
                 });
                 reductionResultsDiv.innerHTML = resultsHtml;
+
+                // Display total results
+                totalResultsDiv.classList.remove('hidden');
+                if (hasLifeSentence) {
+                    finalTotalSentencingSpan.textContent = 'Life';
+                } else {
+                    finalTotalSentencingSpan.textContent = `${overallTotalSentencing.toFixed(0)} Months`;
+                }
+                finalTotalFineSpan.textContent = `$${overallTotalFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
             });
             
             // Use MutationObserver to initialize charts and tables only when their section becomes visible
@@ -1691,6 +1723,7 @@
                                 populateSentencingTable();
                                 createMedianSentencingChart();
                                 createMedianFinesChart();
+                                document.getElementById('totalChargesCount').textContent = penalCodesData.length;
                            }
                         }
                     }
@@ -1714,6 +1747,7 @@
                 populateSentencingTable();
                 createMedianSentencingChart();
                 createMedianFinesChart();
+                document.getElementById('totalChargesCount').textContent = penalCodesData.length;
             }
         });
     </script>
