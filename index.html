@@ -71,12 +71,15 @@
             opacity: 0;
             padding-top: 0;
             padding-bottom: 0;
+            padding-left: 1rem; /* Added padding to shift collapsed/uncollapsed content */
+            padding-right: 1rem; /* Also add right padding for symmetry */
         }
         .accordion-content.expanded {
             max-height: 1000px; /* Increased max-height to accommodate new content */
             opacity: 1;
             padding-top: 1rem; /* Matches px-4 (16px) */
             padding-bottom: 1rem; /* Matches pb-4 (16px) */
+            /* padding-left and padding-right are already set in the base .accordion-content */
         }
         /* clearfix utility to contain floated elements */
         .clearfix::after {
@@ -1022,88 +1025,64 @@
                         <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
                         <h2 class="text-3xl font-bold mb-4 text-gray-900">Courtroom Procedures & Objections</h2>
                     </div>
-                    <p class="mb-6 text-gray-600">Mastering courtroom procedures and knowing when and how to raise objections are critical skills for any defense attorney. This section provides a comprehensive guide to common objections and the rules governing witness examinations, essential for maintaining procedural integrity and advocating effectively for your client.</p>
+                    <p class="mb-6 text-gray-600">This section provides a comprehensive guide to basic courtroom proceedings and essential etiquette for all participants. Adhering to these procedures ensures a fair and orderly trial, upholding the integrity of the judicial process.</p>
 
                     <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
-                        <h3 class="font-bold text-2xl mb-4 text-center">Common Courtroom Objections</h3>
+                        <h3 class="font-bold text-2xl mb-4 text-center">Basic Court Proceedings</h3>
                         <div class="space-y-4">
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Hearsay</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> An out-of-court statement offered in court to prove the truth of the matter asserted. Generally inadmissible, with many exceptions.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "The witness said, 'I saw the defendant leave the scene.'"</p>
+                            <div class="p-4 bg-blue-100 border-2 border-blue-500 rounded-lg">
+                                <h4 class="font-bold text-xl mb-1">Getting Started</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>Everyone takes their places within the courtroom.</li>
+                                    <li>Upon the entrance of the Judge, everyone will stand until the Bailiff declares that "court is now in session."</li>
+                                    <li>Bailiffs will swear in anyone that takes the stand to give testimony.</li>
+                                </ul>
                             </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Leading Question</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> A question that suggests the desired answer, typically disallowed on direct examination but permitted on cross-examination.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "You saw the defendant run, didn't you?"</p>
+                            <div class="flex justify-center text-2xl font-bold text-gray-500">↓ Trial Flow ↓</div>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Opening Statements</h4>
+                                <p class="text-sm">Begin with opening statements from the Prosecution (generally always goes first) and then the Defense.</p>
                             </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Speculation</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> Witness is asked to guess or hypothesize about something they did not personally observe or know.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "What do you think the defendant was feeling when he left?"</p>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Evidence & Witnesses</h4>
+                                <p class="text-sm">Evidence and witnesses can then be called up by either party at the discretion of the Presiding Judge. The opposite side is able to cross-examine evidence given and witnesses called.</p>
                             </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Irrelevant</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> The question or evidence presented has no bearing on the facts or issues of the case.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "What was the weather like on your vacation last year?" (Unless weather is directly relevant to the incident).</p>
-                            </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Argumentative</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> The attorney is not asking a question but is making a statement or engaging in a debate with the witness.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "How can you possibly claim you saw him, when it was dark and rainy?"</p>
-                            </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Asked and Answered</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> The question has already been posed to the witness and a response has been given.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> (After witness confirms their location) "So, you were indeed at the crime scene, correct?"</p>
-                            </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Lack of Foundation</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> The attorney has not established the necessary preliminary facts for a question or for the admission of evidence.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> (Trying to admit a document without proving its authenticity or relevance first).</p>
-                            </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Compound Question</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> A question that contains multiple inquiries, making it difficult for the witness to provide a clear and concise answer.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "Did you go to the store and then pick up the package, and what did you do after that?"</p>
-                            </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Vague/Ambiguous</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> The question is unclear or capable of being understood in multiple ways, making it hard for the witness to answer accurately.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> "What happened then?" (Without sufficient context).</p>
-                            </div>
-                            <div class="border-l-4 border-yellow-500 p-3 bg-yellow-50 rounded-lg">
-                                <h4 class="font-semibold text-lg mb-1">Non-Responsive</h4>
-                                <p class="text-sm text-gray-700"><span class="font-weight: bold;">Rule:</span> The witness's answer does not directly address the question asked.</p>
-                                <p class="text-sm text-gray-600 italic mt-1"><span class="font-weight: bold;">Example:</span> (Attorney asks about client's whereabouts on Monday; witness talks about their weekend plans).</p>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Closing Arguments & Decision</h4>
+                                <p class="text-sm">Closing arguments will then take place, followed by a judicial decision from the Presiding Judge.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-600">
-                            <h3 class="font-bold text-xl mb-3 text-center">Direct Examination Rules</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Direct examination is when an attorney questions a witness they called to testify. The goal is to elicit facts in a clear, narrative manner that supports their case.</p>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
-                                <li><span class="font-bold">Non-Leading Questions:</span> Generally, questions must be open-ended and not suggest the desired answer. This allows the witness to tell their story in their own words.</li>
-                                <li><span class="font-bold">Scope:</span> Questions must be within the scope of the witness's personal knowledge and relevant to the facts of the case.</li>
-                                <li><span class="font-bold">No Argumentative Questions:</span> Questions should seek information, not argue with the witness.</li>
-                                <li><span class="font-bold">No Repeating Testimony (Asked & Answered):</span> Avoid asking questions that have already been answered.</li>
-                                <li><span class="font-bold">Establish Foundation:</span> Before asking about a specific piece of evidence or event, establish that the witness has the necessary knowledge or experience.</li>
-                                <li><span class="font-bold">Refresh Recollection:</span> If a witness forgets a detail, an attorney may use a document to refresh their memory, but the document itself is usually not admitted as evidence at that point.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-600">
-                            <h3 class="font-bold text-xl mb-3 text-center">Cross-Examination Rules</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Cross-examination is when an attorney questions a witness called by the opposing side. The goal is to test the witness's credibility, expose inconsistencies, or elicit facts favorable to their own case.</p>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
-                                <li><span class="font-bold">Leading Questions Allowed:</span> Attorneys are generally permitted to ask leading questions to guide the witness towards specific answers and control the testimony.</li>
-                                <li><span class="font-bold">Scope of Direct:</span> Questions must typically be limited to the subject matter covered during direct examination and matters affecting the witness's credibility.</li>
-                                <li><span class="font-bold">Impeachment:</span> Attorneys can challenge the witness's credibility by showing inconsistencies, bias, prior convictions, or prior inconsistent statements.</li>
-                                <li><span class="font-bold">No Argumentative Questions:</span> While more forceful, questions should still not be purely argumentative.</li>
-                                <li><span class="font-bold">No New Evidence:</span> Generally, new evidence cannot be introduced through cross-examination unless it directly relates to the scope of direct or witness credibility.</li>
-                                <li><span class="font-bold">Control the Witness:</span> Cross-examiners aim to limit the witness to "yes" or "no" answers where possible, preventing them from offering additional explanations.</li>
-                            </ul>
+                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                        <h3 class="font-bold text-2xl mb-4 text-center">Court Etiquette</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-yellow-100 rounded-lg border-2 border-yellow-500">
+                                <h4 class="font-bold text-lg mb-1">Evidence Submission</h4>
+                                <p class="text-sm">All of the evidence related to Prosecution will be presented to the Judge prior to the trial, no later than one hour before the trial begins. Any evidence turned in after this time will not be admissible or considered valid.</p>
+                            </div>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Addressing the Judge</h4>
+                                <p class="text-sm">The presiding Judge will be addressed simply as "Your Honor."</p>
+                            </div>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Firearms in Courthouse</h4>
+                                <p class="text-sm">The only individuals allowed to carry firearms within the courthouse is limited strictly to Bailiffs. Bailiffs will be allowed to carry shotguns if a violent offender is on trial (e.g., coming to court facing a HUT charge).</p>
+                            </div>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Electronic Devices</h4>
+                                <p class="text-sm">No cell phones will be permitted inside the courtroom during trials.</p>
+                            </div>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Spectator Limits</h4>
+                                <p class="text-sm">The maximum number of spectators will be no more than 15 persons.</p>
+                            </div>
+                            <div class="p-4 bg-gray-100 rounded-lg border">
+                                <h4 class="font-bold text-lg mb-1">Appearance and Conduct</h4>
+                                <p class="text-sm">No phones, no masks, no gang identifiers, no weapons. Faces have to be visible at all times.</p>
+                                <p class="text-sm mt-1">There is to be no talking during a court proceeding unless you are directly involved in the case and are called upon by the Judge.</p>
+                                <p class="text-sm mt-1 text-red-600 font-semibold">Any person talking out of line or disrupting the court proceedings is liable to face a Contempt of Court charge.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1438,41 +1417,6 @@
                 
                 chargesSelect.appendChild(option);
             });
-
-            // Discord Webhook URL - This part is removed as requested by the user previously.
-            // const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1382934755674296320/y0sqCTwgGwAV3Er2rLU0rlZKc-m6Y4loLZUsysMG4w57G8I2d9kWrDI1nt9MUP3TrhkG";
-
-            // Function to send Discord notification - This function is removed as requested by the user previously.
-            /*
-            async function sendDiscordNotification(message) {
-                const payload = {
-                    embeds: [{
-                        title: "Website Activity",
-                        description: message,
-                        color: 3447003 // A nice blue color for the embed
-                    }]
-                };
-
-                try {
-                    const response = await fetch(DISCORD_WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(payload),
-                    });
-
-                    if (!response.ok) {
-                        console.error('Failed to send Discord notification:', response.status, response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error sending Discord notification:', error);
-                }
-            }
-            */
-
-            // Call sendDiscordNotification when the page is loaded - This call is removed.
-            // sendDiscordNotification("A Person has viewed the website");
 
 
             function updateContent(hash) {
