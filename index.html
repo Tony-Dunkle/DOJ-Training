@@ -213,7 +213,7 @@
             cursor: pointer;
         }
 
-        .charges-list-item {
+        .charges-list-item, .reduction-list-item {
             display: flex;
             align-items: center;
             padding: 0.5rem 0.75rem;
@@ -224,14 +224,38 @@
             margin-bottom: 0.25rem; /* space-y-1 */
         }
 
-        .charges-list-item:hover {
+        .charges-list-item:hover, .reduction-list-item:hover {
             background-color: #f0f4f8; /* Light blue on hover */
         }
-        .charges-list-item input[type="checkbox"] {
+        .charges-list-item input[type="checkbox"], .reduction-list-item input[type="radio"] {
             margin-right: 0.75rem; /* mr-3 */
-            transform: scale(1.2); /* Slightly larger checkbox */
+            transform: scale(1.2); /* Slightly larger checkbox/radio */
         }
 
+        /* Style for text input that acts as a dropdown trigger */
+        .dropdown-display {
+            background-color: white;
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
+            padding: 0.625rem 1rem; /* py-2.5 px-4 */
+            min-height: 42px; /* Ensure consistent height */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #4b5563; /* text-gray-700 */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .dropdown-display:hover {
+            border-color: #60a5fa; /* border-blue-400 */
+        }
+
+        .dropdown-display:focus {
+            outline: none;
+            border-color: #3b82f6; /* border-blue-500 */
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5); /* ring-blue-500/50 */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col h-screen">
@@ -490,25 +514,19 @@
                                 <label for="chargeSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
                                     Selected Charge(s):
                                 </label>
-                                <div id="chargeSelectionDisplay" class="mt-1 block w-full px-3 py-2 text-base border border-gray-300 rounded-md shadow-sm bg-white cursor-pointer hover:border-blue-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 min-h-[42px] flex items-center">
-                                    No charges selected
+                                <div id="chargeSelectionDisplay" class="dropdown-display">
+                                    <span>No charges selected</span>
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="reductionSelect" class="block text-sm font-medium text-gray-700 mb-2">Select Reduction Percentage:</label>
-                                <select id="reductionSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
-                                    <option value="0">No Reduction</option>
-                                    <option value="5">5%</option>
-                                    <option value="10">10%</option>
-                                    <option value="25">25%</option>
-                                    <option value="50">50%</option>
-                                    <option value="75">75%</option>
-                                    <option value="custom">Custom Percentage</option>
-                                </select>
-                            </div>
-                            <div id="customReductionDiv" class="mb-4 hidden">
-                                <label for="customReductionInput" class="block text-sm font-medium text-gray-700 mb-2">Custom Reduction (%):</label>
-                                <input type="number" id="customReductionInput" min="0" max="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2" placeholder="e.g., 15">
+                                <label for="reductionSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Selected Reduction Percentage:
+                                </label>
+                                <div id="reductionSelectionDisplay" class="dropdown-display">
+                                    <span>No Reduction (0%)</span>
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
                             </div>
                             <button id="applyReductionBtn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Calculate Reduction</button>
                         </div>
@@ -550,6 +568,56 @@
                     </div>
                 </div>
 
+                <!-- Reduction Selection Modal -->
+                <div id="reductionSelectionModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="text-2xl font-bold">Select Reduction Percentage</h3>
+                            <span class="close-button" id="closeReductionModal">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div id="reductionOptionsList" class="space-y-1">
+                                <!-- Reduction options will be dynamically loaded here -->
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="0" class="form-radio h-5 w-5 text-blue-600" checked>
+                                    <span class="text-sm font-medium text-gray-900">No Reduction (0%)</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="5" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">5% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="10" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">10% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="25" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">25% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="50" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">50% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="75" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">75% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="custom" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">Custom Percentage</span>
+                                </label>
+                                <div id="customReductionInputModalDiv" class="mt-4 p-2 border border-gray-300 rounded-md hidden">
+                                    <label for="customReductionInputModal" class="block text-xs font-medium text-gray-700 mb-1">Enter Custom Percentage (0-100):</label>
+                                    <input type="number" id="customReductionInputModal" min="0" max="100" class="w-full p-1 border border-gray-300 rounded-md text-sm" placeholder="e.g., 15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- No clear button needed for single selection radio buttons -->
+                            <button id="applySelectedReductionBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Apply Selection</button>
+                        </div>
+                    </div>
+                </div>
 
                 <div id="constitution" class="content-section">
                     <div class="clearfix">
@@ -1321,7 +1389,7 @@
                                 <a href="https://docs.google.com/document/d/1ltKsfyQOi9gHi4m_wNAhA2zpAAy1_GT1unHDm5YdFmQ/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Parole Form</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-                                <a href="https://docs.google.com/document/d/1Yiemt5PFLRyFr1XK-FzMTq2u9_dnLaxuvmiNDZfHsxg/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Official Complaint</a>
+                                <a href="https://docs.google.com/document/d/1Yiemt5PFLRyFr1XK-FzMTq2u9_dnLaxuvmiNDZfhsxg/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Official Complaint</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                                 <a href="https://docs.google.com/document/d/1DJd3nFfMYV_sfdGgX0jNvumxuPcTxbxkN8Nw5jv0nvU/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Court Documentation Guidelines</a>
@@ -1366,6 +1434,11 @@
         let penalCodesData = [];
         // Global variable to store currently selected charges for the calculator
         let selectedCharges = []; // Stores charge names as strings
+        // Global variable for selected reduction percentage
+        let selectedReduction = {
+            type: 'standard', // 'standard' or 'custom'
+            value: 0 // Numeric percentage or '0' for no reduction
+        };
 
         document.addEventListener('DOMContentLoaded', async function() {
             const navItems = document.querySelectorAll('.nav-item');
@@ -1376,16 +1449,14 @@
 
             // Calculator elements
             const chargeSelectionDisplay = document.getElementById('chargeSelectionDisplay');
-            const reductionSelect = document.getElementById('reductionSelect');
-            const customReductionDiv = document.getElementById('customReductionDiv');
-            const customReductionInput = document.getElementById('customReductionInput');
+            const reductionSelectionDisplay = document.getElementById('reductionSelectionDisplay');
             const applyReductionBtn = document.getElementById('applyReductionBtn');
             const reductionResultsDiv = document.getElementById('reductionResults');
             const totalResultsDiv = document.getElementById('totalResults');
             const finalTotalSentencingSpan = document.getElementById('finalTotalSentencing');
             const finalTotalFineSpan = document.getElementById('finalTotalFine');
 
-            // Modal elements
+            // Charge Selection Modal elements
             const chargeSelectionModal = document.getElementById('chargeSelectionModal');
             const closeChargeModalBtn = document.getElementById('closeChargeModal');
             const chargeSearchInput = document.getElementById('chargeSearchInput');
@@ -1393,6 +1464,13 @@
             const clearAllChargesBtn = document.getElementById('clearAllChargesBtn');
             const applySelectedChargesBtn = document.getElementById('applySelectedChargesBtn');
 
+            // Reduction Selection Modal elements
+            const reductionSelectionModal = document.getElementById('reductionSelectionModal');
+            const closeReductionModalBtn = document.getElementById('closeReductionModal');
+            const reductionOptionsList = document.getElementById('reductionOptionsList');
+            const customReductionInputModalDiv = document.getElementById('customReductionInputModalDiv');
+            const customReductionInputModal = document.getElementById('customReductionInputModal');
+            const applySelectedReductionBtn = document.getElementById('applySelectedReductionBtn');
 
             penalCodesData = [
                 { section: "S.A.C. § 1111", charge: "First Degree Murder", description: "A person who aids or abets in the commission of first-degree murder without directly committing the act of killing. (flatbacking)", category: "Federal", sentencingMonths: 60, fine: 10000 },
@@ -1812,21 +1890,13 @@
             });
 
             // Logic for Charge Reduction Calculator
-            reductionSelect.addEventListener('change', function() {
-                if (this.value === 'custom') {
-                    customReductionDiv.classList.remove('hidden');
-                } else {
-                    customReductionDiv.classList.add('hidden');
-                }
-            });
-
             applyReductionBtn.addEventListener('click', calculateReduction);
 
             // Function to calculate reduction
             function calculateReduction() {
-                let reductionPercentage = parseFloat(reductionSelect.value);
-                if (reductionSelect.value === 'custom') {
-                    reductionPercentage = parseFloat(customReductionInput.value);
+                let reductionPercentage = selectedReduction.value;
+                if (selectedReduction.type === 'custom') {
+                    reductionPercentage = parseFloat(customReductionInputModal.value);
                 }
 
                 reductionResultsDiv.innerHTML = ''; // Clear previous results
@@ -1920,7 +1990,7 @@
                 finalTotalFineSpan.textContent = `$${overallTotalFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
             }
 
-            // --- Modal Logic ---
+            // --- Charge Selection Modal Logic ---
             let chargesInModal = []; // Temporary array to hold selections while modal is open
 
             chargeSelectionDisplay.addEventListener('click', openChargeSelectionModal);
@@ -2008,18 +2078,111 @@
             }
 
             function updateChargeSelectionDisplay() {
+                const displaySpan = chargeSelectionDisplay.querySelector('span');
                 if (selectedCharges.length === 0) {
-                    chargeSelectionDisplay.textContent = 'No charges selected';
+                    displaySpan.textContent = 'No charges selected';
                 } else if (selectedCharges.length <= 3) { // Display up to 3 names
-                    chargeSelectionDisplay.textContent = selectedCharges.join(', ');
+                    displaySpan.textContent = selectedCharges.join(', ');
                 } else {
-                    chargeSelectionDisplay.textContent = `${selectedCharges.length} charges selected`;
+                    displaySpan.textContent = `${selectedCharges.length} charges selected`;
                 }
             }
 
-            // Initial display update
-            updateChargeSelectionDisplay();
+            // --- Reduction Selection Modal Logic ---
+            let tempReductionSelection = { ...selectedReduction }; // Temporary variable for modal
 
+            reductionSelectionDisplay.addEventListener('click', openReductionSelectionModal);
+            closeReductionModalBtn.addEventListener('click', closeReductionSelectionModal);
+            reductionSelectionModal.addEventListener('click', (e) => {
+                if (e.target === reductionSelectionModal) {
+                    closeReductionSelectionModal();
+                }
+            });
+
+            // Event listener for radio buttons in the modal
+            reductionOptionsList.addEventListener('change', (e) => {
+                if (e.target.name === 'reductionOption') {
+                    tempReductionSelection.type = 'standard';
+                    tempReductionSelection.value = parseFloat(e.target.value);
+                    if (e.target.value === 'custom') {
+                        tempReductionSelection.type = 'custom';
+                        customReductionInputModalDiv.classList.remove('hidden');
+                        customReductionInputModal.focus();
+                    } else {
+                        customReductionInputModalDiv.classList.add('hidden');
+                    }
+                }
+            });
+
+            applySelectedReductionBtn.addEventListener('click', () => {
+                if (tempReductionSelection.type === 'custom') {
+                    const customValue = parseFloat(customReductionInputModal.value);
+                    if (isNaN(customValue) || customValue < 0 || customValue > 100) {
+                        // Keep modal open and show error (or handle visually in UI)
+                        alert("Please enter a valid custom percentage between 0 and 100."); // Using alert for simplicity, replace with custom modal
+                        return;
+                    }
+                    selectedReduction.value = customValue;
+                    selectedReduction.type = 'custom';
+                } else {
+                    selectedReduction.value = tempReductionSelection.value;
+                    selectedReduction.type = 'standard';
+                }
+                updateReductionSelectionDisplay();
+                closeReductionSelectionModal();
+            });
+
+            function openReductionSelectionModal() {
+                tempReductionSelection = { ...selectedReduction }; // Sync temporary with current global selection
+
+                // Set initial state of radio buttons and custom input in the modal
+                const radioButtons = reductionOptionsList.querySelectorAll('input[name="reductionOption"]');
+                let foundMatch = false;
+                radioButtons.forEach(radio => {
+                    if (tempReductionSelection.type === 'standard' && parseFloat(radio.value) === tempReductionSelection.value) {
+                        radio.checked = true;
+                        customReductionInputModalDiv.classList.add('hidden');
+                        foundMatch = true;
+                    } else if (tempReductionSelection.type === 'custom' && radio.value === 'custom') {
+                        radio.checked = true;
+                        customReductionInputModalDiv.classList.remove('hidden');
+                        customReductionInputModal.value = tempReductionSelection.value;
+                        foundMatch = true;
+                    } else {
+                        radio.checked = false;
+                    }
+                });
+
+                // If no direct match (e.g., custom value was cleared or invalid), default to "No Reduction"
+                if (!foundMatch) {
+                    const noReductionRadio = reductionOptionsList.querySelector('input[value="0"]');
+                    if (noReductionRadio) noReductionRadio.checked = true;
+                    customReductionInputModalDiv.classList.add('hidden');
+                    tempReductionSelection = { type: 'standard', value: 0 };
+                }
+
+                reductionSelectionModal.style.display = 'flex';
+            }
+
+            function closeReductionSelectionModal() {
+                reductionSelectionModal.style.display = 'none';
+            }
+
+            function updateReductionSelectionDisplay() {
+                const displaySpan = reductionSelectionDisplay.querySelector('span');
+                if (selectedReduction.type === 'custom') {
+                    displaySpan.textContent = `Custom: ${selectedReduction.value}%`;
+                } else {
+                    displaySpan.textContent = `${selectedReduction.value}% Reduction`;
+                    if (selectedReduction.value === 0) {
+                        displaySpan.textContent = 'No Reduction (0%)';
+                    }
+                }
+            }
+
+            // Initial display updates on load
+            updateChargeSelectionDisplay();
+            updateReductionSelectionDisplay();
 
             // Use MutationObserver to initialize charts and tables only when their section becomes visible
             const generalObserver = new MutationObserver((mutations) => {
