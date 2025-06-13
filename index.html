@@ -28,8 +28,12 @@
             height: 100%; /* Ensure html and body take full viewport height */
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent default root scrolling */
             font-family: 'Inter', sans-serif;
+            /* Global box-sizing for consistent layout calculations */
+            box-sizing: border-box; 
+        }
+        *, *::before, *::after {
+            box-sizing: inherit; /* Inherit box-sizing for all elements */
         }
         .nav-item.active {
             background-color: #3b82f6; /* bg-blue-600 */
@@ -105,11 +109,12 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 flex flex-col h-screen">
 
-    <div class="flex h-screen bg-gray-100">
-        <!-- Sidebar Navigation -->
-        <aside class="w-64 bg-gray-800 text-white flex-shrink-0">
+    <!-- Main Container with Responsive Flex Layout -->
+    <div class="flex flex-col md:flex-row flex-1 bg-gray-100">
+        <!-- Sidebar Navigation - Hidden on small screens, visible on medium and up -->
+        <aside class="w-full md:w-64 bg-gray-800 text-white flex-shrink-0 hidden md:flex flex-col">
             <div class="p-4 border-b border-gray-700">
                 <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="w-16 h-16 mr-2 mb-2 rounded-full float-left" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/000000?text=Image+Error';">
                 <div class="overflow-hidden">
@@ -117,7 +122,7 @@
                     <p class="text-xs text-gray-400">Elevate RP Jurisdiction</p>
                 </div>
             </div>
-            <nav class="mt-4 overflow-y-auto h-[calc(100vh-80px)]">
+            <nav class="mt-4 overflow-y-auto flex-1">
                 <a href="#introduction" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">👋</span> Introduction
                 </a>
@@ -163,8 +168,8 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
-        <main class="flex-1 p-6 md:p-8 lg:p-10 overflow-y-auto">
+        <!-- Main Content Area - Takes full width on small screens -->
+        <main class="flex-1 p-6 md:p-8 lg:p-10 overflow-y-auto w-full">
             <!-- Content Wrapper to constrain width on large monitors -->
             <div class="max-w-screen-xl mx-auto">
                 
@@ -1285,7 +1290,7 @@
                 { section: "S.A.C. § 415", charge: "Vandalism", description: "Willful destruction or defacement of public or private property, including graffiti, tagging, or minor property damage not exceeding a significant dollar amount.", category: "Misdemeanor", sentencingMonths: 10, fine: 2500 },
                 // Weapon Related Misdemeanor
                 { section: "Varies by specific statute", charge: "Brandishing", description: "Displaying a firearm in a threatening, careless, or intimidating manner without justification.", category: "Misdemeanor", sentencingMonths: 20, fine: 3000 },
-                { section: "Varies by specific statute", charge: "Illegal Discharge of a Firearm", description: "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.", category: "Misdemeanor", sentencingMonths: 20, fine: 3500 },
+                { section: "Varies by specific statute", charge: "  Illegal Discharge of a Firearm", description: "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.", category: "Misdemeanor", sentencingMonths: 20, fine: 3500 },
                 // Drug Related Misdemeanor
                 { section: "S.A.C. § 844", charge: "Misdemeanor Possession of Marijuana", description: "Possessing a small personal-use quantity of marijuana without proper licensing or in a restricted area.", category: "Misdemeanor", sentencingMonths: 10, fine: 1500 },
 
@@ -1300,7 +1305,27 @@
                 { section: "N/A", charge: "Jaywalking", description: "Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.", category: "Citation", sentencingMonths: 0, fine: 500 },
             ];
 
-            // Discord Webhook URL (replace with your actual webhook URL)
+            // Populate charges select dropdown
+            penalCodesData.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.charge;
+                // Add S.A.C. code to the text content
+                option.textContent = (item.section && item.section !== 'N/A' ? `${item.section} - ` : '') + item.charge;
+
+                // Add class based on category for color coding
+                const categoryClass = item.category.toLowerCase().replace(/\s/g, '-'); // "Serious Felony" -> "serious-felony"
+                if (categoryClass.includes('felony') || categoryClass.includes('federal')) { // Covers both "Felony" and "Serious Felony" and "Federal"
+                    option.classList.add('charge-felony');
+                } else if (categoryClass.includes('misdemeanor')) {
+                    option.classList.add('charge-misdemeanor');
+                } else if (categoryClass.includes('citation')) {
+                    option.classList.add('charge-citation');
+                }
+                
+                chargesSelect.appendChild(option);
+            });
+
+            // Discord Webhook URL
             const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1382934755674296320/y0sqCTwgGwAV3Er2rLU0rlZKc-m6Y4loLZUsysMG4w57G8I2d9kWrDI1nt9MUP3TrhkG";
 
             // Function to send Discord notification
