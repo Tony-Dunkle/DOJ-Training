@@ -1300,25 +1300,38 @@
                 { section: "N/A", charge: "Jaywalking", description: "Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.", category: "Citation", sentencingMonths: 0, fine: 500 },
             ];
 
-            // Populate charges select dropdown
-            penalCodesData.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.charge;
-                // Add S.A.C. code to the text content
-                option.textContent = (item.section && item.section !== 'N/A' ? `${item.section} - ` : '') + item.charge;
+            // Discord Webhook URL (replace with your actual webhook URL)
+            const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1382934755674296320/y0sqCTwgGwAV3Er2rLU0rlZKc-m6Y4loLZUsysMG4w57G8I2d9kWrDI1nt9MUP3TrhkG";
 
-                // Add class based on category for color coding
-                const categoryClass = item.category.toLowerCase().replace(/\s/g, '-'); // "Serious Felony" -> "serious-felony"
-                if (categoryClass.includes('felony') || categoryClass.includes('federal')) { // Covers both "Felony" and "Serious Felony" and "Federal"
-                    option.classList.add('charge-felony');
-                } else if (categoryClass.includes('misdemeanor')) {
-                    option.classList.add('charge-misdemeanor');
-                } else if (categoryClass.includes('citation')) {
-                    option.classList.add('charge-citation');
+            // Function to send Discord notification
+            async function sendDiscordNotification(message) {
+                const payload = {
+                    embeds: [{
+                        title: "Website Activity",
+                        description: message,
+                        color: 3447003 // A nice blue color for the embed
+                    }]
+                };
+
+                try {
+                    const response = await fetch(DISCORD_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload),
+                    });
+
+                    if (!response.ok) {
+                        console.error('Failed to send Discord notification:', response.status, response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error sending Discord notification:', error);
                 }
-                
-                chargesSelect.appendChild(option);
-            });
+            }
+
+            // Call sendDiscordNotification when the page is loaded
+            sendDiscordNotification("A Person has viewed the website");
 
 
             function updateContent(hash) {
