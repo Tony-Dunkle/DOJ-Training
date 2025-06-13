@@ -107,14 +107,59 @@
             background-color: #bfdbfe; /* Blue-200 for selected */
             color: #1e40af; /* Blue-800 for selected text */
         }
+        /* Mobile sidebar specific styles */
+        .mobile-sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            z-index: 40; /* Above main content, below sidebar */
+            display: none; /* Hidden by default */
+        }
+        .mobile-sidebar-overlay.active {
+            display: block; /* Visible when sidebar is active */
+        }
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80%; /* Adjust as needed */
+            max-width: 320px; /* Max width for sidebar on mobile */
+            height: 100%;
+            background-color: #1f2937; /* bg-gray-800 */
+            transform: translateX(-100%); /* Start off-screen */
+            transition: transform 0.3s ease-in-out;
+            z-index: 50; /* Above overlay */
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            display: flex; /* Ensure flex for internal layout */
+            flex-direction: column; /* Ensure column for internal layout */
+        }
+        .mobile-sidebar.active {
+            transform: translateX(0); /* Slide in */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col h-screen">
 
+    <!-- Mobile Navigation Toggle Button - Only visible on small screens -->
+    <div class="md:hidden p-4 bg-gray-800 text-white flex items-center justify-between">
+        <button id="mobile-nav-toggle" class="focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        <span class="text-lg font-bold">DOJ Guide</span>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobile-sidebar-overlay" class="mobile-sidebar-overlay"></div>
+
     <!-- Main Container with Responsive Flex Layout -->
     <div class="flex flex-col md:flex-row flex-1 bg-gray-100">
-        <!-- Sidebar Navigation - Hidden on small screens, visible on medium and up -->
-        <aside class="w-full md:w-64 bg-gray-800 text-white flex-shrink-0 hidden md:flex flex-col">
+        <!-- Desktop Sidebar - Always present, visible on medium and up -->
+        <aside id="desktop-sidebar" class="w-64 bg-gray-800 text-white flex-shrink-0 hidden md:flex flex-col">
             <div class="p-4 border-b border-gray-700">
                 <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="w-16 h-16 mr-2 mb-2 rounded-full float-left" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/000000?text=Image+Error';">
                 <div class="overflow-hidden">
@@ -167,6 +212,61 @@
                 </a>
             </nav>
         </aside>
+
+        <!-- Mobile Sidebar - Only appears on small screens, slides in. Hidden on md and up. -->
+        <div id="mobile-sidebar-content" class="mobile-sidebar md:hidden">
+            <div class="p-4 border-b border-gray-700">
+                <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="w-16 h-16 mr-2 mb-2 rounded-full float-left" onerror="this.onerror=null; this.src='https://placehold.co/64x64/cccccc/000000?text=Image+Error';">
+                <div class="overflow-hidden">
+                    <h1 class="text-xl font-bold pt-2">Defense Counsel Training</h1>
+                    <p class="text-xs text-gray-400">Elevate RP Jurisdiction</p>
+                </div>
+            </div>
+            <nav class="mt-4 overflow-y-auto flex-1">
+                <a href="#introduction" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">👋</span> Introduction
+                </a>
+                <a href="#sentencing-guidelines" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📊</span> Sentencing Guidelines
+                </a>
+                <a href="#charge-calculator" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🧮</span> Reduction Calculator
+                </a>
+                <a href="#constitution" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📜</span> Constitution & Rights
+                </a>
+                <a href="#laws" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📖</span> Specific Legislation
+                </a>
+                <a href="#dueprocess" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">⚖️</span> Due Process & Court
+                </a>
+                <a href="#search" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🔍</span> Search & Seizure
+                </a>
+                <a href="#foia" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📂</span> FOIA & Evidence
+                </a>
+                <a href="#caselaw" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📚</span> Case Law Library
+                </a>
+                <a href="#strategy" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🎯</span> Strategic Defense
+                </a>
+                <a href="#courtroom" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🧑‍⚖️</span> Courtroom Procedures & Objections
+                </a>
+                <a href="#tools" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🛠️</span> Legal Tools & Admin
+                </a>
+                <a href="#leos" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">👮</span> LEO Powers & Definitions
+                </a>
+                <a href="#important-links" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🔗</span> Important Links
+                </a>
+            </nav>
+        </div>
 
         <!-- Main Content Area - Takes full width on small screens -->
         <main class="flex-1 p-6 md:p-8 lg:p-10 overflow-y-auto w-full">
@@ -1173,6 +1273,10 @@
             const navItems = document.querySelectorAll('.nav-item');
             const contentSections = document.querySelectorAll('.content-section');
             const chargesSelect = document.getElementById('chargesSelect'); 
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            // Changed from 'main-sidebar' to 'mobile-sidebar-content'
+            const mobileSidebarContent = document.getElementById('mobile-sidebar-content'); 
+            const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
 
             // Hardcoded data from the provided CSV content
             const penalCodesData = [
@@ -1211,7 +1315,7 @@
                 { section: "S.A.C. § 1201", charge: "Kidnapping", description: "Unlawfully restraining or transporting a person against their will.", category: "Felony", sentencingMonths: 30, fine: 5000 },
                 { section: "Varies by specific statute", charge: "Trespassing with Intent to Commit a Crime", description: "Entering property unlawfully with criminal intent.", category: "Felony", sentencingMonths: 40, fine: 2500 },
                 { section: "S.A.C. § 912", charge: "Impersonation", description: "Pretending to be another person for the purpose of deception.", category: "Felony", sentencingMonths: 20, fine: 2500 },
-                { section: "S.A.C. § 1341", charge: "Fraud", description: "Intentional deception to secure unlawful gain, often financial.", category: "Felony", sentencingMonths: 15, fine: 2500 },
+                { section: "S.A.C. § 1341", charge: "  Fraud", description: "Intentional deception to secure unlawful gain, often financial.", category: "Felony", sentencingMonths: 15, fine: 2500 },
                 { section: "S.A.C. § 113", charge: "Aggravated Assault", description: "Assault with a deadly weapon or causing serious bodily harm.", category: "Felony", sentencingMonths: 50, fine: 6000 },
                 { section: "S.A.C. § 371", charge: "Conspiracy", description: "Agreement between two or more people to commit a criminal act.", category: "Felony", sentencingMonths: 35, fine: 4000 },
                 { section: "S.A.C. § 912", charge: "Impersonating a Police Officer", description: "Falsely presenting oneself as a law enforcement officer.", category: "Felony", sentencingMonths: 40, fine: 10000 },
@@ -1232,7 +1336,7 @@
                 { section: "S.A.C. § 1341", charge: "Attempted Fraud", description: "Attempting to deceive for financial or personal gain", category: "Felony", sentencingMonths: 25, fine: 3000 },
                 { section: "Varies by specific statute", charge: "Misappropriation of Lost Property", description: "Keeping lost property without effort to return it", category: "Felony", sentencingMonths: 25, fine: 2500 },
                 { section: "S.A.C. § 873", charge: "Extortion", description: "Forcing someone to act under threats or coercion", category: "Felony", sentencingMonths: 35, fine: 7000 },
-                { section: "Varies by specific statute", charge: "Grand Theft Auto", description: "Grand Theft Auto is the unlawful taking of a motor vehicle without the owner's consent and with the intent to permanently deprive them of it. It is typically charged as a felony and can result in prison time, fines, and a permanent criminal record.", category: "Felony", sentencingMonths: 30, fine: 5500 },
+                { section: "Varies by specific statute", charge: "Grand Theft Auto", description: "Grand Theft Auto is the unlawful taking of a motor vehicle without the owner's consent and with the intent to permanently deprive them of it. It is typically charged as a felony, carrying penalties of 1 to 5 years in prison, significant fines, and a permanent criminal record.", category: "Felony", sentencingMonths: 30, fine: 5500 },
                 { section: "S.A.C. § 873", charge: "Attempted Extortion", description: "Attempting to coerce or threaten for gain", category: "Felony", sentencingMonths: 25, fine: 4000 },
                 { section: "Varies by specific statute", charge: "Criminal Threats", description: "Threatening serious harm with intent to instill fear", category: "Felony", sentencingMonths: 28, fine: 4500 },
                 { section: "S.A.C. § 922(g)(1)", charge: "Felon in Possession of a Firearm", description: "Convicted felon caught with a firearm", category: "Felony", sentencingMonths: 35, fine: 7500 },
@@ -1370,6 +1474,12 @@
                     }
                 });
 
+                // For mobile, close sidebar after clicking a nav item
+                if (window.innerWidth < 768 && mobileSidebarContent.classList.contains('active')) { // Use mobileSidebarContent
+                    mobileSidebarContent.classList.remove('active');
+                    mobileSidebarOverlay.classList.remove('active');
+                }
+
                 navItems.forEach(nav => {
                     if (nav.getAttribute('href') === targetHash) {
                         nav.classList.add('active');
@@ -1402,6 +1512,18 @@
 
             window.addEventListener('popstate', function() {
                 updateContent(window.location.hash);
+            });
+
+            // Mobile nav toggle functionality
+            mobileNavToggle.addEventListener('click', function() {
+                mobileSidebarContent.classList.toggle('active');
+                mobileSidebarOverlay.classList.toggle('active');
+            });
+
+            // Close sidebar when clicking outside (on overlay)
+            mobileSidebarOverlay.addEventListener('click', function() {
+                mobileSidebarContent.classList.remove('active');
+                mobileSidebarOverlay.classList.remove('active');
             });
 
             updateContent(window.location.hash);
