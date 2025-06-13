@@ -35,6 +35,10 @@
         *, *::before, *::after {
             box-sizing: inherit; /* Inherit box-sizing for all elements */
         }
+        /* Default nav item styling for better visibility on dark background */
+        .nav-item {
+            color: #d1d5db; /* text-gray-300 for better visibility */
+        }
         .nav-item.active {
             background-color: #3b82f6; /* bg-blue-600 */
             color: white;
@@ -1269,7 +1273,10 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // Global variable to store penal codes data
+        let penalCodesData = [];
+
+        document.addEventListener('DOMContentLoaded', async function() {
             const navItems = document.querySelectorAll('.nav-item');
             const contentSections = document.querySelectorAll('.content-section');
             const chargesSelect = document.getElementById('chargesSelect'); 
@@ -1279,7 +1286,10 @@
             const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
 
             // Hardcoded data from the provided CSV content
-            const penalCodesData = [
+            // NOTE: This data was moved from the `fetchPenalCodes` function to be hardcoded
+            // to avoid potential issues with external data fetching. If the Google Sheet
+            // is still intended to be the source, a server-side proxy would be needed.
+            penalCodesData = [
                 { section: "S.A.C. § 1111", charge: "First Degree Murder", description: "A person who aids or abets in the commission of first-degree murder without directly committing the act of killing. (flatbacking)", category: "Federal", sentencingMonths: 60, fine: 10000 },
                 { section: "S.A.C. § 1114", charge: "Murder of a Public Servant or Peace Officer", description: "The intentional killing of a public servant or peace officer while they are performing their official duties, typically resulting in more severe penalties. (flatbacking)", category: "Federal", sentencingMonths: 80, fine: 15000 },
                 { section: "S.A.C. § 1114", charge: "Attempted Murder of a Public Servant or Peace Officer", description: "The act of attempting to unlawfully kill a public servant or peace officer, where the attempt is unsuccessful, but the intent to kill is clear.", category: "Federal", sentencingMonths: 60, fine: 10000 },
@@ -1330,7 +1340,7 @@
                 { section: "S.A.C. § 2118", charge: "Warehouse Heist", description: "Organized robbery of a warehouse, typically targeting high-value goods.", category: "Felony", sentencingMonths: 75, fine: 25000 },
                 { section: "S.A.C. § 2113", charge: "Store Robbery", description: "Using threat or force to steal from a commercial business.", category: "Felony", sentencingMonths: 60, fine: 15000 },
                 { section: "Varies by specific statute", charge: "Harassment", description: "Repeated, intentional behavior meant to alarm, annoy, torment, or terrorize another individual. This can include verbal abuse, threats, or physical gestures that cause emotional distress or fear.", category: "Felony", sentencingMonths: 15, fine: 2500 },
-                { section: "S.A.C. § 1113", charge: "Attempted Second Degree Murder", description: "A deliberate act intended to kill another person without premeditation or planning, where the attempt fails or the victim survives. This charge reflects serious intent and high risk to human life.", category: "Felony", sentencingMonths: 50, fine: 5000 },
+                { section: "S.A.C. § 1113", charge: "Attempted Second Degree Murder", description: "A deliberate act intended to kill another person without premeditation or planning, where the attempt fails or the victim survives. This reflects serious intent and high risk to human life.", category: "Felony", sentencingMonths: 50, fine: 5000 },
                 { section: "S.A.C. § 2315", charge: "Possession of Stolen Property", description: "Holding or concealing property known to be stolen", category: "Felony", sentencingMonths: 25, fine: 3500 },
                 { section: "S.A.C. § 2313", charge: "Possession of a Stolen Vehicle", description: "Operating or possessing a vehicle known to be stolen", category: "Felony", sentencingMonths: 30, fine: 5000 },
                 { section: "S.A.C. § 1341", charge: "Attempted Fraud", description: "Attempting to deceive for financial or personal gain", category: "Felony", sentencingMonths: 25, fine: 3000 },
@@ -1429,10 +1439,11 @@
                 chargesSelect.appendChild(option);
             });
 
-            // Discord Webhook URL
-            const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1382934755674296320/y0sqCTwgGwAV3Er2rLU0rlZKc-m6Y4loLZUsysMG4w57G8I2d9kWrDI1nt9MUP3TrhkG";
+            // Discord Webhook URL - This part is removed as requested by the user previously.
+            // const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1382934755674296320/y0sqCTwgGwAV3Er2rLU0rlZKc-m6Y4loLZUsysMG4w57G8I2d9kWrDI1nt9MUP3TrhkG";
 
-            // Function to send Discord notification
+            // Function to send Discord notification - This function is removed as requested by the user previously.
+            /*
             async function sendDiscordNotification(message) {
                 const payload = {
                     embeds: [{
@@ -1458,9 +1469,10 @@
                     console.error('Error sending Discord notification:', error);
                 }
             }
+            */
 
-            // Call sendDiscordNotification when the page is loaded
-            sendDiscordNotification("A Person has viewed the website");
+            // Call sendDiscordNotification when the page is loaded - This call is removed.
+            // sendDiscordNotification("A Person has viewed the website");
 
 
             function updateContent(hash) {
