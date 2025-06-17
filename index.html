@@ -278,9 +278,7 @@
     <!-- Mobile Navigation Toggle Button - Only visible on small screens -->
     <div class="md:hidden p-4 bg-gray-800 text-white flex items-center justify-between">
         <button id="mobile-nav-toggle" class="focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
         <span class="text-lg font-bold">DOJ Guide</span>
     </div>
@@ -466,11 +464,11 @@
                             <table class="min-w-full bg-white border border-gray-200 rounded-lg">
                                 <thead class="bg-gray-100">
                                     <tr>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Section</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Code</th>
                                         <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Charge</th>
                                         <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Description</th>
                                         <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Category</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Sentencing (Months)</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Prison Time (Months)</th>
                                         <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Fine ($)</th>
                                     </tr>
                                 </thead>
@@ -1537,7 +1535,7 @@
                         <h3 class="font-bold text-xl mb-2">Title: Chief Prosecutor</h3>
                         <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Executive Branch – Department of Justice</p>
                         <p class="text-gray-700 mb-2"><span class="font-semibold">Reports To:</span> Attorney General or Secretary of Justice (depending on hierarchy)</p>
-                        <p class="text-gray-700 mb-4"><span class="font-semibold">Supervises:</span> District Attorneys, Special Prosecutors, Investigative Teams, Legal Clerks</p>
+                        <p class="gray-700 mb-4"><span class="font-semibold">Supervises:</span> District Attorneys, Special Prosecutors, Investigative Teams, Legal Clerks</p>
                         <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
                         <p class="text-gray-700 leading-relaxed mb-4">The Chief Prosecutor is the highest-ranking official in the prosecutorial division of the Department of Justice. Tasked with overseeing the prosecution of criminal offenses on behalf of the State, the Chief Prosecutor exercises authority over legal strategy, case management, and prosecutorial policy. This position serves as the principal architect of the DOJ’s prosecutorial priorities and ensures the ethical and effective pursuit of justice.</p>
                         
@@ -1609,96 +1607,105 @@
             value: 0 // Numeric percentage or '0' for no reduction
         };
 
-        // Function to parse CSV data
-        function parseCSV(csvString) {
-            const lines = csvString.split('\n').filter(line => line.trim() !== '');
-            // Headers are on the 3rd non-empty line (index 2)
-            // Data starts from the 4th non-empty line (index 3)
+        // Function to parse JSON data
+        function parseJSONData(jsonData) {
             const data = [];
-            
-            // Adjust loop to start from the second line (index 1), assuming first line is header
-            for (let i = 1; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue; // Skip empty lines
+            jsonData.forEach(item => {
+                // Log the raw item to see its structure
+                console.log("Raw JSON item:", item);
 
-                const values = [];
-                let inQuote = false;
-                let currentValue = '';
-                for (let j = 0; j < line.length; j++) {
-                    const char = line[j];
-                    if (char === '"') {
-                        inQuote = !inQuote;
-                    } else if (char === ',' && !inQuote) {
-                        values.push(currentValue.trim());
-                        currentValue = '';
-                    } else {
-                        currentValue += char;
-                    }
-                }
-                values.push(currentValue.trim()); // Push the last value
-
-                // Only consider the first 6 columns as other columns are empty or repeated.
-                // Map columns: Title Code (0), Charge (1), Charge Description (2), Classification (3), Jail Time (Months) (4), Fine ($) (5)
-                const jailTimeRaw = values[4] ? values[4].trim().toLowerCase() : '0';
-                const fineRaw = values[5] ? values[5].trim() : '0';
-
+                // Mapping JSON keys to the expected structure
                 let sentencingMonthsValue;
-                if (jailTimeRaw === 'life') {
-                    sentencingMonthsValue = 999999; // Use a large number to represent 'Life' for sorting/calculations
+                // Handle "Prison Time" which can be "Life" or a number
+                if (typeof item["Prison Time"] === 'string' && item["Prison Time"].toLowerCase() === 'life') {
+                    sentencingMonthsValue = 999999; // Using a large number to represent 'Life'
+                } else if (typeof item["Prison Time"] === 'string' && !isNaN(parseInt(item["Prison Time"]))) {
+                    // If it's a string that can be parsed as a number
+                    sentencingMonthsValue = parseInt(item["Prison Time"]);
+                }
+                else if (typeof item["Prison Time"] === 'number') {
+                    sentencingMonthsValue = item["Prison Time"];
                 } else {
-                    // Remove non-numeric characters (like '$' or commas) from jail time
-                    const numericJailTime = parseInt(jailTimeRaw.replace(/[^0-9]/g, ''), 10);
-                    sentencingMonthsValue = isNaN(numericJailTime) ? 0 : numericJailTime;
+                    sentencingMonthsValue = 0; // Default to 0 if not a number or 'life'
                 }
 
-                // Remove non-numeric characters (like '$' or commas) from fine
-                const fineValue = parseInt(fineRaw.replace(/[^0-9]/g, ''), 10);
+                // Handle "Fine" which should be a number (or string that can be parsed)
+                let fineValue;
+                if (typeof item["Fine"] === 'string' && !isNaN(parseInt(item["Fine"]))) {
+                     fineValue = parseInt(item["Fine"]);
+                } else if (typeof item["Fine"] === 'number') {
+                    fineValue = item["Fine"];
+                } else {
+                    fineValue = 0; // Default to 0 if not a number
+                }
+
 
                 const rowData = {
-                    section: values[0] || 'N/A',
-                    charge: values[1] || 'N/A',
-                    description: values[2] || '',
-                    category: values[3] || 'N/A',
+                    // Correctly mapping "Code", "Charge", "Description", "Category", "Prison Time", "Fine"
+                    section: item.Code || '',
+                    charge: item.Charge || '',
+                    description: item.Description || '',
+                    category: item.Category || '',
                     sentencingMonths: sentencingMonthsValue,
-                    fine: isNaN(fineValue) ? 0 : fineValue
+                    fine: fineValue
                 };
-
-                // Add to data only if it has a valid charge name and isn't the header row (which is now skipped by loop start)
-                if (rowData.charge !== 'N/A' && rowData.charge !== '') {
-                    data.push(rowData);
-                }
-            }
+                data.push(rowData);
+                // Log the parsed row data
+                console.log("Parsed row data:", rowData);
+            });
             return data;
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
-            // Define primary and fallback CSV paths
-            const primaryCsvFilePath = 'Elevate RP _ San Andreas Penal Codes - San Andreas Penal Codes.csv';
-            const fallbackCsvUrl = 'https://raw.githubusercontent.com/Tony-Dunkle/DOJ-Training/71e3cb2450ea4fb5d62a5be9841f99bdfed8c9d9/Elevate%20RP%20_%20San%20Andreas%20Penal%20Codes%20%20-%20San%20Andreas%20Penal%20Codes.csv';
+            // Define primary and fallback JSON paths
+            const primaryJsonFilePath = 'uploaded:Criminal Charges JSON Data.txt'; // Changed to .txt as user uploaded it as text/plain
+            // Corrected raw GitHub URL for the fallback
+            const fallbackJsonUrl = 'https://raw.githubusercontent.com/Tony-Dunkle/DOJ-Training/496b5c5b3b698eda123c33b2328d711ee9285f6e/Criminal%20Charges%20JSON%20Data.txt';
 
+            let fetchedFromPrimary = false;
             try {
                 // Try fetching from the primary local path first
-                let response = await fetch(primaryCsvFilePath);
-                if (!response.ok) {
-                    console.warn(`Primary CSV fetch failed (${response.status}), trying fallback URL...`);
-                    // If local fetch fails, try the fallback GitHub URL
-                    response = await fetch(fallbackCsvUrl);
-                    if (!response.ok) {
-                        throw new Error(`Fallback CSV fetch failed (${response.status}) as well.`);
-                    }
+                let response = await fetch(primaryJsonFilePath);
+                if (response.ok) {
+                    const jsonData = await response.json(); // Use .json() as the content is JSON
+                    penalCodesData = parseJSONData(jsonData);
+                    fetchedFromPrimary = true;
+                    console.log("Penal Codes Data loaded from primary source.");
+                } else {
+                    console.warn(`Primary JSON fetch failed (${response.status}), trying fallback URL...`);
                 }
-                const csvText = await response.text();
-                penalCodesData = parseCSV(csvText);
-                console.log("Penal Codes Data loaded:", penalCodesData); // For debugging
             } catch (error) {
-                console.error("Error fetching or parsing CSV from both sources:", error);
-                // Fallback to a minimal dataset if all fetches fail to prevent breaking the app entirely
-                penalCodesData = [
-                    { section: "S.A.C. § 100", charge: "Default Charge", description: "This is a fallback charge.", category: "Misdemeanor", sentencingMonths: 5, fine: 100 },
-                    { section: "S.A.C. § 101", charge: "Another Default", description: "Another fallback charge.", category: "Felony", sentencingMonths: 15, fine: 500 }
-                ];
-                alert("Could not load penal codes data. Displaying limited default data."); // Inform user
+                console.warn("Error fetching primary JSON:", error);
             }
+
+            // If primary fetch failed or resulted in empty data, try the fallback
+            if (!fetchedFromPrimary || penalCodesData.length === 0) {
+                try {
+                    let response = await fetch(fallbackJsonUrl);
+                    if (response.ok) {
+                        const jsonData = await response.json(); // Use .json() as the content is JSON
+                        penalCodesData = parseJSONData(jsonData);
+                        if (penalCodesData.length > 0) {
+                             console.log("Penal Codes Data loaded from fallback source.");
+                        } else {
+                             console.error("Fallback JSON loaded, but parsing resulted in empty data.");
+                        }
+                    } else {
+                        throw new Error(`Fallback JSON fetch failed (${response.status}) as well.`);
+                    }
+                } catch (error) {
+                    console.error("Error fetching or parsing JSON from fallback source:", error);
+                    // Fallback to a minimal dataset if all fetches fail to prevent breaking the app entirely
+                    penalCodesData = [
+                        { section: "S.A.C. § 100", charge: "Default Charge", description: "This is a fallback charge.", category: "Misdemeanor", sentencingMonths: 5, fine: 100 },
+                        { section: "S.A.C. § 101", charge: "Another Default", description: "Another fallback charge.", category: "Felony", sentencingMonths: 15, fine: 500 }
+                    ];
+                    // Removed alert for a less intrusive user experience.
+                }
+            }
+
+            // Log final penalCodesData to inspect its contents after loading
+            console.log("Final Penal Codes Data:", penalCodesData);
 
 
             const navItems = document.querySelectorAll('.nav-item');
@@ -1888,8 +1895,10 @@
             }
 
             // Group data by category and calculate medians
-            // This part needs to be inside a function or after penalCodesData is loaded
             let categories = {};
+            // Define an explicit order for chart labels
+            const desiredCategoryOrder = ['Infraction', 'Misdemeanor', 'Felony', 'Serious Felony', 'Federal', 'Citation']; // Added 'Citation'
+
             if (penalCodesData.length > 0) {
                  penalCodesData.forEach(item => {
                     const category = item.category.trim(); // Trim whitespace
@@ -1900,22 +1909,26 @@
                         };
                     }
                     // Exclude the outlier 999999 from median calculation
-                    if (item.sentencingMonths !== 999999) { // Using 999999 for "Life" in new data, adjust this
+                    if (item.sentencingMonths !== 999999) {
                         categories[category].sentencingMonths.push(item.sentencingMonths);
                     }
                     categories[category].fines.push(item.fine);
                 });
             }
            
-
             const medianSentencing = {};
             const medianFines = {};
-            Object.keys(categories).forEach(category => {
-                medianSentencing[category] = calculateMedian(categories[category].sentencingMonths);
-                medianFines[category] = calculateMedian(categories[category].fines);
+            
+            // Populate medians, ensuring only valid categories are processed
+            desiredCategoryOrder.forEach(categoryName => {
+                if (categories[categoryName]) {
+                    medianSentencing[categoryName] = calculateMedian(categories[categoryName].sentencingMonths);
+                    medianFines[categoryName] = calculateMedian(categories[categoryName].fines);
+                }
             });
 
-            const chartLabels = Object.keys(medianSentencing);
+            // Use only the categories that actually have data, in the desired order
+            const chartLabels = desiredCategoryOrder.filter(label => categories[label]);
             const chartSentencingData = chartLabels.map(label => medianSentencing[label]);
             const chartFinesData = chartLabels.map(label => medianFines[label]);
 
@@ -2079,14 +2092,14 @@
 
                 selectedCharges.forEach(selectedFullChargeName => {
                     const matchedCharge = penalCodesData.find(data => {
-                        const dataFullChargeName = (data.section && data.section !== 'N/A' ? `${data.section} - ` : '') + data.charge;
+                        const dataFullChargeName = (data.section && data.section !== '' ? `${data.section} - ` : '') + data.charge;
                         return dataFullChargeName.toLowerCase() === selectedFullChargeName.toLowerCase();
                     });
 
                     if (matchedCharge) {
                         const originalSentencing = matchedCharge.sentencingMonths;
                         const originalFine = matchedCharge.fine;
-                        const sacCode = matchedCharge.section && matchedCharge.section !== 'N/A' ? matchedCharge.section : 'N/A';
+                        const sacCode = matchedCharge.section && matchedCharge.section !== '' ? matchedCharge.section : '';
 
                         let currentReducedSentencingText;
                         let currentReducedFineText;
@@ -2111,8 +2124,8 @@
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
                                 <p class="font-semibold">${selectedFullChargeName}</p>
-                                <p>Original Sentencing: ${originalSentencing === 999999 ? 'Life' : originalSentencing + ' Months'}</p>
-                                <p>Reduced Sentencing (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
+                                <p>Original Prison Time: ${originalSentencing === 999999 ? 'Life' : originalSentencing + ' Months'}</p>
+                                <p>Reduced Prison Time (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
                                 <p>Reduced Fine (${reductionPercentage}% off): ${currentReducedFineText}</p>
                             </div>
@@ -2193,21 +2206,21 @@
                 const searchTerm = chargeSearchInput.value.toLowerCase();
 
                 const filteredCharges = penalCodesData.filter(item => {
-                    const fullChargeName = (item.section && item.section !== 'N/A' ? `${item.section} - ` : '') + item.charge;
+                    const fullChargeName = (item.section && item.section !== '' ? `${item.section} - ` : '') + item.charge;
                     return fullChargeName.toLowerCase().includes(searchTerm);
                 });
 
                 filteredCharges.forEach(item => {
-                    const fullChargeName = (item.section && item.section !== 'N/A' ? `${item.section} - ` : '') + item.charge;
+                    const fullChargeName = (item.section && item.section !== '' ? `${item.section} - ` : '') + item.charge;
                     const listItem = document.createElement('label');
                     listItem.classList.add('charges-list-item');
 
                     const categoryClass = item.category.toLowerCase().replace(/\s/g, '-');
-                    if (categoryClass.includes('felony') || categoryClass.includes('federal') || categoryClass.includes('serious-felony')) {
+                    if (categoryClass.includes('felony') || categoryClass.includes('serious-felony') || categoryClass.includes('federal')) {
                         listItem.classList.add('charge-felony');
                     } else if (categoryClass.includes('misdemeanor')) {
                         listItem.classList.add('charge-misdemeanor');
-                    } else if (categoryClass.includes('citation')) {
+                    } else if (categoryClass.includes('infraction') || categoryClass.includes('citation')) { // Added infraction/citation
                         listItem.classList.add('charge-citation');
                     }
 
@@ -2218,7 +2231,7 @@
 
                     listItem.innerHTML = `
                         <input type="checkbox" value="${fullChargeName}" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                        <span class="text-sm font-medium text-gray-900">${fullChargeName}</span>
+                        <span class="text-sm font-medium text-gray-900">${fullChargeName} - Category: ${item.category}</span>
                     `;
                     const checkbox = listItem.querySelector('input[type="checkbox"]');
                     checkbox.checked = chargesInModal.includes(fullChargeName); // Set checked state based on chargesInModal
@@ -2422,17 +2435,8 @@
                     document.getElementById('totalChargesCount').textContent = penalCodesData.length;
                 } else {
                     // If data not loaded yet, set up an observer to run these functions once data is available
-                    const dataLoadedObserver = new MutationObserver((mutationsList, observer) => {
-                        if (penalCodesData.length > 0) {
-                            populateSentencingTable();
-                            createMedianSentencingChart();
-                            createMedianFinesChart();
-                            document.getElementById('totalChargesCount').textContent = penalCodesData.length;
-                            observer.disconnect(); // Disconnect once executed
-                        }
-                    });
-                    // Observe a relevant element that changes when penalCodesData is updated, or just a dummy target
-                    // For simplicity, let's just make sure updateContent is called after data load
+                    // This scenario is now less likely due to improved loading and fallback, but good to keep in mind.
+                    // For now, updateContent is called once data is fetched.
                 }
             } else if (currentHash === '#dueprocess') {
                 createLimitationsChart();
