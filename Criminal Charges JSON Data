@@ -1,0 +1,1346 @@
+[
+  {
+    "Code": "§ 1111",
+    "Charge": "First Degree Murder",
+    "Description": "Knowingly and willfully causing the death of another with premeditation, or aiding and abetting in such a murder. (Flatbacking applicable)",
+    "Category": "Federal",
+    "Prison Time": "70",
+    "Fine": "25000"
+  },
+  {
+    "Code": "§ 1111-A",
+    "Charge": "Association: First Degree Murder",
+    "Description": "Criminal association or aiding in a murder plot or execution.",
+    "Category": "Federal",
+    "Prison Time": "35",
+    "Fine": "12500"
+  },
+  {
+    "Code": "§ 1114",
+    "Charge": "Murder of a Public Servant or Peace Officer",
+    "Description": "Intentional killing of a government official during lawful duties.",
+    "Category": "Federal",
+    "Prison Time": "70",
+    "Fine": "30000"
+  },
+  {
+    "Code": "§ 1114-A",
+    "Charge": "Attempted Murder of a Public Servant",
+    "Description": "Attempt to kill a public servant with clear intent, act incomplete.",
+    "Category": "Federal",
+    "Prison Time": "60",
+    "Fine": "20000"
+  },
+  {
+    "Code": "§ 1114-B",
+    "Charge": "Association: Attempted Murder of a Public Servant",
+    "Description": "Accomplice in an attempted murder of a public servant.",
+    "Category": "Federal",
+    "Prison Time": "30",
+    "Fine": "10000"
+  },
+  {
+    "Code": "§ 1595",
+    "Charge": "Human Trafficking",
+    "Description": "Coerced exploitation of individuals for labor or sexual acts.",
+    "Category": "Federal",
+    "Prison Time": "60",
+    "Fine": "25000"
+  },
+  {
+    "Code": "§ 2332b",
+    "Charge": "Terrorism",
+    "Description": "Acts or threats of violence meant to intimidate or influence government or civilians.",
+    "Category": "Federal",
+    "Prison Time": "120",
+    "Fine": "60000"
+  },
+  {
+    "Code": "§ 1504",
+    "Charge": "RICO Act",
+    "Description": "Engagement in or benefiting from an organized pattern of felony crimes.",
+    "Category": "Federal",
+    "Prison Time": "70",
+    "Fine": "25000"
+  },
+  {
+    "Code": "§ 1504-A",
+    "Charge": "Association: RICO Activity",
+    "Description": "Criminally associated with an enterprise engaged in racketeering.",
+    "Category": "Federal",
+    "Prison Time": "35",
+    "Fine": "12500"
+  },
+  {
+    "Code": "§ 31",
+    "Charge": "Plane Heist",
+    "Description": "Theft or hijacking of an aircraft or cargo through force or threat.",
+    "Category": "Federal",
+    "Prison Time": "65",
+    "Fine": "50000"
+  },
+  {
+    "Code": "§ 2113",
+    "Charge": "Major Bank Robbery",
+    "Description": "Armed or violent robbery of a financial institution.",
+    "Category": "Federal",
+    "Prison Time": "70",
+    "Fine": "30000"
+  },
+  {
+    "Code": "§ 2113-A",
+    "Charge": "Association: Major Robbery",
+    "Description": "Acting in concert with others to plan or execute a major robbery.",
+    "Category": "Federal",
+    "Prison Time": "35",
+    "Fine": "15000"
+  },
+  {
+    "Code": "§ 401",
+    "Charge": "Contempt of Court (General)",
+    "Description": "Disruption or disrespect interfering with court operations.",
+    "Category": "Federal",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 401-A",
+    "Charge": "Contempt of Court Order",
+    "Description": "Defying a specific, active court order or ruling.",
+    "Category": "Federal",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 401-B",
+    "Charge": "Aggravated Contempt",
+    "Description": "Repeated violations or threats against the judiciary.",
+    "Category": "Federal",
+    "Prison Time": "35",
+    "Fine": "6000"
+  },
+  {
+    "Code": "§ 1503",
+    "Charge": "Obstruction of Justice",
+    "Description": "Tampering with evidence, interfering with investigations or proceedings.",
+    "Category": "Federal",
+    "Prison Time": "40",
+    "Fine": "7500"
+  },
+  {
+    "Code": "§ 912-A",
+    "Charge": "Impersonating a Judge",
+    "Description": "Falsely acting as a judicial officer to issue rulings or orders.",
+    "Category": "Federal",
+    "Prison Time": "30",
+    "Fine": "6000"
+  },
+  {
+    "Code": "§ 912-B",
+    "Charge": "Impersonating a Government Official",
+    "Description": "Pretending to be a public official for influence or access.",
+    "Category": "Federal",
+    "Prison Time": "25",
+    "Fine": "4000"
+  },
+  {
+    "Code": "§ 201",
+    "Charge": "Government Corruption / Malfeasance",
+    "Description": "Misusing public office for personal gain or engaging in misconduct.",
+    "Category": "Federal",
+    "Prison Time": "60",
+    "Fine": "25000"
+  },
+  {
+    "Code": "§ 2241",
+    "Charge": "Sexual Harassment",
+    "Description": "Unwanted verbal or physical conduct of a sexual nature.",
+    "Category": "Federal",
+    "Prison Time": "30",
+    "Fine": "5500"
+  },
+  {
+    "Code": "§ 2241-A",
+    "Charge": "Sexual Assault (Non-Penetrative)",
+    "Description": "Non-consensual sexual contact including touching or coercion.",
+    "Category": "Federal",
+    "Prison Time": "999999",
+    "Fine": "200000"
+  },
+  {
+    "Code": "§ 641",
+    "Charge": "Theft of Government Property",
+    "Description": "Unauthorized possession or destruction of government-owned property.",
+    "Category": "Federal",
+    "Prison Time": "25",
+    "Fine": "2000"
+  },
+  {
+    "Code": "§ 1512",
+    "Charge": "Coercion",
+    "Description": "Forcing another to act unlawfully or against their will using threats.",
+    "Category": "Federal",
+    "Prison Time": "30",
+    "Fine": "6000"
+  },
+  {
+    "Code": "§ 1919",
+    "Charge": "Anarchism",
+    "Description": "Inciting or organizing unlawful attempts to undermine lawful governance.",
+    "Category": "Federal",
+    "Prison Time": "25",
+    "Fine": "25000"
+  },
+  {
+    "Code": "§ 1001",
+    "Charge": "False Reporting",
+    "Description": "Knowingly providing false or misleading information to law enforcement or emergency services.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "2000"
+  },
+  {
+    "Code": "§ 1001-A",
+    "Charge": "Association: False Reporting",
+    "Description": "Participating in or encouraging false reporting to authorities.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "1000"
+  },
+  {
+    "Code": "§ 1501",
+    "Charge": "Obstruction of a Public Official",
+    "Description": "Willfully interfering with a public official’s lawful performance of duties.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 1501-A",
+    "Charge": "Association: Obstruction of a Public Official",
+    "Description": "Acting in concert to obstruct a public official’s duties.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 2101",
+    "Charge": "Inciting a Riot",
+    "Description": "Intentionally encouraging or participating in acts that provoke public disorder or violence.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "2500"
+  },
+  {
+    "Code": "2101-A",
+    "Charge": "Association: Inciting a Riot",
+    "Description": "Collaborating or conspiring to incite or sustain riotous behavior.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 1512",
+    "Charge": "Tampering",
+    "Description": "Deliberately interfering with evidence, machinery, or judicial processes to deceive or hinder justice.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 1512-A",
+    "Charge": "Association: Tampering",
+    "Description": "Acting together to tamper with evidence or obstruct legal procedures.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "N/A",
+    "Charge": "Vigilantism",
+    "Description": "Taking law enforcement into one’s own hands without authorization, acting as an extrajudicial enforcer.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "1500"
+  },
+  {
+    "Code": "N/A-A",
+    "Charge": "Association: Vigilantism",
+    "Description": "Participating with others in unauthorized law enforcement or violent self-justice.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "750"
+  },
+  {
+    "Code": "§ 2261A",
+    "Charge": "Stalking",
+    "Description": "Repeated unwanted conduct or communication causing fear or distress.",
+    "Category": "Felony",
+    "Prison Time": "36",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 2261A-A",
+    "Charge": "Association: Stalking",
+    "Description": "Collaborating in stalking or harassment campaigns against a victim.",
+    "Category": "Felony",
+    "Prison Time": "18",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 2",
+    "Charge": "Aiding and Abetting",
+    "Description": "Assisting, facilitating, or encouraging the commission of a criminal offense.",
+    "Category": "Felony",
+    "Prison Time": "20",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 2-A",
+    "Charge": "Association: Aiding and Abetting",
+    "Description": "Acting with others to aid or abet criminal conduct.",
+    "Category": "Felony",
+    "Prison Time": "10",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 1028",
+    "Charge": "Possession of Stolen Identification",
+    "Description": "Possessing identification documents unlawfully with intent to defraud or evade law enforcement.",
+    "Category": "Felony",
+    "Prison Time": "10",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 1028-A",
+    "Charge": "Association: Possession of Stolen Identification",
+    "Description": "Participating in possession or use of stolen IDs for criminal purposes.",
+    "Category": "Felony",
+    "Prison Time": "5",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 113",
+    "Charge": "Assault",
+    "Description": "Intentional act causing bodily injury or apprehension of harm to another person.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 113-A",
+    "Charge": "Association: Assault",
+    "Description": "Coordinated participation in assaultive behavior.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 1201",
+    "Charge": "Kidnapping",
+    "Description": "Unlawful restraint, confinement, or transport of an individual against their will.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 1201-A",
+    "Charge": "Association: Kidnapping",
+    "Description": "Collaborating or conspiring to commit kidnapping.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Trespassing with Intent to Commit a Crime",
+    "Charge": "Unauthorized entry on property with the purpose to commit an unlawful act.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "40",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Association: Trespassing with Intent to Commit a Crime",
+    "Charge": "Jointly planning or executing trespassing to commit crimes.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "20",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 912",
+    "Charge": "Impersonation",
+    "Description": "Falsely representing oneself as another to deceive or defraud.",
+    "Category": "Felony",
+    "Prison Time": "20",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 912-A",
+    "Charge": "Association: Impersonation",
+    "Description": "Collaborative impersonation or aiding in deceptive identity misrepresentation.",
+    "Category": "Felony",
+    "Prison Time": "10",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 1341",
+    "Charge": "Fraud",
+    "Description": "Intentional deception to obtain unlawful financial or personal gain.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 1341-A",
+    "Charge": "Association: Fraud",
+    "Description": "Coordinated efforts to perpetrate fraudulent schemes.",
+    "Category": "Felony",
+    "Prison Time": "7",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 113",
+    "Charge": "Aggravated Assault",
+    "Description": "Assault involving use of a deadly weapon or causing serious bodily harm.",
+    "Category": "Felony",
+    "Prison Time": "50",
+    "Fine": "6000"
+  },
+  {
+    "Code": "§ 113-A",
+    "Charge": "Association: Aggravated Assault",
+    "Description": "Acting together to carry out assault with a deadly weapon or serious injury.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "3000"
+  },
+  {
+    "Code": "§ 371",
+    "Charge": "Conspiracy",
+    "Description": "Agreement between two or more persons to commit a criminal offense.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "4000"
+  },
+  {
+    "Code": "§ 371-A",
+    "Charge": "Association: Conspiracy",
+    "Description": "Participation in planning or facilitating conspiratorial criminal acts.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "2000"
+  },
+  {
+    "Code": "§ 912",
+    "Charge": "Impersonating a Police Officer",
+    "Description": "Falsely presenting oneself as law enforcement to gain advantage or intimidate.",
+    "Category": "Felony",
+    "Prison Time": "40",
+    "Fine": "10000"
+  },
+  {
+    "Code": "§ 912-A",
+    "Charge": "Association: Impersonating a Police Officer",
+    "Description": "Assisting or collaborating in false police impersonation.",
+    "Category": "Felony",
+    "Prison Time": "20",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 1956",
+    "Charge": "Money Laundering",
+    "Description": "Concealing the origins of illegally obtained funds through transfers or shell companies.",
+    "Category": "Felony",
+    "Prison Time": "45",
+    "Fine": "15000"
+  },
+  {
+    "Code": "§ 1956-A",
+    "Charge": "Association: Money Laundering",
+    "Description": "Participation in laundering proceeds of crime with others.",
+    "Category": "Felony",
+    "Prison Time": "22",
+    "Fine": "7500"
+  },
+  {
+    "Code": "§ 1385",
+    "Charge": "Trespassing on Government Property",
+    "Description": "Unauthorized entry or presence on government-controlled land or facilities.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "1500"
+  },
+  {
+    "Code": "§ 1385-A",
+    "Charge": "Association: Trespassing on Government Property",
+    "Description": "Acting jointly to unlawfully enter or remain on government premises.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "750"
+  },
+  {
+    "Code": "§ 1112",
+    "Charge": "Involuntary Manslaughter",
+    "Description": "Causing death through reckless or negligent conduct without intent.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 1112-A",
+    "Charge": "Association: Involuntary Manslaughter",
+    "Description": "Assisting or facilitating reckless conduct resulting in death.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Vehicular Manslaughter",
+    "Charge": "Causing death through negligent or reckless operation of a vehicle.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "50",
+    "Fine": "6000"
+  },
+  {
+    "Code": "Association: Vehicular Manslaughter",
+    "Charge": "Acting with others in conduct leading to death by vehicle.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "3000"
+  },
+  {
+    "Code": "§ 3",
+    "Charge": "Accessory to Second Degree Murder",
+    "Description": "Assisting or facilitating a second-degree murder, before or after the fact.",
+    "Category": "Felony",
+    "Prison Time": "45",
+    "Fine": "7000"
+  },
+  {
+    "Code": "§ 3-A",
+    "Charge": "Association: Accessory to Second Degree Murder",
+    "Description": "Participation in aiding or abetting second-degree murder.",
+    "Category": "Felony",
+    "Prison Time": "22",
+    "Fine": "3500"
+  },
+  {
+    "Code": "§ 2118",
+    "Charge": "Warehouse Heist",
+    "Description": "Organized robbery targeting warehouses with high-value goods.",
+    "Category": "Felony",
+    "Prison Time": "75",
+    "Fine": "25000"
+  },
+  {
+    "Code": "§ 2118-A",
+    "Charge": "Association: Warehouse Heist",
+    "Description": "Acting jointly in the planning or execution of a warehouse robbery.",
+    "Category": "Felony",
+    "Prison Time": "37",
+    "Fine": "12500"
+  },
+  {
+    "Code": "§ 2113",
+    "Charge": "Store Robbery",
+    "Description": "Using force or threat to steal from commercial establishments.",
+    "Category": "Felony",
+    "Prison Time": "60",
+    "Fine": "15000"
+  },
+  {
+    "Code": "§ 2113-A",
+    "Charge": "Association: Store Robbery",
+    "Description": "Conspiring or participating in store robbery with others.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "7500"
+  },
+  {
+    "Code": "Harassment",
+    "Charge": "Repeated behavior intended to alarm, annoy, torment, or terrorize another individual.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Association: Harassment",
+    "Charge": "Coordinated efforts to harass or intimidate a victim.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "7",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 1113",
+    "Charge": "Attempted Second Degree Murder",
+    "Description": "Deliberate attempt to kill without premeditation where victim survives.",
+    "Category": "Felony",
+    "Prison Time": "50",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 1113-A",
+    "Charge": "Association: Attempted Second Degree Murder",
+    "Description": "Participating in attempt to kill without premeditation.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 2315",
+    "Charge": "Possession of Stolen Property",
+    "Description": "Holding or concealing property known to be stolen.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "3500"
+  },
+  {
+    "Code": "§ 2315-A",
+    "Charge": "Association: Possession of Stolen Property",
+    "Description": "Acting jointly in possession or concealment of stolen property.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "1750"
+  },
+  {
+    "Code": "§ 2313",
+    "Charge": "Possession of a Stolen Vehicle",
+    "Description": "Operating or possessing a vehicle known to be stolen.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 2313-A",
+    "Charge": "Association: Possession of a Stolen Vehicle",
+    "Description": "Participating in possession or use of stolen vehicles.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 1341",
+    "Charge": "Attempted Fraud",
+    "Description": "Attempting to deceive for financial or personal gain.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "3000"
+  },
+  {
+    "Code": "§ 1341-A",
+    "Charge": "Association: Attempted Fraud",
+    "Description": "Collaborating in attempts to defraud others.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "1500"
+  },
+  {
+    "Code": "Misappropriation of Lost Property",
+    "Charge": "Retaining lost property without reasonable effort to return it.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Association: Misappropriation of Lost Property",
+    "Charge": "Acting together in misappropriation or concealment of lost property.",
+    "Description": null,
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 873",
+    "Charge": "Extortion",
+    "Description": "Forcing someone to act against their will through threats or coercion.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "7000"
+  },
+  {
+    "Code": "§ 873-A",
+    "Charge": "Association: Extortion",
+    "Description": "Acting jointly to coerce or threaten for unlawful gain.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "3500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Grand Theft Auto",
+    "Description": "Unlawful taking of a motor vehicle with intent to permanently deprive owner.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Grand Theft Auto",
+    "Description": "Collaborating in motor vehicle theft or possession.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2750"
+  },
+  {
+    "Code": "2,750",
+    "Charge": "Varies by Statute",
+    "Description": "Attempted Extortion",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "4000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Attempted Extortion",
+    "Description": "Participating in attempts to extort or threaten others.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "2000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Criminal Threats",
+    "Description": "Threatening serious bodily harm to instill fear.",
+    "Category": "Felony",
+    "Prison Time": "28",
+    "Fine": "4500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Criminal Threats",
+    "Description": "Acting in concert to issue criminal threats.",
+    "Category": "Felony",
+    "Prison Time": "14",
+    "Fine": "2250"
+  },
+  {
+    "Code": "§ 922(g)(1)",
+    "Charge": "Felon in Possession of a Firearm",
+    "Description": "Convicted felon unlawfully found in possession of a firearm.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "7500"
+  },
+  {
+    "Code": "§ 922(g)(1)-A",
+    "Charge": "Association: Felon in Possession of a Firearm",
+    "Description": "Assisting or enabling possession of firearms by felons.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "3750"
+  },
+  {
+    "Code": "§ 751",
+    "Charge": "Escape from Custody",
+    "Description": "Unlawful departure from lawful detention or arrest.",
+    "Category": "Felony",
+    "Prison Time": "32",
+    "Fine": "6000"
+  },
+  {
+    "Code": "§ 751-A",
+    "Charge": "Association: Escape from Custody",
+    "Description": "Collaborating to aid escape or evade custody.",
+    "Category": "Felony",
+    "Prison Time": "16",
+    "Fine": "3000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Assault on a Peace Officer",
+    "Description": "Physically attacking or threatening a law enforcement officer.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "6500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Assault on a Peace Officer",
+    "Description": "Participating in attacks or threats against peace officers.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "3250"
+  },
+  {
+    "Code": "§ 844",
+    "Charge": "Schedule I Substance Possession",
+    "Description": "Possession of highly dangerous, illegal drugs such as heroin or LSD.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "6500"
+  },
+  {
+    "Code": "§ 844-A",
+    "Charge": "Association: Schedule I Substance Possession",
+    "Description": "Assisting or conspiring to possess Schedule I controlled substances.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "3250"
+  },
+  {
+    "Code": "§ 844",
+    "Charge": "Schedule II Substance Possession",
+    "Description": "Possession of high potential abuse drugs such as cocaine or methamphetamine.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5500"
+  },
+  {
+    "Code": "§ 844-A",
+    "Charge": "Association: Schedule II Substance Possession",
+    "Description": "Participation in possession or distribution of Schedule II substances.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2750"
+  },
+  {
+    "Code": "§ 844",
+    "Charge": "Schedule III Substance Possession",
+    "Description": "Possession of moderate-risk controlled substances.",
+    "Category": "Felony",
+    "Prison Time": "28",
+    "Fine": "4500"
+  },
+  {
+    "Code": "§ 844-A",
+    "Charge": "Association: Schedule III Substance Possession",
+    "Description": "Collaboration in possession or trafficking of Schedule III substances.",
+    "Category": "Felony",
+    "Prison Time": "14",
+    "Fine": "2250"
+  },
+  {
+    "Code": "§ 844",
+    "Charge": "Schedule IV Substance Possession",
+    "Description": "Possession of lower-risk substances such as Xanax.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "3500"
+  },
+  {
+    "Code": "§ 844-A",
+    "Charge": "Association: Schedule IV Substance Possession",
+    "Description": "Participation in possession or trafficking of Schedule IV substances.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "1750"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Negligent Discharge of a Firearm",
+    "Description": "Careless firing of a weapon endangering others.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "4000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Negligent Discharge of a Firearm",
+    "Description": "Acting with others in negligent firearm discharge.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "2000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Gang-Related Shooting",
+    "Description": "Discharging a firearm as part of gang activity.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "10000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Gang-Related Shooting",
+    "Description": "Participating in gang-related firearm offenses.",
+    "Category": "Felony",
+    "Prison Time": "17",
+    "Fine": "5000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Animal Cruelty",
+    "Description": "Intentional infliction of harm or neglect on an animal without justification.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "5000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Animal Cruelty",
+    "Description": "Collaborative cruelty or neglect of animals.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Resisting Without Violence",
+    "Description": "Non-violent refusal to obey lawful police orders.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "4000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Resisting Without Violence",
+    "Description": "Joint refusal or obstruction of law enforcement without violence.",
+    "Category": "Felony",
+    "Prison Time": "12",
+    "Fine": "2000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Resisting With Violence",
+    "Description": "Physical resistance or assault against law enforcement during arrest or detention.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Association: Resisting With Violence",
+    "Description": "Acting in concert to resist arrest or law enforcement violently.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2750"
+  },
+  {
+    "Code": "§ 2115",
+    "Charge": "House Robbery",
+    "Description": "Forcible robbery of a residence targeting valuable property.",
+    "Category": "Felony",
+    "Prison Time": "20",
+    "Fine": "4000"
+  },
+  {
+    "Code": "§ 2115-A",
+    "Charge": "Association: House Robbery",
+    "Description": "Participation in planning or committing house robbery.",
+    "Category": "Felony",
+    "Prison Time": "10",
+    "Fine": "2000"
+  },
+  {
+    "Code": "§ 751",
+    "Charge": "Failure to Comply",
+    "Description": "Knowingly ignoring lawful police commands such as fleeing or resisting arrest dangerously.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "§ 751-A",
+    "Charge": "Association: Failure to Comply",
+    "Description": "Collaborating in evasion or resistance of lawful orders.",
+    "Category": "Felony",
+    "Prison Time": "7",
+    "Fine": "1250"
+  },
+  {
+    "Code": "§ 416",
+    "Charge": "Felony Destruction of Property",
+    "Description": "Intentional or reckless destruction of property exceeding a value threshold (usually $5,000).",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "10000"
+  },
+  {
+    "Code": "§ 416-A",
+    "Charge": "Association: Felony Destruction of Property",
+    "Description": "Joint involvement in property destruction offenses.",
+    "Category": "Felony",
+    "Prison Time": "15",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 601",
+    "Charge": "Arson",
+    "Description": "The willful and malicious act of setting fire to or causing the burning of any property, vehicle, structure, or land. This includes actions intended to damage, destroy, or endanger life or property through the use of fire or incendiary devices. Arson may be committed for purposes such as insurance fraud, retaliation, intimidation, or vandalism, and includes both successful and attempted acts.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "15000"
+  },
+  {
+    "Code": "§ 1113",
+    "Charge": "Attempted Murder of a Civilian",
+    "Description": "The deliberate and unlawful attempt to kill another civilian without legal justification, where the attempt fails but the intent to cause death is evident.",
+    "Category": "Serious Felony",
+    "Prison Time": "45",
+    "Fine": "8000"
+  },
+  {
+    "Code": "§ 3113",
+    "Charge": "Association with Attempted Murder of a Civilian",
+    "Description": "Knowingly aiding, abetting, conspiring, or being an accessory to an attempted murder, without directly committing the act.",
+    "Category": "Serious Felony",
+    "Prison Time": "22",
+    "Fine": "4000"
+  },
+  {
+    "Code": "§ 1111",
+    "Charge": "Second Degree Murder",
+    "Description": "An intentional killing carried out without premeditation, often occurring impulsively but with an awareness the act could result in death.",
+    "Category": "Serious Felony",
+    "Prison Time": "55",
+    "Fine": "8500"
+  },
+  {
+    "Code": "§ 3111",
+    "Charge": "Association with Second Degree Murder",
+    "Description": "Knowingly participating in or facilitating a second-degree murder without directly executing the act, including prior assistance or post-offense concealment.",
+    "Category": "Serious Felony",
+    "Prison Time": "27",
+    "Fine": "4250"
+  },
+  {
+    "Code": "§ 3",
+    "Charge": "Accessory to the Murder of a Public Servant",
+    "Description": "Aiding, abetting, or facilitating the murder of a public servant without directly committing the act, with intent to assist.",
+    "Category": "Serious Felony",
+    "Prison Time": "40",
+    "Fine": "6500"
+  },
+  {
+    "Code": "§ 2113",
+    "Charge": "Fleeca Bank Heist",
+    "Description": "A planned, forceful robbery of a Fleeca Bank branch, often involving weapons or intimidation to steal money or valuables.",
+    "Category": "Serious Felony",
+    "Prison Time": "40",
+    "Fine": "10000"
+  },
+  {
+    "Code": "§ 3113",
+    "Charge": "Association with Fleeca Bank Heist",
+    "Description": "Knowingly participating in or facilitating a Fleeca Bank Heist without directly executing the robbery (e.g., planning, transport, lookout).",
+    "Category": "Serious Felony",
+    "Prison Time": "20",
+    "Fine": "5000"
+  },
+  {
+    "Code": "§ 2113",
+    "Charge": "Armed Robbery",
+    "Description": "The unlawful taking of property or funds from a person or entity using or threatening a weapon to intimidate or coerce.",
+    "Category": "Serious Felony",
+    "Prison Time": "40",
+    "Fine": "8000"
+  },
+  {
+    "Code": "§ 3114",
+    "Charge": "Association with Armed Robbery",
+    "Description": "Assisting in the planning, execution, or concealment of an armed robbery, including roles such as driver, lookout, or supplier.",
+    "Category": "Serious Felony",
+    "Prison Time": "20",
+    "Fine": "4000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "The intentional or reckless act of causing minor physical harm or offensive contact to another person without a deadly weapon, such as pushing, slapping, or light punches.",
+    "Description": null,
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "1500"
+  },
+  {
+    "Code": "§ 113",
+    "Charge": "Assault",
+    "Description": "The deliberate infliction or attempted infliction of moderate physical harm, which may involve repeated blows, blunt objects, or actions resulting in notable pain or distress.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "5000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Evading",
+    "Description": "Willfully fleeing or attempting to elude law enforcement during a lawful stop or pursuit, whether on foot or in a vehicle.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "4000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Disobeying a Police Officer",
+    "Description": "Refusing to comply with a lawful order or command issued by a peace officer in the line of duty, excluding acts of fleeing or resisting arrest.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "1000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Harassment",
+    "Description": "Repeated, unwanted behavior or communication directed at another person with the intent to intimidate, annoy, or provoke emotional distress.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "1000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Prostitution",
+    "Description": "Engaging in, offering, or soliciting sexual acts in exchange for money, services, or goods; applies to both buyers and sellers.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Disorderly Conduct",
+    "Description": "Disruptive behavior in public that disturbs peace or provokes alarm, including public intoxication, aggressive arguments, or offensive gestures.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "750"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Failure to Provide Identification",
+    "Description": "Refusing or failing to present lawful identification when required by law enforcement during an official stop, detention, or lawful arrest.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "800"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Resisting Arrest",
+    "Description": "Actively opposing or interfering with a lawful arrest through physical struggle, obstruction, or verbal refusal, excluding fleeing or violence.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "1500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Disturbing the Peace",
+    "Description": "Engaging in loud, aggressive, or disruptive behavior in a public space, such as fighting, yelling, or causing undue alarm to the public.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Criminal Trespassing",
+    "Description": "Entering or remaining unlawfully on private or restricted property, including fenced areas or posted zones, without authorization.",
+    "Category": "Misdemeanor",
+    "Prison Time": "25",
+    "Fine": "1000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Public Urination",
+    "Description": "Urinating in a public area within view of others, violating public decency and sanitation laws.",
+    "Category": "Misdemeanor",
+    "Prison Time": "15",
+    "Fine": "3000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Public Defecation",
+    "Description": "Defecating in a public area in view of others, constituting a public nuisance and health hazard.",
+    "Category": "Misdemeanor",
+    "Prison Time": "15",
+    "Fine": "3000"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Attempted Grand Theft Auto",
+    "Description": "Taking substantial steps toward unlawfully stealing a vehicle with intent to permanently deprive the owner, though the theft was not completed.",
+    "Category": "Misdemeanor",
+    "Prison Time": "15",
+    "Fine": "2500"
+  },
+  {
+    "Code": "Varies by Statute",
+    "Charge": "Vandalism",
+    "Description": "Intentional defacement, damage, or destruction of property—public or private—including graffiti and tagging, not exceeding a felony threshold.",
+    "Category": "Misdemeanor",
+    "Prison Time": "10",
+    "Fine": "2500"
+  },
+  {
+    "Code": "S.A.C. § 922(g)",
+    "Charge": "Illegal Possession of a Firearm",
+    "Description": "Possessing a firearm without the proper licensing, registration, or legal authorization.",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "4500"
+  },
+  {
+    "Code": "Varies by specific statute",
+    "Charge": "Brandishing",
+    "Description": "Displaying a firearm in a threatening, careless, or intimidating manner without justification.",
+    "Category": "Misdemeanor",
+    "Prison Time": "20",
+    "Fine": "3000"
+  },
+  {
+    "Code": "S.A.C. § 922",
+    "Charge": "Possession of Illegal Weapon Attachments",
+    "Description": "Possessing or modifying a firearm with attachments that are banned, such as suppressors, extended mags, or illegal scopes.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "Varies by specific statute",
+    "Charge": "Illegal Discharge of a Firearm",
+    "Description": "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.",
+    "Category": "Misdemeanor",
+    "Prison Time": "20",
+    "Fine": "3500"
+  },
+  {
+    "Code": "S.A.C. § 641",
+    "Charge": "Possession of Government-Issued Equipment or Weapons",
+    "Description": "Unauthorized possession of weapons, gear, or tools that are exclusive to law enforcement, military, or government agencies.",
+    "Category": "Serious Felony",
+    "Prison Time": "40",
+    "Fine": "6500"
+  },
+  {
+    "Code": "Varies by specific statute",
+    "Charge": "Illegal Possession of a Weapon (Class 2)",
+    "Description": "Possession of a restricted mid-grade weapon (e.g., SMGs or tactical rifles) without the appropriate license or role.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "5500"
+  },
+  {
+    "Code": "Varies by specific statute",
+    "Charge": "Illegal Possession of a Weapon (Class 3)",
+    "Description": "Possession of high-grade military or automatic weapons with no authorization — includes LMGs, RPGs, or explosives.",
+    "Category": "Federal",
+    "Prison Time": "45",
+    "Fine": "7500"
+  },
+  {
+    "Code": "S.A.C. § 844",
+    "Charge": "Misdemeanor Possession of Marijuana",
+    "Description": "Possessing a small personal-use quantity of marijuana without proper licensing or in a restricted area.",
+    "Category": "Misdemeanor",
+    "Prison Time": "10",
+    "Fine": "1500"
+  },
+  {
+    "Code": "S.A.C. § 841",
+    "Charge": "Cultivation of Marijuana (A)",
+    "Description": "Growing marijuana plants without a permit, limited in scale (personal use or small operation).",
+    "Category": "Felony",
+    "Prison Time": "25",
+    "Fine": "4000"
+  },
+  {
+    "Code": "S.A.C. § 841",
+    "Charge": "Cultivation of Marijuana (B)",
+    "Description": "Large-scale or commercial marijuana grow operation without authorization, often exceeding legal plant limits.",
+    "Category": "Serious Felony",
+    "Prison Time": "40",
+    "Fine": "6000"
+  },
+  {
+    "Code": "S.A.C. § 841",
+    "Charge": "Possession of Marijuana with Intent to Distribute",
+    "Description": "Holding quantities of marijuana clearly packaged or prepared for distribution or sale to others.",
+    "Category": "Felony",
+    "Prison Time": "35",
+    "Fine": "5500"
+  },
+  {
+    "Code": "S.A.C. § 844",
+    "Charge": "Possession of a Controlled Substance",
+    "Description": "Possessing illegal drugs such as cocaine, heroin, meth, or prescription narcotics without a prescription.",
+    "Category": "Felony",
+    "Prison Time": "30",
+    "Fine": "5000"
+  },
+  {
+    "Code": "S.A.C. § 841",
+    "Charge": "Possession of a Controlled Substance with Intent to Distribute",
+    "Description": "Possessing large quantities of illegal drugs or paraphernalia clearly intended for sale or trafficking.",
+    "Category": "Serious Felony",
+    "Prison Time": "45",
+    "Fine": "7500"
+  },
+  {
+    "Code": "S.A.C. § 841",
+    "Charge": "Drug Trafficking – Cocaine",
+    "Description": "Transporting, distributing, or importing illegal narcotics on a regional or national level — high-scale operation.",
+    "Category": "Serious Felony",
+    "Prison Time": "60",
+    "Fine": "3000"
+  },
+  {
+    "Code": "S.A.C. § 3101",
+    "Charge": "Possession of Cocaine",
+    "Description": "The suspect was found in possession of processed cocaine, with no regard to intent. (5 or more bags)",
+    "Category": "Serious Felony",
+    "Prison Time": "15",
+    "Fine": "10000"
+  },
+  {
+    "Code": "S.A.C. § 3102",
+    "Charge": "Possession of Cocaine (Large Quantity)",
+    "Description": "The suspect was found in possession of a substantial quantity of processed cocaine. (50 or more bags)",
+    "Category": "Serious Felony",
+    "Prison Time": "36",
+    "Fine": "7500"
+  },
+  {
+    "Code": "S.A.C. § 3103",
+    "Charge": "Possession with Intent to Distribute",
+    "Description": "The suspect was found in possession of cocaine in a quantity indicative of distribution, during a known drug sale incident. (10 or more bags)",
+    "Category": "Serious Felony",
+    "Prison Time": "30",
+    "Fine": "6000"
+  },
+  {
+    "Code": "S.A.C. § 3104",
+    "Charge": "Possession with Intent to Distribute (Large Quantity)",
+    "Description": "The suspect was found with a significant quantity of cocaine during a drug sale incident, clearly intended for distribution. (50 or more bags)",
+    "Category": "Serious Felony",
+    "Prison Time": "45",
+    "Fine": "10000"
+  },
+  {
+    "Code": "S.A.C. § 3105",
+    "Charge": "Manufacturing of Cocaine",
+    "Description": "The suspect was actively producing cocaine in known manufacturing zones, such as Cuba, Madagascar, or Horseshoe Island.",
+    "Category": "Serious Felony",
+    "Prison Time": "60",
+    "Fine": "15000"
+  },
+  {
+    "Code": "S.A.C. § 3106",
+    "Charge": "Possession of Cocaine Manufacturing Materials",
+    "Description": "The suspect was found in possession of materials commonly used in the production of cocaine, in a context indicating potential manufacturing activity.",
+    "Category": "Serious Felony",
+    "Prison Time": "20",
+    "Fine": "4500"
+  },
+  {
+    "Code": "S.A.C. § 3107",
+    "Charge": "Drug Trafficking – Cocaine",
+    "Description": "The suspect was involved in the transportation or smuggling of large quantities of cocaine, typically via maritime or aerial routes. (100 or more bags)",
+    "Category": "Serious Felony",
+    "Prison Time": "75",
+    "Fine": "20000"
+  },
+  {
+    "Code": "Loitering on Government Property",
+    "Charge": "Remaining on or near government buildings, facilities, or restricted zones without a lawful purpose or after being asked to leave.",
+    "Description": null,
+    "Category": "Citation",
+    "Prison Time": "5",
+    "Fine": "750"
+  },
+  {
+    "Code": null,
+    "Charge": "Jaywalking",
+    "Description": "Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.",
+    "Category": "Citation",
+    "Prison Time": "0",
+    "Fine": "500"
+  }
+]
