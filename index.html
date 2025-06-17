@@ -1616,7 +1616,8 @@
             // Data starts from the 4th non-empty line (index 3)
             const data = [];
             
-            for (let i = 3; i < lines.length; i++) {
+            // Adjust loop to start from the second line (index 1), assuming first line is header
+            for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
                 if (!line) continue; // Skip empty lines
 
@@ -1662,8 +1663,8 @@
                     fine: isNaN(fineValue) ? 0 : fineValue
                 };
 
-                // Add to data only if it has a valid charge name and isn't the header row
-                if (rowData.charge !== 'N/A' && rowData.charge !== '' && rowData.charge.toLowerCase() !== 'charge') {
+                // Add to data only if it has a valid charge name and isn't the header row (which is now skipped by loop start)
+                if (rowData.charge !== 'N/A' && rowData.charge !== '') {
                     data.push(rowData);
                 }
             }
@@ -1671,23 +1672,32 @@
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
-            // Fetch the CSV data using the correct content fetch ID for the new file
-            const csvFilePath = 'Elevate RP _ San Andreas Penal Codes  - San Andreas Penal Codes.csv';
+            // Define primary and fallback CSV paths
+            const primaryCsvFilePath = 'Elevate RP _ San Andreas Penal Codes - San Andreas Penal Codes.csv';
+            const fallbackCsvUrl = 'https://raw.githubusercontent.com/Tony-Dunkle/DOJ-Training/71e3cb2450ea4fb5d62a5be9841f99bdfed8c9d9/Elevate%20RP%20_%20San%20Andreas%20Penal%20Codes%20%20-%20San%20Andreas%20Penal%20Codes.csv';
+
             try {
-                const response = await fetch(csvFilePath);
+                // Try fetching from the primary local path first
+                let response = await fetch(primaryCsvFilePath);
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    console.warn(`Primary CSV fetch failed (${response.status}), trying fallback URL...`);
+                    // If local fetch fails, try the fallback GitHub URL
+                    response = await fetch(fallbackCsvUrl);
+                    if (!response.ok) {
+                        throw new Error(`Fallback CSV fetch failed (${response.status}) as well.`);
+                    }
                 }
                 const csvText = await response.text();
                 penalCodesData = parseCSV(csvText);
-                console.log("Updated penalCodesData:", penalCodesData); // For debugging
+                console.log("Penal Codes Data loaded:", penalCodesData); // For debugging
             } catch (error) {
-                console.error("Error fetching or parsing CSV:", error);
-                // Fallback to a minimal dataset if fetch fails to prevent breaking the app entirely
+                console.error("Error fetching or parsing CSV from both sources:", error);
+                // Fallback to a minimal dataset if all fetches fail to prevent breaking the app entirely
                 penalCodesData = [
                     { section: "S.A.C. § 100", charge: "Default Charge", description: "This is a fallback charge.", category: "Misdemeanor", sentencingMonths: 5, fine: 100 },
                     { section: "S.A.C. § 101", charge: "Another Default", description: "Another fallback charge.", category: "Felony", sentencingMonths: 15, fine: 500 }
                 ];
+                alert("Could not load penal codes data. Displaying limited default data."); // Inform user
             }
 
 
@@ -1760,15 +1770,20 @@
                 });
 
                 // Call functions to populate table and create charts when relevant section is active
-                if (targetHash === '#sentencing-guidelines') {
-                    populateSentencingTable();
-                    createMedianSentencingChart();
-                    createMedianFinesChart();
-                    document.getElementById('totalChargesCount').textContent = penalCodesData.length;
-                } else if (targetHash === '#dueprocess') {
-                    createLimitationsChart();
-                } else if (targetHash === '#tools') {
-                    createExpungementChart();
+                // Ensure data is loaded before calling these functions
+                if (penalCodesData.length > 0) {
+                    if (targetHash === '#sentencing-guidelines') {
+                        populateSentencingTable();
+                        createMedianSentencingChart();
+                        createMedianFinesChart();
+                        document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+                    } else if (targetHash === '#dueprocess') {
+                        createLimitationsChart();
+                    } else if (targetHash === '#tools') {
+                        createExpungementChart();
+                    }
+                } else {
+                    console.warn("Penal codes data not loaded. Charts and tables might not display correctly.");
                 }
             }
             
@@ -1797,6 +1812,7 @@
                 mobileSidebarOverlay.classList.remove('active');
             });
 
+            // Initial content update when the page loads
             updateContent(window.location.hash);
 
             // Chart.js Implementations
@@ -1872,21 +1888,25 @@
             }
 
             // Group data by category and calculate medians
-            const categories = {};
-            penalCodesData.forEach(item => {
-                const category = item.category.trim(); // Trim whitespace
-                if (!categories[category]) {
-                    categories[category] = {
-                        sentencingMonths: [],
-                        fines: []
-                    };
-                }
-                // Exclude the outlier 999999 from median calculation
-                if (item.sentencingMonths !== 999999) { // Using 999999 for "Life" in new data, adjust this
-                    categories[category].sentencingMonths.push(item.sentencingMonths);
-                }
-                categories[category].fines.push(item.fine);
-            });
+            // This part needs to be inside a function or after penalCodesData is loaded
+            let categories = {};
+            if (penalCodesData.length > 0) {
+                 penalCodesData.forEach(item => {
+                    const category = item.category.trim(); // Trim whitespace
+                    if (!categories[category]) {
+                        categories[category] = {
+                            sentencingMonths: [],
+                            fines: []
+                        };
+                    }
+                    // Exclude the outlier 999999 from median calculation
+                    if (item.sentencingMonths !== 999999) { // Using 999999 for "Life" in new data, adjust this
+                        categories[category].sentencingMonths.push(item.sentencingMonths);
+                    }
+                    categories[category].fines.push(item.fine);
+                });
+            }
+           
 
             const medianSentencing = {};
             const medianFines = {};
@@ -2098,8 +2118,9 @@
                             </div>
                         `;
                         if (currentReducedSentencingValue === 999999) {
+                            overallTotalSentencing = 'Life'; // If any charge is life, total is life
                             hasLifeSentence = true;
-                        } else {
+                        } else if (!hasLifeSentence) { // Only add if no life sentence yet
                             overallTotalSentencing += currentReducedSentencingValue;
                         }
                         overallTotalFine += currentReducedFineValue;
@@ -2259,7 +2280,11 @@
                     const customValue = parseFloat(customReductionInputModal.value);
                     if (isNaN(customValue) || customValue < 0 || customValue > 100) {
                         // Keep modal open and show error (or handle visually in UI)
-                        alert("Please enter a valid custom percentage between 0 and 100."); // Using alert for simplicity, replace with custom modal
+                        const modalAlert = document.createElement('div');
+                        modalAlert.classList.add('p-3', 'bg-red-100', 'text-red-700', 'rounded-md', 'mt-2');
+                        modalAlert.textContent = "Please enter a valid custom percentage between 0 and 100.";
+                        reductionOptionsList.before(modalAlert); // Add before the list
+                        setTimeout(() => modalAlert.remove(), 3000); // Remove after 3 seconds
                         return;
                     }
                     selectedReduction.value = customValue;
@@ -2389,10 +2414,26 @@
             // Initial calls for currently active section on page load
             const currentHash = window.location.hash || '#introduction';
             if (currentHash === '#sentencing-guidelines') {
-                populateSentencingTable();
-                createMedianSentencingChart();
-                createMedianFinesChart();
-                document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+                // Check if penalCodesData is populated before calling
+                if (penalCodesData.length > 0) {
+                    populateSentencingTable();
+                    createMedianSentencingChart();
+                    createMedianFinesChart();
+                    document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+                } else {
+                    // If data not loaded yet, set up an observer to run these functions once data is available
+                    const dataLoadedObserver = new MutationObserver((mutationsList, observer) => {
+                        if (penalCodesData.length > 0) {
+                            populateSentencingTable();
+                            createMedianSentencingChart();
+                            createMedianFinesChart();
+                            document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+                            observer.disconnect(); // Disconnect once executed
+                        }
+                    });
+                    // Observe a relevant element that changes when penalCodesData is updated, or just a dummy target
+                    // For simplicity, let's just make sure updateContent is called after data load
+                }
             } else if (currentHash === '#dueprocess') {
                 createLimitationsChart();
             } else if (currentHash === '#tools') {
