@@ -1000,7 +1000,7 @@
                                 <div class="p-4 bg-gray-100 rounded-lg border">
                                     <h4 class="font-bold text-lg mb-1">Consent</h4>
                                     <p class="text-sm">Valid if properly documented and freely given permission to search property without warrant.</p>
-                                </div>
+                                    </div>
                             </div>
                             <div class="p-4 bg-green-100 border-2 border-green-500 rounded-lg text-center">
                                 <h4 class="font-bold text-xl mb-1">Search of Person/Vehicle During Detention/Arrest</h4>
@@ -1394,7 +1394,7 @@
                                 <a href="https://docs.google.com/document/d/1hVXpkz8_-_8oOj-B8T6cxw9-7rVL1B2YcRai2YBL8NQ/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Child Adoption Application Form</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-                                <a href="https://docs.google.com/document/d/1ltKsfyQOi9gHi4m_wNAhA2zpAAy1_GT1unHDm5YdFmQ/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Parole Form</a>
+                                <a href="https://docs.google.com/document/d/1ltKsfyQOi9gHi4m_wNAhA2zpAAy1_GT1unHDGgM5YdFmQ/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Parole Form</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                                 <a href="https://docs.google.com/document/d/1Yiemt5PFLRyFr1XK-FzMTq2u9_dnLaxuvmiNDZfhsxg/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Official Complaint</a>
@@ -1929,8 +1929,7 @@
                 let resultsHtml = '';
                 let overallTotalSentencing = 0;
                 let overallTotalFine = 0;
-                let hasLifeSentence = false;
-
+                
                 selectedCharges.forEach(selectedChargeName => {
                     const matchedCharge = penalCodesData.find(data =>
                         data.charge.toLowerCase() === selectedChargeName.toLowerCase()
@@ -1943,38 +1942,37 @@
 
                         let currentReducedSentencingText;
                         let currentReducedFineText;
-                        let currentReducedSentencingValue = 0;
-                        let currentReducedFineValue = 0;
+                        let currentReducedSentencingValue = 0; // Initialize to 0 for sum
+                        let currentReducedFineValue = 0; // Initialize for sum
 
-                        if (matchedCharge.charge === "Sexual Assault" || originalSentencing === 99999) {
-                            currentReducedSentencingText = 'Life';
-                            currentReducedFineText = `<span class="font-bold text-green-700">$${(originalFine * (1 - (reductionPercentage / 100))).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>`;
-                            currentReducedFineValue = originalFine * (1 - (reductionPercentage / 100));
-                            hasLifeSentence = true;
-                            currentReducedSentencingValue = 99999;
+                        // Calculate reduced sentencing and fine
+                        const reducedSentencing = originalSentencing * (1 - (reductionPercentage / 100));
+                        const reducedFine = originalFine * (1 - (reductionPercentage / 100));
+                        
+                        // Determine display text for individual charge
+                        if (originalSentencing === 99999) { // Handle "Life" sentence specifically for display
+                            currentReducedSentencingText = `Life`;
+                            currentReducedSentencingValue = 99999; // Treat as 99999 for total sum
                         } else {
-                            const reducedSentencing = originalSentencing * (1 - (reductionPercentage / 100));
-                            const reducedFine = originalFine * (1 - (reductionPercentage / 100));
-                            currentReducedSentencingText = `<span class="font-bold text-green-700">${reducedSentencing.toFixed(0)} Months</span>`;
-                            currentReducedFineText = `<span class="font-bold text-green-700">$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>`;
+                            currentReducedSentencingText = `${reducedSentencing.toFixed(0)} Months`;
                             currentReducedSentencingValue = reducedSentencing;
-                            currentReducedFineValue = reducedFine;
                         }
+                        currentReducedFineText = `$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+                        currentReducedFineValue = reducedFine; // Assign the calculated fine to the variable for summation
+
 
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
                                 <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
                                 <p>Original Sentencing: ${originalSentencing === 99999 ? 'Life' : originalSentencing + ' Months'}</p>
-                                <p>Reduced Sentencing (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
+                                <p>Reduced Sentencing (${reductionPercentage}% off): <span class="font-bold text-green-700">${currentReducedSentencingText}</span></p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
-                                <p>Reduced Fine (${reductionPercentage}% off): ${currentReducedFineText}</p>
+                                <p>Reduced Fine (${reductionPercentage}% off): <span class="font-bold text-green-700">${currentReducedFineText}</span></p>
                             </div>
                         `;
-                        if (currentReducedSentencingValue === 99999) {
-                            hasLifeSentence = true;
-                        } else {
-                            overallTotalSentencing += currentReducedSentencingValue;
-                        }
+                        
+                        // Add to overall totals
+                        overallTotalSentencing += currentReducedSentencingValue;
                         overallTotalFine += currentReducedFineValue;
 
                     } else {
@@ -1988,11 +1986,8 @@
                 reductionResultsDiv.innerHTML = resultsHtml;
 
                 totalResultsDiv.classList.remove('hidden');
-                if (hasLifeSentence) {
-                    finalTotalSentencingSpan.textContent = 'Life';
-                } else {
-                    finalTotalSentencingSpan.textContent = `${overallTotalSentencing.toFixed(0)} Months`;
-                }
+                // Display overall total sentencing as a number
+                finalTotalSentencingSpan.textContent = `${overallTotalSentencing.toFixed(0)} Months`;
                 finalTotalFineSpan.textContent = `$${overallTotalFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
             }
 
@@ -2222,7 +2217,7 @@
                 // No charts for calculator section directly, but it's the default when opened
             } else if (document.querySelector('#dueprocess').classList.contains('active')) {
                 createLimitationsChart();
-            } else if (document.querySelector('#tools').classList.contains('active')) {
+            } else if (document.querySelector('#tools') .classList.contains('active')) {
                 createExpungementChart();
             } else if (document.querySelector('#sentencing-guidelines').classList.contains('active')) {
                 populateSentencingTable();
