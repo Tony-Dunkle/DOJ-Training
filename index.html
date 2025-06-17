@@ -256,14 +256,6 @@
             border-color: #3b82f6; /* border-blue-500 */
             box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5); /* ring-blue-500/50 */
         }
-
-        /* Specific styles for job detail pages to handle consistent display */
-        .job-detail-section {
-            display: none; /* Hidden by default */
-        }
-        .job-detail-section.active {
-            display: block;
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col h-screen">
@@ -419,28 +411,60 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                                <h4 class="font-semibold text-lg mb-2 text-blue-800 cursor-pointer job-title-link" data-target="job-chief-justice">Chief Justice - Luis Salamanca</h4>
-                                <p class="text-gray-700 text-sm">In charge of legislation, oversees Defense Attorneys, conducts DOJ Policy Reviews, handles administrative work, and is responsible for warrant and other legal document verification, approval, or review.</p>
+                                <h4 class="font-semibold text-lg mb-2 text-blue-800">Chief Justice - Luis Salamanca</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>In charge of legislation.</li>
+                                    <li>Oversees Defense Attorneys.</li>
+                                    <li>Conducts DOJ Policy Reviews.</li>
+                                    <li>Handles administrative work.</li>
+                                    <li>Responsible for warrant and other legal document verification, approval, or review.</li>
+                                </ul>
                             </div>
                             <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-                                <h4 class="font-semibold text-lg mb-2 text-green-800 cursor-pointer job-title-link" data-target="job-deputy-chief-justice">Deputy Chief Justice - Mike Ross</h4>
-                                <p class="text-gray-700 text-sm">In charge of The District Attorney's office, conducts DOJ Policy Reviews, handles administrative work, is responsible for interpretation of laws, oversees prosecution of criminal cases, reviews civil cases, and is a member of the State Bar Review Board.</p>
+                                <h4 class="font-semibold text-lg mb-2 text-green-800">Deputy Chief Justice - Mike Ross</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>In charge of The District Attorney's office.</li>
+                                    <li>Conducts DOJ Policy Reviews.</li>
+                                    <li>Handles administrative work.</li>
+                                    <li>Responsible for interpretation of laws.</li>
+                                    <li>Oversees prosecution of criminal cases.</li>
+                                    <li>Reviews civil cases.</li>
+                                    <li>A member of the State Bar Review Board.</li>
+                                </ul>
                             </div>
                             <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                                <h4 class="font-semibold text-lg mb-2 text-purple-800 cursor-pointer job-title-link" data-target="job-chief-prosecutor">Chief Prosecutor</h4>
-                                <p class="text-gray-700 text-sm">Goes to court, handles paperwork, guides the Unified Police Department, and supervises the District Attorneys, including their assignments, promotions, and roles.</p>
+                                <h4 class="font-semibold text-lg mb-2 text-purple-800">Lead Prosecutor</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>Goes to court, handles paperwork.</li>
+                                    <li>Guides the Unified Police Department.</li>
+                                    <li>Supervises the District Attorneys, including their assignments, promotions, and roles.</li>
+                                </ul>
                             </div>
                             <div class="bg-red-50 p-4 rounded-lg border border-red-200">
-                                <h4 class="font-semibold text-lg mb-2 text-red-800 cursor-pointer job-title-link" data-target="job-district-attorney">District Attorney</h4>
-                                <p class="text-gray-700 text-sm">In charge of the District Attorney's Office, goes to court, handles paperwork, provides guidance to the Unified Police Department, and supervises the Assistant District Attorneys, including their assignments, promotions, and roles.</p>
+                                <h4 class="font-semibold text-lg mb-2 text-red-800">District Attorney</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>In charge of the District Attorney's Office.</li>
+                                    <li>Goes to court, handles paperwork.</li>
+                                    <li>Provides guidance to the Unified Police Department.</li>
+                                    <li>Supervises the Assistant District Attorneys, including their assignments, promotions, and roles.</li>
+                                </ul>
                             </div>
                             <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                <h4 class="font-semibold text-lg mb-2 text-yellow-800 cursor-pointer job-title-link" data-target="job-defense-attorney">Defense Attorney</h4>
-                                <p class="text-gray-700 text-sm">Handles criminal and civil cases for any private citizen or resident of San Andreas, assists with marriage licenses, divorce filing, adoption, weapons licenses, expungement hearings, and other important legal matters in the state of San Andreas.</p>
+                                <h4 class="font-semibold text-lg mb-2 text-yellow-800">Defense Attorney</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>Handles criminal and civil cases for any private citizen or resident of San Andreas.</li>
+                                    <li>Can also assist with marriage licenses, divorce filing, adoption, and weapons licenses.</li>
+                                    <li>Assists with expungement hearings and other important legal matters in the state of San Andreas.</li>
+                                </ul>
                             </div>
                             <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
                                 <h4 class="font-semibold text-lg mb-2 text-teal-800">Municipal Security</h4>
-                                <p class="text-gray-700 text-sm">Tasked with guarding the courthouse, provides bailiff services to the court, protects DOJ leadership and staff outside the courthouse when on official business, and has no arrest powers outside of the courthouse.</p>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>Tasked with guarding the courthouse.</li>
+                                    <li>Provides bailiff services to the court.</li>
+                                    <li>Protects DOJ leadership and staff outside the courthouse when on official business.</li>
+                                    <li>Has no arrest powers outside of the courthouse.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -1358,7 +1382,7 @@
                                 <a href="https://docs.google.com/document/d/1zywuuGMQCTaJ0miYlCiG3cUg-E8OflRQcE5euxTWzI/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Intent to Sue Template (Elevate)</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-                                <a href="https://docs.google.com/document/d/1xphAbQaUGMk8OCSw-iAKWuwZDp2c6boy_KRc/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Subpoena (Elevate)</a>
+                                <a href="https://docs.google.com/document/d/1xphAbQaUGMk8OCSw-iAKWuwZDpUCYb3kkZc6boy_KRc/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Subpoena (Elevate)</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                                 <a href="https://docs.google.com/document/d/1xGv-jR59oRLcQ3duwBs_fdQ7WcqkZ5Z1F12S0Bc3epY/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Elevate Authority Conduct Complaint Form</a>
@@ -1409,183 +1433,6 @@
                     </div>
                 </div>
 
-                <!-- New Job Detail Pages -->
-                <div id="job-chief-justice" class="content-section job-detail-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Chief Justice Role Details</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-2">Title: Chief Justice of the Supreme Court</h3>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Judiciary Branch</p>
-                        <p class="text-gray-700 mb-4"><span class="font-semibold">Reports To:</span> N/A (Highest judicial authority)</p>
-                        <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
-                        <p class="text-gray-700 leading-relaxed mb-4">The Chief Justice serves as the head of the Judiciary and presides over the Supreme Court. This role ensures the fair administration of justice, oversees judicial proceedings at the highest level, and manages the conduct, ethics, and standards of all judicial officers under their purview.</p>
-                        <h4 class="font-bold text-lg mb-2">Key Responsibilities:</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Preside over Supreme Court cases, appeals, and constitutional challenges.</li>
-                            <li>Interpret and uphold the Constitution and major legal statutes.</li>
-                            <li>Oversee the Judicial Code of Conduct and enforce disciplinary measures when needed.</li>
-                            <li>Administer oaths of office to high-ranking officials.</li>
-                            <li>Provide judicial leadership and guidance to lower courts and judicial personnel.</li>
-                            <li>Serve as the final authority on judicial procedure, precedent, and court policy.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="job-deputy-chief-justice" class="content-section job-detail-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Deputy Chief Justice Role Details</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-2">Title: Deputy Chief Justice</h3>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Judiciary Branch</p>
-                        <p class="text-gray-700 mb-4"><span class="font-semibold">Reports To:</span> Chief Justice</p>
-                        <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
-                        <p class="text-gray-700 leading-relaxed mb-4">The Deputy Chief Justice assists the Chief Justice in the administration of the judicial system, presides over high-profile or appellate cases, and ensures consistency in court proceedings. This position often oversees the day-to-day functionality of court operations and serves as Acting Chief Justice in their absence.</p>
-                        <h4 class="font-bold text-lg mb-2">Key Responsibilities:</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Preside over appellate and major trial proceedings.</li>
-                            <li>Advise on court procedure, judicial appointments, and legal interpretations.</li>
-                            <li>Provide oversight of case management, judge training, and legal compliance.</li>
-                            <li>Support the Chief Justice in upholding judicial ethics and institutional integrity.</li>
-                            <li>Lead committees on judicial reform or disciplinary review.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="job-district-attorney" class="content-section job-detail-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">District Attorney Role Details</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-2">Title: District Attorney (DA)</h3>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Prosecutor’s Office (Executive Branch – DOJ)</p>
-                        <p class="text-gray-700 mb-4"><span class="font-semibold">Reports To:</span> Attorney General or Chief Prosecutor (depending on jurisdiction)</p>
-                        <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
-                        <p class="text-gray-700 leading-relaxed mb-4">The District Attorney is the chief prosecutor responsible for pursuing criminal charges on behalf of the state. The DA leads the prosecution team, determines charges in felony and high-priority cases, and ensures that justice is pursued fairly and within the bounds of the law.</p>
-                        <h4 class="font-bold text-lg mb-2">Key Responsibilities:</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Review evidence from law enforcement and determine prosecutorial action.</li>
-                            <li>Lead major criminal prosecutions and oversee courtroom litigation.</li>
-                            <li>Supervise Assistant District Attorneys and legal support staff.</li>
-                            <li>Collaborate with police departments and investigators on ongoing cases.</li>
-                            <li>Uphold ethical prosecution practices and victims’ rights.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="job-assistant-district-attorney" class="content-section job-detail-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Assistant District Attorney Role Details</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-2">Title: Assistant District Attorney (ADA)</h3>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Prosecutor’s Office</p>
-                        <p class="text-gray-700 mb-4"><span class="font-semibold">Reports To:</span> District Attorney</p>
-                        <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
-                        <p class="text-gray-700 leading-relaxed mb-4">The Assistant District Attorney supports the DA by prosecuting cases ranging from misdemeanors to felonies. ADAs prepare case files, examine evidence, work with law enforcement, and represent the State in criminal proceedings to ensure justice and community safety.</p>
-                        <h4 class="font-bold text-lg mb-2">Key Responsibilities:</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Prosecute assigned criminal cases in lower and trial courts.</li>
-                            <li>Conduct legal research, draft motions, and prepare plea agreements.</li>
-                            <li>Interview witnesses, police, and victims in preparation for trial.</li>
-                            <li>Present arguments in pre-trial, trial, and sentencing hearings.</li>
-                            <li>Maintain case files, coordinate with detectives, and uphold due process.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="job-defense-attorney" class="content-section job-detail-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Defense Attorney Role Details</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-2">Title: Public Defender / Defense Attorney</h3>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Public Defender’s Office (Judicial or Independent Defense Branch)</p>
-                        <p class="text-700 mb-4"><span class="font-semibold">Reports To:</span> Chief Public Defender or Self-Employed (if private practice)</p>
-                        <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
-                        <p class="text-gray-700 leading-relaxed mb-4">The Defense Attorney represents individuals accused of crimes, ensuring their constitutional rights are preserved. This role requires zealous advocacy, critical analysis of the prosecution's case, and effective courtroom litigation.</p>
-                        <h4 class="font-bold text-lg mb-2">Key Responsibilities:</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Represent clients at arraignment, bail, pre-trial, trial, and sentencing.</li>
-                            <li>Investigate charges, collect evidence, and interview witnesses.</li>
-                            <li>File motions to suppress, dismiss, or otherwise challenge prosecution claims.</li>
-                            <li>Negotiate plea deals or pursue trial strategy based on client’s best interests.</li>
-                            <li>Safeguard the rights of the accused and uphold the adversarial system.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="job-chief-prosecutor" class="content-section job-detail-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Chief Prosecutor Role Details</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-2">Title: Chief Prosecutor</h3>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Department:</span> Executive Branch – Department of Justice</p>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Reports To:</span> Attorney General or Secretary of Justice (depending on hierarchy)</p>
-                        <p class="text-gray-700 mb-4"><span class="font-semibold">Supervises:</span> District Attorneys, Special Prosecutors, Investigative Teams, Legal Clerks</p>
-                        <h4 class="font-bold text-lg mb-2">Position Summary:</h4>
-                        <p class="text-gray-700 leading-relaxed mb-4">The Chief Prosecutor is the highest-ranking official in the prosecutorial division of the Department of Justice. Tasked with overseeing the prosecution of criminal offenses on behalf of the State, the Chief Prosecutor exercises authority over legal strategy, case management, and prosecutorial policy. This position serves as the principal architect of the DOJ’s prosecutorial priorities and ensures the ethical and effective pursuit of justice.</p>
-                        
-                        <h4 class="font-bold text-lg mb-2">⚖️ Strategic Oversight and Case Management</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Supervise and direct all criminal prosecutions initiated by the State, especially high-profile or complex matters.</li>
-                            <li>Evaluate the legal sufficiency and strategic viability of major cases before charges are filed.</li>
-                            <li>Review and approve charging decisions, plea agreements, and prosecutorial dismissals in significant cases.</li>
-                        </ul>
-
-                        <h4 class="font-bold text-lg mt-4 mb-2">👨‍⚖️ Leadership and Supervision</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Oversee District Attorneys and Assistant District Attorneys across all regional jurisdictions.</li>
-                            <li>Assign or reassign cases to appropriate prosecutors based on complexity, expertise, and ethical considerations.</li>
-                            <li>Conduct regular reviews of prosecutorial performance, courtroom conduct, and case outcomes.</li>
-                            <li>Provide mentorship and continuing legal education for subordinate attorneys.</li>
-                        </ul>
-
-                        <h4 class="font-bold text-lg mt-4 mb-2">📜 Policy Development and Implementation</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Develop and enforce prosecutorial standards, including ethical guidelines, sentencing recommendations, and procedural protocols.</li>
-                            <li>Draft internal policies regarding prosecution of specialized offenses (e.g., organized crime, corruption, white-collar crime).</li>
-                            <li>Coordinate closely with legislative bodies to propose statutory reforms when necessary.</li>
-                        </ul>
-
-                        <h4 class="font-bold text-lg mt-4 mb-2">🕵️ Interagency Coordination</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Collaborate with law enforcement agencies, investigative bureaus, and forensic teams to ensure comprehensive case development.</li>
-                            <li>Provide legal direction and oversight on active criminal investigations.</li>
-                            <li>Coordinate with federal or state agencies in multi-jurisdictional prosecutions.</li>
-                        </ul>
-
-                        <h4 class="font-bold text-lg mt-4 mb-2">🧾 Accountability and Public Trust</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Serve as the public face of the prosecutorial system, issuing statements on prosecutorial decisions when appropriate.</li>
-                            <li>Address public concerns regarding prosecutorial conduct, discretion, or outcomes.</li>
-                            <li>Ensure that prosecutorial practices uphold due process, equal protection, and nonpartisanship.</li>
-                        </ul>
-
-                        <h4 class="font-bold text-lg mt-4 mb-2">⚖️ Judicial Liaison and Courtroom Presence</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Represent the DOJ before the judiciary in sensitive or precedent-setting trials.</li>
-                            <li>Serve as lead prosecutor in exceptional or critical cases requiring senior-level attention.</li>
-                            <li>Maintain professional relationships with judges, defense counsel, and judicial administrative staff.</li>
-                        </ul>
-
-                        <h4 class="font-bold text-lg mt-4 mb-2">🧑‍💼 Administrative Duties</h4>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Manage staffing, budgets, and internal resource allocation for the prosecutorial division.</li>
-                            <li>Approve or initiate disciplinary actions for prosecutorial misconduct or dereliction of duty.</li>
-                            <li>Prepare annual performance reports and strategic reviews for oversight authorities.</li>
-                        </ul>
-                    </div>
-                </div>
-
             </div> <!-- End of max-w-screen-xl mx-auto wrapper -->
         </main>
     </div>
@@ -1633,199 +1480,147 @@
             const customReductionInputModal = document.getElementById('customReductionInputModal');
             const applySelectedReductionBtn = document.getElementById('applySelectedReductionBtn');
 
-            // Job detail page elements
-            const jobTitleLinks = document.querySelectorAll('.job-title-link');
-            const jobDetailSections = document.querySelectorAll('.job-detail-section');
-
-
             penalCodesData = [
-    { section: '§ 1111', charge: 'First Degree Murder', description: 'Knowingly and willfully causing the death of another with premeditation, or aiding and abetting in such a murder. (Flatbacking applicable)', category: 'Federal', sentencingMonths: 70, fine: 25000 },
-    { section: '§ 1111-A', charge: 'Association: First Degree Murder', description: 'Criminal association or aiding in a murder plot or execution.', category: 'Federal', sentencingMonths: 35, fine: 12500 },
-    { section: '§ 1114', charge: 'Murder of a Public Servant or Peace Officer', description: 'Intentional killing of a government official during lawful duties.', category: 'Federal', sentencingMonths: 70, fine: 30000 },
-    { section: '§ 1114-A', charge: 'Attempted Murder of a Public Servant', description: 'Attempt to kill a public servant with clear intent, act incomplete.', category: 'Federal', sentencingMonths: 60, fine: 20000 },
-    { section: '§ 1114-B', charge: 'Association: Attempted Murder of a Public Servant', description: 'Accomplice in an attempted murder of a public servant.', category: 'Federal', sentencingMonths: 30, fine: 10000 },
-    { section: '§ 1595', charge: 'Human Trafficking', description: 'Coerced exploitation of individuals for labor or sexual acts.', category: 'Federal', sentencingMonths: 60, fine: 25000 },
-    { section: '§ 2332b', charge: 'Terrorism', description: 'Acts or threats of violence meant to intimidate or influence government or civilians.', category: 'Federal', sentencingMonths: 120, fine: 60000 },
-    { section: '§ 1504', charge: 'RICO Act', description: 'Engagement in or benefiting from an organized pattern of felony crimes.', category: 'Federal', sentencingMonths: 70, fine: 25000 },
-    { section: '§ 1504-A', charge: 'Association: RICO Activity', description: 'Criminally associated with an enterprise engaged in racketeering.', category: 'Federal', sentencingMonths: 35, fine: 12500 },
-    { section: '§ 31', charge: 'Plane Heist', description: 'Theft or hijacking of an aircraft or cargo through force or threat.', category: 'Federal', sentencingMonths: 65, fine: 50000 },
-    { section: '§ 2113', charge: 'Major Bank Robbery', description: 'Armed or violent robbery of a financial institution.', category: 'Federal', sentencingMonths: 70, fine: 30000 },
-    { section: '§ 2113-A', charge: 'Association: Major Robbery', description: 'Acting in concert with others to plan or execute a major robbery.', category: 'Federal', sentencingMonths: 35, fine: 15000 },
-    { section: '§ 401', charge: 'Contempt of Court (General)', description: 'Disruption or disrespect interfering with court operations.', category: 'Federal', sentencingMonths: 15, fine: 2500 },
-    { section: '§ 401-A', charge: 'Contempt of Court Order', description: 'Defying a specific, active court order or ruling.', category: 'Federal', sentencingMonths: 30, fine: 5000 },
-    { section: '§ 401-B', charge: 'Aggravated Contempt', description: 'Repeated violations or threats against the judiciary.', category: 'Federal', sentencingMonths: 35, fine: 6000 },
-    { section: '§ 1503', charge: 'Obstruction of Justice', description: 'Tampering with evidence, interfering with investigations or proceedings.', category: 'Federal', sentencingMonths: 40, fine: 7500 },
-    { section: '§ 912-A', charge: 'Impersonating a Judge', description: 'Falsely acting as a judicial officer to issue rulings or orders.', category: 'Federal', sentencingMonths: 30, fine: 6000 },
-    { section: '§ 912-B', charge: 'Impersonating a Government Official', description: 'Pretending to be a public official for influence or access.', category: 'Federal', sentencingMonths: 25, fine: 4000 },
-    { section: '§ 201', charge: 'Government Corruption / Malfeasance', description: 'Misusing public office for personal gain or engaging in misconduct.', category: 'Federal', sentencingMonths: 60, fine: 25000 },
-    { section: '§ 2241', charge: 'Sexual Harassment', description: 'Unwanted verbal or physical conduct of a sexual nature.', category: 'Federal', sentencingMonths: 30, fine: 5500 },
-    { section: '§ 2241-A', charge: 'Sexual Assault (Non-Penetrative)', description: 'Non-consensual sexual contact including touching or coercion.', category: 'Federal', sentencingMonths: 999999, fine: 200000 },
-    { section: '§ 641', charge: 'Theft of Government Property', description: 'Unauthorized possession or destruction of government-owned property.', category: 'Federal', sentencingMonths: 25, fine: 2000 },
-    { section: '§ 1512', charge: 'Coercion', description: 'Forcing another to act unlawfully or against their will using threats.', category: 'Federal', sentencingMonths: 30, fine: 6000 },
-    { section: '§ 1919', charge: 'Anarchism', description: 'Inciting or organizing unlawful attempts to undermine lawful governance.', category: 'Federal', sentencingMonths: 25, fine: 25000 },
-    { section: '§ 1001', charge: 'False Reporting', description: 'Knowingly providing false or misleading information to law enforcement or emergency services.', category: 'Felony', sentencingMonths: 35, fine: 2000 },
-    { section: '§ 1001-A', charge: 'Association: False Reporting', description: 'Participating in or encouraging false reporting to authorities.', category: 'Felony', sentencingMonths: 17, fine: 1000 },
-    { section: '§ 1501', charge: 'Obstruction of a Public Official', description: 'Willfully interfering with a public official’s lawful performance of duties.', category: 'Felony', sentencingMonths: 25, fine: 5000 },
-    { section: '§ 1501-A', charge: 'Association: Obstruction of a Public Official', description: 'Acting in concert to obstruct a public official’s duties.', category: 'Felony', sentencingMonths: 12, fine: 2500 },
-    { section: '§ 2101', charge: 'Inciting a Riot', description: 'Intentionally encouraging or participating in acts that provoke public disorder or violence.', category: 'Felony', sentencingMonths: 25, fine: 2500 },
-    { section: '2101-A', charge: 'Association: Inciting a Riot', description: 'Collaborating or conspiring to incite or sustain riotous behavior.', category: 'Felony', sentencingMonths: 12, fine: 1250 },
-    { section: '§ 1512', charge: 'Tampering', description: 'Deliberately interfering with evidence, machinery, or judicial processes to deceive or hinder justice.', category: 'Felony', sentencingMonths: 30, fine: 5000 },
-    { section: '§ 1512-A', charge: 'Association: Tampering', description: 'Acting together to tamper with evidence or obstruct legal procedures.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: 'N/A', charge: 'Vigilantism', description: 'Taking law enforcement into one’s own hands without authorization, acting as an extrajudicial enforcer.', category: 'Felony', sentencingMonths: 35, fine: 1500 },
-    { section: 'N/A-A', charge: 'Association: Vigilantism', description: 'Participating with others in unauthorized law enforcement or violent self-justice.', category: 'Felony', sentencingMonths: 17, fine: 750 },
-    { section: '§ 2261A', charge: 'Stalking', description: 'Repeated unwanted conduct or communication causing fear or distress.', category: 'Felony', sentencingMonths: 36, fine: 5000 },
-    { section: '§ 2261A-A', charge: 'Association: Stalking', description: 'Collaborating in stalking or harassment campaigns against a victim.', category: 'Felony', sentencingMonths: 18, fine: 2500 },
-    { section: '§ 2', charge: 'Aiding and Abetting', description: 'Assisting, facilitating, or encouraging the commission of a criminal offense.', category: 'Felony', sentencingMonths: 20, fine: 5000 },
-    { section: '§ 2-A', charge: 'Association: Aiding and Abetting', description: 'Acting with others to aid or abet criminal conduct.', category: 'Felony', sentencingMonths: 10, fine: 2500 },
-    { section: '§ 1028', charge: 'Possession of Stolen Identification', description: 'Possessing identification documents unlawfully with intent to defraud or evade law enforcement.', category: 'Felony', sentencingMonths: 10, fine: 2500 },
-    { section: '§ 1028-A', charge: 'Association: Possession of Stolen Identification', description: 'Participating in possession or use of stolen IDs for criminal purposes.', category: 'Felony', sentencingMonths: 5, fine: 1250 },
-    { section: '§ 113', charge: 'Assault', description: 'Intentional act causing bodily injury or apprehension of harm to another person.', category: 'Felony', sentencingMonths: 30, fine: 5000 },
-    { section: '§ 113-A', charge: 'Association: Assault', description: 'Coordinated participation in assaultive behavior.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: '§ 1201', charge: 'Kidnapping', description: 'Unlawful restraint, confinement, or transport of an individual against their will.', category: 'Felony', sentencingMonths: 30, fine: 5000 },
-    { section: '§ 1201-A', charge: 'Association: Kidnapping', description: 'Collaborating or conspiring to commit kidnapping.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: '', charge: 'Trespassing with Intent to Commit a Crime', description: 'Unauthorized entry on property with the purpose to commit an unlawful act.', category: 'Felony', sentencingMonths: 40, fine: 2500 },
-    { section: '', charge: 'Association: Trespassing with Intent to Commit a Crime', description: 'Jointly planning or executing trespassing to commit crimes.', category: 'Felony', sentencingMonths: 20, fine: 1250 },
-    { section: '§ 912', charge: 'Impersonation', description: 'Falsely representing oneself as another to deceive or defraud.', category: 'Felony', sentencingMonths: 20, fine: 2500 },
-    { section: '§ 912-A', charge: 'Association: Impersonation', description: 'Collaborative impersonation or aiding in deceptive identity misrepresentation.', category: 'Felony', sentencingMonths: 10, fine: 1250 },
-    { section: '§ 1341', charge: 'Fraud', description: 'Intentional deception to obtain unlawful financial or personal gain.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: '§ 1341-A', charge: 'Association: Fraud', description: 'Coordinated efforts to perpetrate fraudulent schemes.', category: 'Felony', sentencingMonths: 7, fine: 1250 },
-    { section: '§ 113', charge: 'Aggravated Assault', description: 'Assault involving use of a deadly weapon or causing serious bodily harm.', category: 'Felony', sentencingMonths: 50, fine: 6000 },
-    { section: '§ 113-A', charge: 'Association: Aggravated Assault', description: 'Acting together to carry out assault with a deadly weapon or serious injury.', category: 'Felony', sentencingMonths: 25, fine: 3000 },
-    { section: '§ 371', charge: 'Conspiracy', description: 'Agreement between two or more persons to commit a criminal offense.', category: 'Felony', sentencingMonths: 35, fine: 4000 },
-    { section: '§ 371-A', charge: 'Association: Conspiracy', description: 'Participation in planning or facilitating conspiratorial criminal acts.', category: 'Felony', sentencingMonths: 17, fine: 2000 },
-    { section: '§ 912', charge: 'Impersonating a Police Officer', description: 'Falsely presenting oneself as law enforcement to gain advantage or intimidate.', category: 'Felony', sentencingMonths: 40, fine: 10000 },
-    { section: '§ 912-A', charge: 'Association: Impersonating a Police Officer', description: 'Assisting or collaborating in false police impersonation.', category: 'Felony', sentencingMonths: 20, fine: 5000 },
-    { section: '§ 1956', charge: 'Money Laundering', description: 'Concealing the origins of illegally obtained funds through transfers or shell companies.', category: 'Felony', sentencingMonths: 45, fine: 15000 },
-    { section: '§ 1956-A', charge: 'Association: Money Laundering', description: 'Participation in laundering proceeds of crime with others.', category: 'Felony', sentencingMonths: 22, fine: 7500 },
-    { section: '§ 1385', charge: 'Trespassing on Government Property', description: 'Unauthorized entry or presence on government-controlled land or facilities.', category: 'Felony', sentencingMonths: 25, fine: 1500 },
-    { section: '§ 1385-A', charge: 'Association: Trespassing on Government Property', description: 'Acting jointly to unlawfully enter or remain on government premises.', category: 'Felony', sentencingMonths: 12, fine: 750 },
-    { section: '§ 1112', charge: 'Involuntary Manslaughter', description: 'Causing death through reckless or negligent conduct without intent.', category: 'Felony', sentencingMonths: 35, fine: 5000 },
-    { section: '§ 1112-A', charge: 'Association: Involuntary Manslaughter', description: 'Assisting or facilitating reckless conduct resulting in death.', category: 'Felony', sentencingMonths: 17, fine: 2500 },
-    { section: '', charge: 'Vehicular Manslaughter', description: 'Causing death through negligent or reckless operation of a vehicle.', category: 'Felony', sentencingMonths: 50, fine: 6000 },
-    { section: '', charge: 'Association: Vehicular Manslaughter', description: 'Acting with others in conduct leading to death by vehicle.', category: 'Felony', sentencingMonths: 25, fine: 3000 },
-    { section: '§ 3', charge: 'Accessory to Second Degree Murder', description: 'Assisting or facilitating a second-degree murder, before or after the fact.', category: 'Felony', sentencingMonths: 45, fine: 7000 },
-    { section: '§ 3-A', charge: 'Association: Accessory to Second Degree Murder', description: 'Participation in aiding or abetting second-degree murder.', category: 'Felony', sentencingMonths: 22, fine: 3500 },
-    { section: '§ 2118', charge: 'Warehouse Heist', description: 'Organized robbery targeting warehouses with high-value goods.', category: 'Felony', sentencingMonths: 75, fine: 25000 },
-    { section: '§ 2118-A', charge: 'Association: Warehouse Heist', description: 'Acting jointly in the planning or execution of a warehouse robbery.', category: 'Felony', sentencingMonths: 37, fine: 12500 },
-    { section: '§ 2113', charge: 'Store Robbery', description: 'Using force or threat to steal from commercial establishments.', category: 'Felony', sentencingMonths: 60, fine: 15000 },
-    { section: '§ 2113-A', charge: 'Association: Store Robbery', description: 'Conspiring or participating in store robbery with others.', category: 'Felony', sentencingMonths: 30, fine: 7500 },
-    { section: '', charge: 'Harassment', description: 'Repeated behavior intended to alarm, annoy, torment, or terrorize another individual.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: '', charge: 'Association: Harassment', description: 'Coordinated efforts to harass or intimidate a victim.', category: 'Felony', sentencingMonths: 7, fine: 1250 },
-    { section: '§ 1113', charge: 'Attempted Second Degree Murder', description: 'Deliberate attempt to kill without premeditation where victim survives.', category: 'Felony', sentencingMonths: 50, fine: 5000 },
-    { section: '§ 1113-A', charge: 'Association: Attempted Second Degree Murder', description: 'Participating in attempt to kill without premeditation.', category: 'Felony', sentencingMonths: 25, fine: 2500 },
-    { section: '§ 2315', charge: 'Possession of Stolen Property', description: 'Holding or concealing property known to be stolen.', category: 'Felony', sentencingMonths: 25, fine: 3500 },
-    { section: '§ 2315-A', charge: 'Association: Possession of Stolen Property', description: 'Acting jointly in possession or concealment of stolen property.', category: 'Felony', sentencingMonths: 12, fine: 1750 },
-    { section: '§ 2313', charge: 'Possession of a Stolen Vehicle', description: 'Operating or possessing a vehicle known to be stolen.', category: 'Felony', sentencingMonths: 30, fine: 5000 },
-    { section: '§ 2313-A', charge: 'Association: Possession of a Stolen Vehicle', description: 'Participating in possession or use of stolen vehicles.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: '§ 1341', charge: 'Attempted Fraud', description: 'Attempting to deceive for financial or personal gain.', category: 'Felony', sentencingMonths: 25, fine: 3000 },
-    { section: '§ 1341-A', charge: 'Association: Attempted Fraud', description: 'Collaborating in attempts to defraud others.', category: 'Felony', sentencingMonths: 12, fine: 1500 },
-    { section: '', charge: 'Misappropriation of Lost Property', description: 'Retaining lost property without reasonable effort to return it.', category: 'Felony', sentencingMonths: 25, fine: 2500 },
-    { section: '', charge: 'Association: Misappropriation of Lost Property', description: 'Acting together in misappropriation or concealment of lost property.', category: 'Felony', sentencingMonths: 12, fine: 1250 },
-    { section: '§ 873', charge: 'Extortion', description: 'Forcing someone to act against their will through threats or coercion.', category: 'Felony', sentencingMonths: 35, fine: 7000 },
-    { section: '§ 873-A', charge: 'Association: Extortion', description: 'Acting jointly to coerce or threaten for unlawful gain.', category: 'Felony', sentencingMonths: 17, fine: 3500 },
-    { section: '', charge: 'Grand Theft Auto', description: 'Unlawful taking of a motor vehicle with intent to permanently deprive owner.', category: 'Felony', sentencingMonths: 30, fine: 5500 },
-    { section: '', charge: 'Association: Grand Theft Auto', description: 'Collaborating in motor vehicle theft or possession.', category: 'Felony', sentencingMonths: 15, fine: 2750 },
-    { section: '', charge: 'Attempted Extortion', description: 'Attempting to coerce or threaten another for gain.', category: 'Felony', sentencingMonths: 25, fine: 4000 },
-    { section: '', charge: 'Association: Attempted Extortion', description: 'Participating in attempts to extort or threaten others.', category: 'Felony', sentencingMonths: 12, fine: 2000 },
-    { section: '', charge: 'Criminal Threats', description: 'Threatening serious bodily harm to instill fear.', category: 'Felony', sentencingMonths: 28, fine: 4500 },
-    { section: '', charge: 'Association: Criminal Threats', description: 'Acting in concert to issue criminal threats.', category: 'Felony', sentencingMonths: 14, fine: 2250 },
-    { section: '§ 922(g)(1)', charge: 'Felon in Possession of a Firearm', description: 'Convicted felon unlawfully found in possession of a firearm.', category: 'Felony', sentencingMonths: 35, fine: 7500 },
-    { section: '§ 922(g)(1)-A', charge: 'Association: Felon in Possession of a Firearm', description: 'Assisting or enabling possession of firearms by felons.', category: 'Felony', sentencingMonths: 17, fine: 3750 },
-    { section: '§ 751', charge: 'Escape from Custody', description: 'Unlawful departure from lawful detention or arrest.', category: 'Felony', sentencingMonths: 32, fine: 6000 },
-    { section: '§ 751-A', charge: 'Association: Escape from Custody', description: 'Collaborating to aid escape or evade custody.', category: 'Felony', sentencingMonths: 16, fine: 3000 },
-    { section: '', charge: 'Assault on a Peace Officer', description: 'Physically attacking or threatening a law enforcement officer.', category: 'Felony', sentencingMonths: 35, fine: 6500 },
-    { section: '', charge: 'Association: Assault on a Peace Officer', description: 'Participating in attacks or threats against peace officers.', category: 'Felony', sentencingMonths: 17, fine: 3250 },
-    { section: '§ 844', charge: 'Schedule I Substance Possession', description: 'Possession of highly dangerous, illegal drugs such as heroin or LSD.', category: 'Felony', sentencingMonths: 35, fine: 6500 },
-    { section: '§ 844-A', charge: 'Association: Schedule I Substance Possession', description: 'Assisting or conspiring to possess Schedule I controlled substances.', category: 'Felony', sentencingMonths: 17, fine: 3250 },
-    { section: '§ 844', charge: 'Schedule II Substance Possession', description: 'Possession of high potential abuse drugs such as cocaine or methamphetamine.', category: 'Felony', sentencingMonths: 30, fine: 5500 },
-    { section: '§ 844-A', charge: 'Association: Schedule II Substance Possession', description: 'Participation in possession or distribution of Schedule II substances.', category: 'Felony', sentencingMonths: 15, fine: 2750 },
-    { section: '§ 844', charge: 'Schedule III Substance Possession', description: 'Possession of moderate-risk controlled substances.', category: 'Felony', sentencingMonths: 28, fine: 4500 },
-    { section: '§ 844-A', charge: 'Association: Schedule III Substance Possession', description: 'Collaboration in possession or trafficking of Schedule III substances.', category: 'Felony', sentencingMonths: 14, fine: 2250 },
-    { section: '§ 844', charge: 'Schedule IV Substance Possession', description: 'Possession of lower-risk substances such as Xanax.', category: 'Felony', sentencingMonths: 25, fine: 3500 },
-    { section: '§ 844-A', charge: 'Association: Schedule IV Substance Possession', description: 'Participation in possession or trafficking of Schedule IV substances.', category: 'Felony', sentencingMonths: 12, fine: 1750 },
-    { section: '', charge: 'Negligent Discharge of a Firearm', description: 'Careless firing of a weapon endangering others.', category: 'Felony', sentencingMonths: 25, fine: 4000 },
-    { section: '', charge: 'Association: Negligent Discharge of a Firearm', description: 'Acting with others in negligent firearm discharge.', category: 'Felony', sentencingMonths: 12, fine: 2000 },
-    { section: '', charge: 'Gang-Related Shooting', description: 'Discharging a firearm as part of gang activity.', category: 'Felony', sentencingMonths: 35, fine: 10000 },
-    { section: '', charge: 'Association: Gang-Related Shooting', description: 'Participating in gang-related firearm offenses.', category: 'Felony', sentencingMonths: 17, fine: 5000 },
-    { section: '', charge: 'Animal Cruelty', description: 'Intentional infliction of harm or neglect on an animal without justification.', category: 'Felony', sentencingMonths: 25, fine: 5000 },
-    { section: '', charge: 'Association: Animal Cruelty', description: 'Collaborative cruelty or neglect of animals.', category: 'Felony', sentencingMonths: 12, fine: 2500 },
-    { section: '', charge: 'Resisting Without Violence', description: 'Non-violent refusal to obey lawful police orders.', category: 'Felony', sentencingMonths: 25, fine: 4000 },
-    { section: '', charge: 'Association: Resisting Without Violence', description: 'Joint refusal or obstruction of law enforcement without violence.', category: 'Felony', sentencingMonths: 12, fine: 2000 },
-    { section: '', charge: 'Resisting With Violence', description: 'Physical resistance or assault against law enforcement during arrest or detention.', category: 'Felony', sentencingMonths: 30, fine: 5500 },
-    { section: '', charge: 'Association: Resisting With Violence', description: 'Acting in concert to resist arrest or law enforcement violently.', category: 'Felony', sentencingMonths: 15, fine: 2750 },
-    { section: '§ 2115', charge: 'House Robbery', description: 'Forcible robbery of a residence targeting valuable property.', category: 'Felony', sentencingMonths: 20, fine: 4000 },
-    { section: '§ 2115-A', charge: 'Association: House Robbery', description: 'Participation in planning or committing house robbery.', category: 'Felony', sentencingMonths: 10, fine: 2000 },
-    { section: '§ 751', charge: 'Failure to Comply', description: 'Knowingly ignoring lawful police commands such as fleeing or resisting arrest dangerously.', category: 'Felony', sentencingMonths: 15, fine: 2500 },
-    { section: '§ 751-A', charge: 'Association: Failure to Comply', description: 'Collaborating in evasion or resistance of lawful orders.', category: 'Felony', sentencingMonths: 7, fine: 1250 },
-    { section: '§ 416', charge: 'Felony Destruction of Property', description: 'Intentional or reckless destruction of property exceeding a value threshold (usually $5,000).', category: 'Felony', sentencingMonths: 30, fine: 10000 },
-    { section: '§ 416-A', charge: 'Association: Felony Destruction of Property', description: 'Joint involvement in property destruction offenses.', category: 'Felony', sentencingMonths: 15, fine: 5000 },
-    { section: '§ 601', charge: 'Arson', description: 'The willful and malicious act of setting fire to or causing the burning of any property, vehicle, structure, or land. This includes actions intended to damage, destroy, or endanger life or property through the use of fire or incendiary devices. Arson may be committed for purposes such as insurance fraud, retaliation, intimidation, or vandalism, and includes both successful and attempted acts.', category: 'Felony', sentencingMonths: 35, fine: 15000 },
-    { section: '§ 1113', charge: 'Attempted Murder of a Civilian', description: 'The deliberate and unlawful attempt to kill another civilian without legal justification, where the attempt fails but the intent to cause death is evident.', category: 'Serious Felony', sentencingMonths: 45, fine: 8000 },
-    { section: '§ 3113', charge: 'Association with Attempted Murder of a Civilian', description: 'Knowingly aiding, abetting, conspiring, or being an accessory to an attempted murder, without directly committing the act.', category: 'Serious Felony', sentencingMonths: 22, fine: 4000 },
-    { section: '§ 1111', charge: 'Second Degree Murder', description: 'An intentional killing carried out without premeditation, often occurring impulsively but with an awareness the act could result in death.', category: 'Serious Felony', sentencingMonths: 55, fine: 8500 },
-    { section: '§ 3111', charge: 'Association with Second Degree Murder', description: 'Knowingly participating in or facilitating a second-degree murder without directly executing the act, including prior assistance or post-offense concealment.', category: 'Serious Felony', sentencingMonths: 27, fine: 4250 },
-    { section: '§ 3', charge: 'Accessory to the Murder of a Public Servant', description: 'Aiding, abetting, or facilitating the murder of a public servant without directly committing the act, with intent to assist.', category: 'Serious Felony', sentencingMonths: 40, fine: 6500 },
-    { section: '§ 2113', charge: 'Fleeca Bank Heist', description: 'A planned, forceful robbery of a Fleeca Bank branch, often involving weapons or intimidation to steal money or valuables.', category: 'Serious Felony', sentencingMonths: 40, fine: 10000 },
-    { section: '§ 3113', charge: 'Association with Fleeca Bank Heist', description: 'Knowingly participating in or facilitating a Fleeca Bank Heist without directly executing the robbery (e.g., planning, transport, lookout).', category: 'Serious Felony', sentencingMonths: 20, fine: 5000 },
-    { section: '§ 2113', charge: 'Armed Robbery', description: 'The unlawful taking of property or funds from a person or entity using or threatening a weapon to intimidate or coerce.', category: 'Serious Felony', sentencingMonths: 40, fine: 8000 },
-    { section: '§ 3114', charge: 'Association with Armed Robbery', description: 'Assisting in the planning, execution, or concealment of an armed robbery, including roles such as driver, lookout, or supplier.', category: 'Serious Felony', sentencingMonths: 20, fine: 4000 },
-    { section: 'Varies by Statute', charge: '', description: 'The intentional or reckless act of causing minor physical harm or offensive contact to another person without a deadly weapon, such as pushing, slapping, or light punches.', category: 'Misdemeanor', sentencingMonths: 25, fine: 1500 },
-    { section: '§ 113', charge: 'Assault', description: 'The deliberate infliction or attempted infliction of moderate physical harm, which may involve repeated blows, blunt objects, or actions resulting in notable pain or distress.', category: 'Misdemeanor', sentencingMonths: 25, fine: 5000 },
-    { section: 'Varies by Statute', charge: 'Evading', description: 'Willfully fleeing or attempting to elude law enforcement during a lawful stop or pursuit, whether on foot or in a vehicle.', category: 'Misdemeanor', sentencingMonths: 25, fine: 4000 },
-    { section: 'Varies by Statute', charge: 'Disobeying a Police Officer', description: 'Refusing to comply with a lawful order or command issued by a peace officer in the line of duty, excluding acts of fleeing or resisting arrest.', category: 'Misdemeanor', sentencingMonths: 25, fine: 1000 },
-    { section: 'Varies by Statute', charge: 'Harassment', description: 'Repeated, unwanted behavior or communication directed at another person with the intent to intimidate, annoy, or provoke emotional distress.', category: 'Misdemeanor', sentencingMonths: 25, fine: 1000 },
-    { section: 'Varies by Statute', charge: 'Prostitution', description: 'Engaging in, offering, or soliciting sexual acts in exchange for money, services, or goods; applies to both buyers and sellers.', category: 'Misdemeanor', sentencingMonths: 25, fine: 500 },
-    { section: 'Varies by Statute', charge: 'Disorderly Conduct', description: 'Disruptive behavior in public that disturbs peace or provokes alarm, including public intoxication, aggressive arguments, or offensive gestures.', category: 'Misdemeanor', sentencingMonths: 25, fine: 750 },
-    { section: 'Varies by Statute', charge: 'Failure to Provide Identification', description: 'Refusing or failing to present lawful identification when required by law enforcement during an official stop, detention, or lawful arrest.', category: 'Misdemeanor', sentencingMonths: 25, fine: 800 },
-    { section: 'Varies by Statute', charge: 'Resisting Arrest', description: 'Actively opposing or interfering with a lawful arrest through physical struggle, obstruction, or verbal refusal, excluding fleeing or violence.', category: 'Misdemeanor', sentencingMonths: 25, fine: 1500 },
-    { section: 'Varies by Statute', charge: 'Disturbing the Peace', description: 'Engaging in loud, aggressive, or disruptive behavior in a public space, such as fighting, yelling, or causing undue alarm to the public.', category: 'Misdemeanor', sentencingMonths: 25, fine: 500 },
-    { section: 'Varies by Statute', charge: 'Criminal Trespassing', description: 'Entering or remaining unlawfully on private or restricted property, including fenced areas or posted zones, without authorization.', category: 'Misdemeanor', sentencingMonths: 25, fine: 1000 },
-    { section: 'Varies by Statute', charge: 'Public Urination', description: 'Urinating in a public area within view of others, violating public decency and sanitation laws.', category: 'Misdemeanor', sentencingMonths: 15, fine: 3000 },
-    { section: 'Varies by Statute', charge: 'Public Defecation', description: 'Defecating in a public area in view of others, constituting a public nuisance and health hazard.', category: 'Misdemeanor', sentencingMonths: 15, fine: 3000 },
-    { section: 'Varies by Statute', charge: 'Attempted Grand Theft Auto', description: 'Taking substantial steps toward unlawfully stealing a vehicle with intent to permanently deprive the owner, though the theft was not completed.', category: 'Misdemeanor', sentencingMonths: 15, fine: 2500 },
-    { section: 'Varies by Statute', charge: 'Vandalism', description: 'Intentional defacement, damage, or destruction of property—public or private—including graffiti and tagging, not exceeding a felony threshold.', category: 'Misdemeanor', sentencingMonths: 10, fine: 2500 },
-    { section: 'S.A.C. § 922(g)', charge: 'Illegal Possession of a Firearm', description: 'Possessing a firearm without the proper licensing, registration, or legal authorization.', category: 'Felony', sentencingMonths: 25, fine: 4500 },
-    { section: 'Varies by specific statute', charge: 'Brandishing', description: 'Displaying a firearm in a threatening, careless, or intimidating manner without justification.', category: 'Misdemeanor', sentencingMonths: 20, fine: 3000 },
-    { section: 'S.A.C. § 922', charge: 'Possession of Illegal Weapon Attachments', description: 'Possessing or modifying a firearm with attachments that are banned, such as suppressors, extended mags, or illegal scopes.', category: 'Felony', sentencingMonths: 30, fine: 5000 },
-    { section: 'Varies by specific statute', charge: 'Illegal Discharge of a Firearm', description: 'Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.', category: 'Misdemeanor', sentencingMonths: 20, fine: 3500 },
-    { section: 'S.A.C. § 641', charge: 'Possession of Government-Issued Equipment or Weapons', description: 'Unauthorized possession of weapons, gear, or tools that are exclusive to law enforcement, military, or government agencies.', category: 'Serious Felony', sentencingMonths: 40, fine: 6500 },
-    { section: 'Varies by specific statute', charge: 'Illegal Possession of a Weapon (Class 2)', description: 'Possession of a restricted mid-grade weapon (e.g., SMGs or tactical rifles) without the appropriate license or role.', category: 'Felony', sentencingMonths: 35, fine: 5500 },
-    { section: 'Varies by specific statute', charge: 'Illegal Possession of a Weapon (Class 3)', description: 'Possession of high-grade military or automatic weapons with no authorization — includes LMGs, RPGs, or explosives.', category: 'Federal', sentencingMonths: 45, fine: 7500 },
-    { section: 'S.A.C. § 844', charge: 'Misdemeanor Possession of Marijuana', description: 'Possessing a small personal-use quantity of marijuana without proper licensing or in a restricted area.', category: 'Misdemeanor', sentencingMonths: 10, fine: 1500 },
-    { section: 'S.A.C. § 841', charge: 'Cultivation of Marijuana (A)', description: 'Growing marijuana plants without a permit, limited in scale (personal use or small operation).', category: 'Felony', sentencingMonths: 25, fine: 4000 },
-    { section: 'S.A.C. § 841', charge: 'Cultivation of Marijuana (B)', description: 'Large-scale or commercial marijuana grow operation without authorization, often exceeding legal plant limits.', category: 'Serious Felony', sentencingMonths: 40, fine: 6000 },
-    { section: 'S.A.C. § 841', charge: 'Possession of Marijuana with Intent to Distribute', description: 'Holding quantities of marijuana clearly packaged or prepared for distribution or sale to others.', category: 'Felony', sentencingMonths: 35, fine: 5500 },
-    { section: 'S.A.C. § 844', charge: 'Possession of a Controlled Substance', description: 'Possessing illegal drugs such as cocaine, heroin, meth, or prescription narcotics without a prescription.', category: 'Felony', sentencingMonths: 30, fine: 5000 },
-    { section: 'S.A.C. § 841', charge: 'Possession of a Controlled Substance with Intent to Distribute', description: 'Possessing large quantities of illegal drugs or paraphernalia clearly intended for sale or trafficking.', category: 'Serious Felony', sentencingMonths: 45, fine: 7500 },
-    { section: 'S.A.C. § 841', charge: 'Drug Trafficking', description: 'Transporting, distributing, or importing illegal narcotics on a regional or national level — high-scale operation.', category: 'Serious Felony', sentencingMonths: 60, fine: 3000 },
-    { section: 'S.A.C. § 3101', charge: 'Possession of Cocaine', description: 'The suspect was found in possession of processed cocaine, with no regard to intent. (5 or more bags)', category: 'Serious Felony', sentencingMonths: 15, fine: 10000 },
-    { section: 'S.A.C. § 3102', charge: 'Possession of Cocaine (Large Quantity)', description: 'The suspect was found in possession of a substantial quantity of processed cocaine. (50 or more bags)', category: 'Serious Felony', sentencingMonths: 36, fine: 7500 },
-    { section: 'S.A.C. § 3103', charge: 'Possession with Intent to Distribute', description: 'The suspect was found in possession of cocaine in a quantity indicative of distribution, during a known drug sale incident. (10 or more bags)', category: 'Serious Felony', sentencingMonths: 30, fine: 6000 },
-    { section: 'S.A.C. § 3104', charge: 'Possession with Intent to Distribute (Large Quantity)', description: 'The suspect was found with a significant quantity of cocaine during a drug sale incident, clearly intended for distribution. (50 or more bags)', category: 'Serious Felony', sentencingMonths: 45, fine: 10000 },
-    { section: 'S.A.C. § 3105', charge: 'Manufacturing of Cocaine', description: 'The suspect was actively producing cocaine in known manufacturing zones, such as Cuba, Madagascar, or Horseshoe Island.', category: 'Serious Felony', sentencingMonths: 60, fine: 15000 },
-    { section: 'S.A.C. § 3106', charge: 'Possession of Cocaine Manufacturing Materials', description: 'The suspect was found in possession of materials commonly used in the production of cocaine, in a context indicating potential manufacturing activity.', category: 'Serious Felony', sentencingMonths: 20, fine: 4500 },
-    { section: 'S.A.C. § 3107', charge: 'Drug Trafficking – Cocaine', description: 'The suspect was involved in the transportation or smuggling of large quantities of cocaine, typically via maritime or aerial routes. (100 or more bags)', category: 'Serious Felony', sentencingMonths: 75, fine: 20000 },
-    { section: '', charge: 'Loitering on Government Property', description: 'Remaining on or near government buildings, facilities, or restricted zones without a lawful purpose or after being asked to leave.', category: 'Citation', sentencingMonths: 5, fine: 750 },
-    { section: '', charge: 'Jaywalking', description: 'Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.', category: 'Citation', sentencingMonths: 0, fine: 500 }
-];
+                { section: "S.A.C. § 1111", charge: "First Degree Murder", description: "A person who aids or abets in the commission of first-degree murder without directly committing the act of killing. (flatbacking)", category: "Federal", sentencingMonths: 60, fine: 10000 },
+                { section: "S.A.C. § 1114", charge: "Murder of a Public Servant or Peace Officer", description: "The intentional killing of a public servant or peace officer while they are performing their official duties, typically resulting in more severe penalties. (flatbacking)", category: "Federal", sentencingMonths: 80, fine: 15000 },
+                { section: "S.A.C. § 1114", charge: "Attempted Murder of a Public Servant or Peace Officer", description: "The act of attempting to unlawfully kill a public servant or peace officer, where the attempt is unsuccessful, but the intent to kill is clear.", category: "Federal", sentencingMonths: 60, fine: 10000 },
+                { section: "S.A.C. § 1595", charge: "Human Trafficking", description: "The illegal trade or exploitation of people through force, fraud, or coercion for purposes such as labor, sexual exploitation, or other forms of abuse.", category: "Federal", sentencingMonths: 40, fine: 12500 },
+                { section: "S.A.C. § 31", charge: "Plane Heist", description: "A robbery or theft involving an aircraft, where the criminals hijack the plane or steal cargo or passengers, typically involving violence or the threat of violence.", category: "Federal", sentencingMonths: 30, fine: 6000 },
+                { section: "S.A.C. § 2113", charge: "Big Bank Heist", description: "A robbery of a larger financial institution, often planned with the intent to steal large sums of money, typically involving advanced methods of theft and potentially violence.", category: "Federal", sentencingMonths: 90, fine: 25000 },
+                { section: "S.A.C. § 401", charge: "Contempt of Court Order", description: "Willfully violating a specific court-issued order, such as a restraining order, subpoena, or injunction.", category: "Federal", sentencingMonths: 15, fine: 2500 },
+                { section: "S.A.C. § 1621", charge: "Perjury", description: "Knowingly lying under oath during a court proceeding, investigation, or deposition.", category: "Federal", sentencingMonths: 30, fine: 5000 },
+                { section: "S.A.C. § 401", charge: "Contempt of Court (General)", description: "Disruptive or disrespectful behavior toward a judge or court that interferes with judicial proceedings.", category: "Federal", sentencingMonths: 10, fine: 2000 },
+                { section: "S.A.C. § 401", charge: "Aggravated Contempt", description: "Severe or repeated contempt of court, including threats, physical disruptions, or defiance of multiple orders.", category: "Federal", sentencingMonths: 35, fine: 6000 },
+                { section: "S.A.C. § 2332b", charge: "Terrorism", description: "Use or threat of violence against civilians or government institutions to intimidate or coerce for political, religious, or ideological goals.", category: "Federal", sentencingMonths: 70, fine: 10000 },
+                { section: "S.A.C. § 1503", charge: "Obstruction of Justice (Federal Charge)", description: "Interfering with federal investigations, court processes, or law enforcement actions, including destroying evidence or influencing witnesses.", category: "Federal", sentencingMonths: 25, fine: 2000 },
+                { section: "S.A.C. § 201", charge: "Government Corruption", description: "Misuse of public office for personal gain, including bribery, embezzlement, or unlawful influence over government contracts or services.", category: "Federal", sentencingMonths: 100, fine: 15000 },
+                { section: "S.A.C. § 912", charge: "Impersonating a Judge", description: "Falsely presenting oneself as a judicial officer, including issuing false rulings or orders.", category: "Federal", sentencingMonths: 40, fine: 7500 },
+                { section: "S.A.C. § 912", charge: "Impersonating a Government Official", description: "Claiming to be a federal or state official for influence, manipulation, or access to restricted areas.", category: "Federal", sentencingMonths: 30, fine: 6000 },
+                { section: "S.A.C. § 2241", charge: "Sexual Harassment", description: "Unwanted sexual advances, verbal or physical conduct of a sexual nature, especially in public or professional spaces.", category: "Federal", sentencingMonths: 25, fine: 4000 },
+                { section: "S.A.C. § 2241", charge: "Sexual Assault", description: "Non-consensual physical sexual contact, including groping or coerced touching, without penetration.", category: "Federal", sentencingMonths: 99999, fine: 200000 }, // NOTE: 99999 is an outlier, handled in median calculation
+                { section: "S.A.C. § 641", charge: "Theft of Government Property", description: "Unlawfully taking, possessing, or damaging property owned by a government agency or public institution. Includes vehicles, weapons, equipment, or funds.", category: "Federal", sentencingMonths: 30, fine: 5500 },
+                { section: "S.A.C. § 1512", charge: "Coercion", description: "Forcing someone to act against their will through threats, intimidation, blackmail, or manipulation, especially for unlawful gain or influence.", category: "Federal", sentencingMonths: 30, fine: 5500 },
+                { section: "S.A.C. § 201", charge: "Malfeasance in Office", description: "Misconduct or wrongdoing by a public official.", category: "Federal", sentencingMonths: 65, fine: 50000 },
+                { section: "S.A.C. 1504", charge: "Racketeer Influenced and Corrupt Organizations (RICO) Act", description: "Any person who is associated with an enterprise engaged in a pattern of racketeering activity—such as extortion, drug trafficking, illegal gambling, murder for hire, fraud, or other specified felonies—and who knowingly participates in or benefits from such activity, may be charged under the San Andreas RICO statute.", category: "Federal", sentencingMonths: 120, fine: 60000 },
+                
+                // Felony Charges
+                { section: "S.A.C. § 1001", charge: "False Reporting", description: "Knowingly providing false information to law enforcement or emergency services.", category: "Felony", sentencingMonths: 35, fine: 2000 },
+                { section: "S.A.C. § 1501", charge: "Obstruction of a Public Official", description: "Interfering with a public official in the lawful execution of their duties.", category: "Felony", sentencingMonths: 25, fine: 5000 },
+                { section: "S.A.C. § 2101", charge: "Inciting a Riot", description: "Encouraging or participating in behavior that leads to public unrest or violence.", category: "Felony", sentencingMonths: 25, fine: 2500 },
+                { section: "S.A.C. § 1512", charge: "Tampering", description: "Interfering with evidence, machinery, or legal processes with intent to deceive.", category: "Felony", sentencingMonths: 30, fine: 5000 },
+                { section: "N/A", charge: "Vigilantism", description: "Taking the law into one's own hands, acting as an unauthorized enforcer of justice.", category: "Felony", sentencingMonths: 35, fine: 1500 },
+                { section: "S.A.C. § 2261A", charge: "Stalking", description: "Repeated, unwanted attention or harassment that causes fear.", category: "Felony", sentencingMonths: 36, fine: 5000 },
+                { section: "S.A.C. § 2", charge: "Aiding and Abetting", description: "Assisting another in the commission of a crime.", category: "Felony", sentencingMonths: 20, fine: 5000 },
+                { section: "S.A.C. § 1028", charge: "Possession of Stolen Identification", description: "Having someone else's ID with intent to commit fraud or evade law enforcement.", category: "Felony", sentencingMonths: 10, fine: 2500 },
+                { section: "S.A.C. § 113", charge: "Assault", description: "Intentional act causing physical harm or fear of harm to another person.", category: "Felony", sentencingMonths: 30, fine: 5000 },
+                { section: "S.A.C. § 1201", charge: "Kidnapping", description: "Unlawfully restraining or transporting a person against their will.", category: "Felony", sentencingMonths: 30, fine: 5000 },
+                { section: "Varies by specific statute", charge: "Trespassing with Intent to Commit a Crime", description: "Entering property unlawfully with criminal intent.", category: "Felony", sentencingMonths: 40, fine: 2500 },
+                { section: "S.A.C. § 912", charge: "Impersonation", description: "Pretending to be another person for the purpose of deception.", category: "Felony", sentencingMonths: 20, fine: 2500 },
+                { section: "S.A.C. § 1341", charge: "  Fraud", description: "Intentional deception to secure unlawful gain, often financial.", category: "Felony", sentencingMonths: 15, fine: 2500 },
+                { section: "S.A.C. § 113", charge: "Aggravated Assault", description: "Assault with a deadly weapon or causing serious bodily harm.", category: "Felony", sentencingMonths: 50, fine: 6000 },
+                { section: "S.A.C. § 371", charge: "Conspiracy", description: "Agreement between two or more people to commit a criminal act.", category: "Felony", sentencingMonths: 35, fine: 4000 },
+                { section: "S.A.C. § 912", charge: "Impersonating a Police Officer", description: "Falsely presenting oneself as a law enforcement officer.", category: "Felony", sentencingMonths: 40, fine: 10000 },
+                { section: "S.A.C. § 1956", charge: "Money Laundering", description: "Concealing origins of illegally obtained money through transfers or shell accounts.", category: "Felony", sentencingMonths: 45, fine: 15000 },
+                { section: "S.A.C. § 1385", charge: "Trespassing on Government Property", description: "Unlawfully entering or remaining on government property.", category: "Felony", sentencingMonths: 25, fine: 1500 },
+                { section: "S.A.C. § 1112", charge: "Involuntary Manslaughter", description: "Causing death without intent, often due to recklessness or negligence.", category: "Felony", sentencingMonths: 35, fine: 5000 },
+                { section: "S.A.C. § 1112", charge: "Voluntary Manslaughter", description: "Killing in the \"heat of passion\" without premeditation.", category: "Felony", sentencingMonths: 50, fine: 6000 },
+                { section: "Varies by specific statute", charge: "Vehicular Manslaughter", description: "Causing death through negligent or reckless operation of a vehicle.", category: "Felony", sentencingMonths: 50, fine: 6000 },
+                { section: "Varies by specific statute", charge: "Attempted Vehicular Manslaughter", description: "Attempting to cause death or serious injury through negligent or reckless operation of a vehicle.", category: "Felony", sentencingMonths: 25, fine: 3500 },
+                { section: "S.A.C. § 3", charge: "Accessory to Second Degree Murder", description: "Assisting or facilitating a second-degree murder before or after the fact.", category: "Felony", sentencingMonths: 45, fine: 7000 },
+                { section: "S.A.C. § 3", charge: "Accessory to First Degree Murder", description: "Aiding in a premeditated, intentional killing.", category: "Felony", sentencingMonths: 45, fine: 7000 },
+                { section: "S.A.C. § 2118", charge: "Warehouse Heist", description: "Organized robbery of a warehouse, typically targeting high-value goods.", category: "Felony", sentencingMonths: 75, fine: 25000 },
+                { section: "S.A.C. § 2113", charge: "Store Robbery", description: "Using threat or force to steal from a commercial business.", category: "Felony", sentencingMonths: 60, fine: 15000 },
+                { section: "Varies by specific statute", charge: "Harassment", description: "Repeated, intentional behavior meant to alarm, annoy, torment, or terrorize another individual. This can include verbal abuse, threats, or physical gestures that cause emotional distress or fear.", category: "Felony", sentencingMonths: 15, fine: 2500 },
+                { section: "S.A.C. § 1113", charge: "Attempted Second Degree Murder", description: "A deliberate act intended to kill another person without premeditation or planning, where the attempt fails or the victim survives. This reflects serious intent and high risk to human life.", category: "Felony", sentencingMonths: 50, fine: 5000 },
+                { section: "S.A.C. § 2315", charge: "Possession of Stolen Property", description: "Holding or concealing property known to be stolen", category: "Felony", sentencingMonths: 25, fine: 3500 },
+                { section: "S.A.C. § 2313", charge: "Possession of a Stolen Vehicle", description: "Operating or possessing a vehicle known to be stolen", category: "Felony", sentencingMonths: 30, fine: 5000 },
+                { section: "S.A.C. § 1341", charge: "Attempted Fraud", description: "Attempting to deceive for financial or personal gain", category: "Felony", sentencingMonths: 25, fine: 3000 },
+                { section: "Varies by specific statute", charge: "Misappropriation of Lost Property", description: "Keeping lost property without effort to return it", category: "Felony", sentencingMonths: 25, fine: 2500 },
+                { section: "S.A.C. § 873", charge: "Extortion", description: "Forcing someone to act under threats or coercion", category: "Felony", sentencingMonths: 35, fine: 7000 },
+                { section: "Varies by specific statute", charge: "Grand Theft Auto", description: "Grand Theft Auto is the unlawful taking of a motor vehicle without the owner's consent and with the intent to permanently deprive them of it. It is typically charged as a felony, carrying penalties of 1 to 5 years in prison, significant fines, and a permanent criminal record.", category: "Felony", sentencingMonths: 30, fine: 5500 },
+                { section: "S.A.C. § 873", charge: "Attempted Extortion", description: "Attempting to coerce or threaten for gain", category: "Felony", sentencingMonths: 25, fine: 4000 },
+                { section: "Varies by specific statute", charge: "Criminal Threats", description: "Threatening serious harm with intent to instill fear", category: "Felony", sentencingMonths: 28, fine: 4500 },
+                { section: "S.A.C. § 922(g)(1)", charge: "Felon in Possession of a Firearm", description: "Convicted felon caught with a firearm", category: "Felony", sentencingMonths: 35, fine: 7500 },
+                { section: "S.A.C. § 751", charge: "Escape from Custody", description: "Unlawful departure from lawful detention or arrest", category: "Felony", sentencingMonths: 32, fine: 6000 },
+                { section: "Varies by specific statute", charge: "Assault on a Peace Officer", description: "Physical attack or violent threat toward a law officer", category: "Felony", sentencingMonths: 35, fine: 6500 },
+                { section: "21 U.S.C. § 844", charge: "Schedule I Substance Possession", description: "Possession of high-risk, illegal drugs (e.g., heroin, LSD)", category: "Felony", sentencingMonths: 35, fine: 6500 },
+                { section: "21 U.S.C. § 844", charge: "Schedule II Substance Possession", description: "Possession of drugs with high abuse potential (e.g., cocaine, meth)", category: "Felony", sentencingMonths: 30, fine: 5500 },
+                { section: "21 U.S.C. § 844", charge: "Schedule III Substance Possession", description: "Possession of moderate-risk controlled substances", category: "Felony", sentencingMonths: 28, fine: 4500 },
+                { section: "21 U.S.C. § 844", charge: "Schedule IV Substance Possession", description: "Possession of lower-risk substances (e.g., Xanax)", category: "Felony", sentencingMonths: 25, fine: 3500 },
+                { section: "Varies by specific statute", charge: "Negligent Discharge of a Firearm", description: "Carelessly firing a weapon in a way that endangers others", category: "Felony", sentencingMonths: 25, fine: 4000 },
+                { section: "Varies by specific statute", charge: "Gang-Related Shooting", description: "Discharging a firearm in a violent act affiliated with gang activity", category: "Felony", sentencingMonths: 35, fine: 10000 },
+                { section: "Varies by specific statute", charge: "Animal Cruelty", description: "Intentionally harming, neglecting, or killing an animal without cause", category: "Felony", sentencingMonths: 25, fine: 5000 },
+                { section: "Varies by specific statute", charge: "Resisting Without Violence", description: "Non-violent refusal to comply with lawful police orders", category: "Felony", sentencingMonths: 25, fine: 4000 },
+                { section: "Varies by specific statute", charge: "Resisting With Violence", description: "Physically resisting or assaulting while evading law enforcement", category: "Felony", sentencingMonths: 30, fine: 5500 },
+                { section: "S.A.C. § 2115", charge: "House Robbery", description: "Robbery of a house, typically targeting high value items.", category: "Felony", sentencingMonths: 20, fine: 4000 },
+                { section: "S.A.C. § 751", charge: "Failure to Comply", description: "Felony Failure to Comply occurs when an individual knowingly disregards a lawful order from law enforcement, such as fleeing from a police stop or resisting arrest in a dangerous manner. It is typically charged as a felony, carrying penalties of 1 to 5 years in prison, significant fines, and possible driver's license suspension.", category: "Felony", sentencingMonths: 15, fine: 2500 },
+                { section: "S.A.C. § 416", charge: "Felony Destruction of Property", description: "Intentional or reckless destruction of property valued over a designated threshold (typically $5,000 or more), including use of tools, fire, or repeated offenses.", category: "Felony", sentencingMonths: 30, fine: 10000 },
+                { section: "S.AC. § 601", charge: "Arson", description: "The intentional setting of fire to property, vehicles, buildings, or land with malicious intent. Includes attempts.", category: "Felony", sentencingMonths: 35, fine: 15000 },
+
+                // Serious Felony Charges
+                { section: "S.A.C. § 1113", charge: "Attempted Murder of a Civilian", description: "The act of trying to unlawfully kill another person without legal justification, where the victim is a civilian, and the attempt was unsuccessful.", category: "Serious Felony", sentencingMonths: 45, fine: 8000 },
+                { section: "S.A.C. § 1111", charge: "Second Degree Murder", description: "The intentional killing of a person without premeditation, often committed impulsively or in the heat of the moment, but with the knowledge that the act could cause death or harm.", category: "Serious Felony", sentencingMonths: 55, fine: 8500 },
+                { section: "S.A.C. § 3", charge: "Accessory to the Murder of a Public Servant or Officer", description: "A person who assists or helps plan the murder of a public servant or officer but does not directly commit the killing.", category: "Serious Felony", sentencingMonths: 40, fine: 6500 },
+                { section: "S.A.C. § 2113", charge: "Fleeca Bank Heist", description: "A criminal act where individuals rob a Fleeca Bank branch, typically involving armed robbery and the use of force to steal money or valuables.", category: "Serious Felony", sentencingMonths: 40, fine: 10000 },
+                { section: "S.A.C. § 2113", charge: "Armed Robbery", description: "The act of stealing property from another person using or threatening to use a weapon, with the intent to intimidate or force the victim into giving up their belongings.", category: "Serious Felony", sentencingMonths: 40, fine: 8000 },
+                // Weapon Related Serious Felony
+                { section: "S.A.C. § 641", charge: "Possession of Government-Issued Equipment or Weapons", description: "Unauthorized possession of weapons, gear, or tools that are exclusive to law enforcement, military, or government agencies.", category: "Serious Felony", sentencingMonths: 40, fine: 6500 },
+                // Drug Related Serious Felony
+                { section: "S.A.C. § 841", charge: "Cultivation of Marijuana (B)", description: "Large-scale or commercial marijuana grow operation without authorization, often exceeding legal plant limits.", category: "Serious Felony", sentencingMonths: 40, fine: 6000 },
+                { section: "S.A.C. § 841", charge: "Possession of a Controlled Substance with Intent to Distribute", description: "Possessing large quantities of illegal drugs or paraphernalia clearly intended for sale or trafficking.", category: "Serious Felony", sentencingMonths: 45, fine: 7500 },
+                { section: "S.A.C. § 841", charge: "Drug Trafficking", description: "Transporting, distributing, or importing illegal narcotics on a regional or national level — high-scale operation.", category: "Serious Felony", sentencingMonths: 60, fine: 3000 },
+                { section: "S.A.C. § 3101", charge: "Possession of Cocaine", description: "The suspect was found in possession of processed cocaine, with no regard to intent. (5 or more bags)", category: "Serious Felony", sentencingMonths: 15, fine: 10000 },
+                { section: "S.A.C. § 3102", charge: "Possession of Cocaine (Large Quantity)", description: "The suspect was found in possession of a substantial quantity of processed cocaine. (50 or more bags)", category: "Serious Felony", sentencingMonths: 36, fine: 7500 },
+                { section: "S.A.C. § 3103", charge: "Possession with Intent to Distribute", description: "The suspect was found in possession of cocaine in a quantity indicative of distribution, during a known drug sale incident. (10 or more bags)", category: "Serious Felony", sentencingMonths: 30, fine: 6000 },
+                { section: "S.A.C. § 3104", charge: "Possession with Intent to Distribute (Large Quantity)", description: "The suspect was found with a significant quantity of cocaine during a drug sale incident, clearly intended for distribution. (50 or more bags)", category: "Serious Felony", sentencingMonths: 45, fine: 10000 },
+                { section: "S.A.C. § 3105", charge: "Manufacturing of Cocaine", description: "The suspect was actively producing cocaine in known manufacturing zones, such as Cuba, Madagascar, or Horseshoe Island.", category: "Serious Felony", sentencingMonths: 60, fine: 15000 },
+                { section: "S.A.C. § 3106", charge: "Possession of Cocaine Manufacturing Materials", description: "The suspect was found in possession of materials commonly used in the production of cocaine, in a context indicating potential manufacturing activity.", category: "Serious Felony", sentencingMonths: 20, fine: 4500 },
+                { section: "S.A.C. § 3107", charge: "Drug Trafficking – Cocaine", description: "The suspect was involved in the transportation or smuggling of large quantities of cocaine, typically via maritime or aerial routes. (100 or more bags)", category: "Serious Felony", sentencingMonths: 75, fine: 20000 },
+
+                // Misdemeanor Charges
+                { section: "S.A.C. § 113", charge: "Simple Assault", description: "The intentional or reckless act of causing minor physical harm or offensive contact to another person without the use of a deadly weapon. Typically involves pushing, slapping, or punching without serious injury.", category: "Misdemeanor", sentencingMonths: 25, fine: 1500 },
+                { section: "S.A.C. § 113", charge: "Assault", description: "The deliberate infliction or attempted infliction of physical harm on another person, resulting in moderate injuries. This may include repeated striking, the use of blunt objects, or actions that cause notable pain or distress.", category: "Misdemeanor", sentencingMonths: 25, fine: 5000 },
+                { section: "Varies by specific statute", charge: "Evading", description: "Willfully fleeing or attempting to flee from law enforcement officers during a lawful traffic stop or pursuit, whether on foot or in a vehicle.", category: "Misdemeanor", sentencingMonths: 25, fine: 4000 },
+                { section: "Varies by specific statute", charge: "Disobeying a Police Officer", description: "Refusing to comply with lawful verbal or physical commands given by a peace officer in the line of duty, excluding fleeing or resisting.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
+                { section: "Varies by specific statute", charge: "Harassment", description: "Repeated and unwanted behavior, verbal or physical, directed toward another person with the intent to intimidate, threaten, or provoke emotional distress. This may include stalking-like behavior or aggressive communication.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
+                { section: "Varies by specific statute", charge: "Prostitution", description: "Engaging in, offering, or soliciting sexual acts in exchange for money or goods. This includes acting as a buyer or seller in the transaction.", category: "Misdemeanor", sentencingMonths: 25, fine: 500 },
+                { section: "Varies by specific statute", charge: "Disorderly Conduct", description: "Disruptive, loud, or offensive behavior in public that disturbs the peace, causes alarm, or provokes others. Includes public intoxication, verbal altercations, or offensive gestures.", category: "Misdemeanor", sentencingMonths: 25, fine: 750 },
+                { section: "Varies by specific statute", charge: "Failure to Provide Identification", description: "Refusing to present valid identification to a law enforcement officer when legally required to do so, particularly during stops, detentions, or arrests.", category: "Misdemeanor", sentencingMonths: 25, fine: 800 },
+                { section: "Varies by specific statute", charge: "Resisting Arrest", description: "Actively opposing, obstructing, or interfering with a law enforcement officer’s attempt to detain or arrest, without fleeing. This may include physical struggle or verbal noncompliance.", category: "Misdemeanor", sentencingMonths: 25, fine: 1500 },
+                { section: "Varies by specific statute", charge: "Disturbing the Peace", description: "Engaging in actions that disrupt the normal operations of public spaces, such as shouting, fighting, or loud arguments in public settings like streets, businesses, or government areas.", category: "Misdemeanor", sentencingMonths: 25, fine: 500 },
+                { section: "Varies by specific statute", charge: "Criminal Trespassing", description: "Unlawfully entering or remaining on private or government property without permission. This includes entering posted or fenced-off areas.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
+                { section: "Varies by specific statute", charge: "Public Urination", description: "Urinating in a public place in view of others", category: "Misdemeanor", sentencingMonths: 15, fine: 3000 },
+                { section: "Varies by specific statute", charge: "Public Defecation", description: "Defecating in a public area in view of others", category: "Misdemeanor", sentencingMonths: 15, fine: 3000 },
+                { section: "Varies by specific statute", charge: "Attempted Grand Theft Auto", description: "Attempted Grand Theft Auto occurs when a person takes significant steps toward stealing a motor vehicle but does not succeed in completing the theft. It still requires intent to permanently deprive the owner and is usually charged as a felony, with penalties including potential jail time and fines.", category: "Misdemeanor", sentencingMonths: 15, fine: 2500 },
+                { section: "S.A.C. § 415", charge: "Vandalism", description: "Willful destruction or defacement of public or private property, including graffiti, tagging, or minor property damage not exceeding a significant dollar amount.", category: "Misdemeanor", sentencingMonths: 10, fine: 2500 },
+                // Weapon Related Misdemeanor
+                { section: "Varies by specific statute", charge: "Brandishing", description: "Displaying a firearm in a threatening, careless, or intimidating manner without justification.", category: "Misdemeanor", sentencingMonths: 20, fine: 3000 },
+                { section: "Varies by specific statute", charge: "  Illegal Discharge of a Firearm", description: "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.", category: "Misdemeanor", sentencingMonths: 20, fine: 3500 },
+                // Drug Related Misdemeanor
+                { section: "S.A.C. § 844", charge: "Misdemeanor Possession of Marijuana", description: "Possessing a small personal-use quantity of marijuana without proper licensing or in a restricted area.", category: "Misdemeanor", sentencingMonths: 10, fine: 1500 },
+
+                // Weapon Related Felony (moved from previous general felony)
+                { section: "S.A.C. § 922(g)", charge: "Illegal Possession of a Firearm", description: "Possessing a firearm without the proper licensing, registration, or legal authorization.", category: "Felony", sentencingMonths: 25, fine: 4500 },
+                { section: "S.A.C. § 922", charge: "Possession of Illegal Weapon Attachments", description: "Possessing or modifying a firearm with attachments that are banned, such as suppressors, extended mags, or illegal scopes.", category: "Felony", sentencingMonths: 30, fine: 5000 },
+                { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 2)", description: "Possession of a restricted mid-grade weapon (e.g., SMGs or tactical rifles) without the appropriate license or role.", category: "Felony", sentencingMonths: 35, fine: 5500 },
+                { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 3)", description: "Possession of high-grade military or automatic weapons with no authorization — includes LMGs, RPGs, or explosives.", category: "Federal", sentencingMonths: 45, fine: 7500 }, // This was in weapon related felony but classified as Federal. Keeping it Federal as per data.
+
+                // Citations
+                { section: "N/A", charge: "Loitering on Government Property", description: "Remaining on or near government buildings, facilities, or restricted zones without a lawful purpose or after being asked to leave.", category: "Citation", sentencingMonths: 5, fine: 750 },
+                { section: "N/A", charge: "Jaywalking", description: "Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.", category: "Citation", sentencingMonths: 0, fine: 500 },
+            ];
 
 
             function updateContent(hash) {
                 const targetHash = hash || '#introduction'; // Default to introduction
                 
-                // Hide all content sections (main and job detail)
                 contentSections.forEach(section => {
-                    section.classList.remove('active');
+                    if ('#' + section.id === targetHash) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
                 });
-                jobDetailSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                // Show the target section
-                const targetSection = document.querySelector(targetHash);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                }
 
                 // For mobile, close sidebar after clicking a nav item
                 if (window.innerWidth < 768 && mobileSidebarContent.classList.contains('active')) { // Use mobileSidebarContent
@@ -1833,7 +1628,6 @@
                     mobileSidebarOverlay.classList.remove('active');
                 }
 
-                // Update active state of sidebar navigation items
                 navItems.forEach(nav => {
                     if (nav.getAttribute('href') === targetHash) {
                         nav.classList.add('active');
@@ -2398,48 +2192,12 @@
             updateChargeSelectionDisplay();
             updateReductionSelectionDisplay();
 
-            // Job Title Click Handling
-            jobTitleLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.dataset.target; // Get the ID of the job detail section
-                    showJobDetailPage(targetId);
-                });
-            });
-
-            // Function to show job detail page
-            function showJobDetailPage(targetId) {
-                // Hide all main content sections
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                // Hide all job detail sections
-                jobDetailSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                // Remove active state from all sidebar nav items
-                navItems.forEach(nav => {
-                    nav.classList.remove('active');
-                });
-
-                // Show the specific job detail section
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                    // Scroll to top of main content area (optional, for better UX)
-                    document.querySelector('main').scrollTo(0, 0);
-                }
-            }
-
-
             // Use MutationObserver to initialize charts and tables only when their section becomes visible
             const generalObserver = new MutationObserver((mutations) => {
                 for (let mutation of mutations) {
                     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                         const targetElement = mutation.target;
-                        // Check if it's a main content section and became active
-                        if (targetElement.classList.contains('content-section') && !targetElement.classList.contains('job-detail-section') && targetElement.classList.contains('active')) {
+                        if (targetElement.classList.contains('active')) {
                            if (targetElement.id === 'dueprocess') {
                                 createLimitationsChart();
                            } else if (targetElement.id === 'tools') {
@@ -2455,23 +2213,24 @@
                 }
             });
 
-            // Observe only the main content sections for activation
             contentSections.forEach(section => {
                 generalObserver.observe(section, { attributes: true });
             });
 
             // Initial calls for currently active section on page load
-            // This needs to be slightly modified to ensure only relevant charts load
-            const currentHash = window.location.hash || '#introduction';
-            if (currentHash === '#sentencing-guidelines') {
+            if (document.querySelector('#introduction').classList.contains('active')) {
+                // No charts for introduction
+            } else if (document.querySelector('#charge-calculator').classList.contains('active')) {
+                // No charts for calculator section directly, but it's the default when opened
+            } else if (document.querySelector('#dueprocess').classList.contains('active')) {
+                createLimitationsChart();
+            } else if (document.querySelector('#tools').classList.contains('active')) {
+                createExpungementChart();
+            } else if (document.querySelector('#sentencing-guidelines').classList.contains('active')) {
                 populateSentencingTable();
                 createMedianSentencingChart();
                 createMedianFinesChart();
                 document.getElementById('totalChargesCount').textContent = penalCodesData.length;
-            } else if (currentHash === '#dueprocess') {
-                createLimitationsChart();
-            } else if (currentHash === '#tools') {
-                createExpungementChart();
             }
         });
     </script>
