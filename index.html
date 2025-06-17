@@ -155,9 +155,9 @@
             left: 0;
             top: 0;
             width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
             justify-content: center;
             align-items: center;
             padding: 1rem;
@@ -165,44 +165,44 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: auto; /* Centered */
+            margin: auto;
             padding: 1.5rem;
-            border-radius: 0.5rem; /* rounded-lg */
-            width: 90%; /* Responsive width */
-            max-width: 700px; /* Max width for larger screens */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 700px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            max-height: 90vh; /* Max height to fit within viewport */
+            max-height: 90vh;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e5e7eb; /* border-gray-200 */
+            border-bottom: 1px solid #e5e7eb;
             padding-bottom: 1rem;
             margin-bottom: 1rem;
         }
 
         .modal-body {
-            flex-grow: 1; /* Allows body to take available space */
-            overflow-y: auto; /* Scrollable content */
-            padding-right: 0.5rem; /* For scrollbar */
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 0.5rem;
         }
 
         .modal-footer {
-            border-top: 1px solid #e5e7eb; /* border-gray-200 */
+            border-top: 1px solid #e5e7eb;
             padding-top: 1rem;
             margin-top: 1rem;
             display: flex;
-            justify-content: flex-end; /* Buttons to the right */
-            gap: 0.5rem; /* Space between buttons */
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
 
         .close-button {
             color: #aaa;
-            font-size: 1.875rem; /* text-3xl */
+            font-size: 1.875rem;
             font-weight: bold;
             cursor: pointer;
         }
@@ -217,49 +217,56 @@
             display: flex;
             align-items: center;
             padding: 0.5rem 0.75rem;
-            border-bottom: 1px solid #f3f4f6; /* bg-gray-50 subtle border */
-            cursor: pointer; /* Indicate clickable */
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
             transition: background-color 0.2s ease-in-out;
-            border-radius: 0.375rem; /* rounded-md */
-            margin-bottom: 0.25rem; /* space-y-1 */
+            border-radius: 0.375rem;
+            margin-bottom: 0.25rem;
         }
 
-        .charges-list-item:hover, .reduction-list-item:hover {
+        .charges-list-item:hover {
             background-color: #f0f4f8; /* Light blue on hover */
         }
+
+        .charges-list-item.selected { /* New style for selected items */
+            background-color: #dbeafe; /* Blue-100 */
+            border-left: 4px solid #3b82f6; /* Blue-500 border */
+            font-weight: 500;
+        }
+
         .charges-list-item input[type="checkbox"], .reduction-list-item input[type="radio"] {
-            margin-right: 0.75rem; /* mr-3 */
-            transform: scale(1.2); /* Slightly larger checkbox/radio */
+            margin-right: 0.75rem;
+            transform: scale(1.2);
         }
 
         /* Style for text input that acts as a dropdown trigger */
         .dropdown-display {
             background-color: white;
-            border: 1px solid #d1d5db; /* border-gray-300 */
-            border-radius: 0.375rem; /* rounded-md */
-            padding: 0.625rem 1rem; /* py-2.5 px-4 */
-            min-height: 42px; /* Ensure consistent height */
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.625rem 1rem;
+            min-height: 42px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: #4b5563; /* text-gray-700 */
+            color: #4b5563;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
         .dropdown-display:hover {
-            border-color: #60a5fa; /* border-blue-400 */
+            border-color: #60a5fa;
         }
 
         .dropdown-display:focus {
             outline: none;
-            border-color: #3b82f6; /* border-blue-500 */
-            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5); /* ring-blue-500/50 */
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
         }
 
         /* Specific styles for job detail pages to handle consistent display */
         .job-detail-section {
-            display: none; /* Hidden by default */
+            display: none;
         }
         .job-detail-section.active {
             display: block;
@@ -1376,7 +1383,7 @@
                                 <a href="https://docs.google.com/document/d/1Yiemt5PFLRyFr1XK-FzMTq2u9_dnLaxuvmiNDZfhsxg/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Official Complaint</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-                                <a href="https://docs.google.com/document/d/1DJd3nFfMYV_sfdGgX0jNvumxuPcTxbxkN8Nw5jv0nvU/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Court Documentation Guidelines</a>
+                                <a href="https://docs.google.com/document/d/1DJd3nFfMYV_sfdGgX0jNvumxuPcTxbxkN8jv0nvU/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Court Documentation Guidelines</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                                 <a href="https://docs.google.com/document/d/1Mp5iBWHWa-QLut1z9dM4DN2P3NHdOui4Grdvfd33CfA/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Los Santos Court Procedure</a>
@@ -1594,7 +1601,8 @@
         // Global variable to store penal codes data
         let penalCodesData = [];
         // Global variable to store currently selected charges for the calculator
-        let selectedCharges = []; // Stores charge names as strings
+        // Now stores fullChargeName (e.g., "S.A.C. § 100 - Assault") for unique identification
+        let selectedCharges = []; 
         // Global variable for selected reduction percentage
         let selectedReduction = {
             type: 'standard', // 'standard' or 'custom'
@@ -1664,7 +1672,7 @@
 
         document.addEventListener('DOMContentLoaded', async function() {
             // Fetch the CSV data using the correct content fetch ID for the new file
-            const csvFilePath = 'Elevate RP _ San Andreas Penal Codes  - San Andreas Penal Codes.xlsx';
+            const csvFilePath = 'Elevate RP _ San Andreas Penal Codes  - San Andreas Penal Codes.csv';
             try {
                 const response = await fetch(csvFilePath);
                 if (!response.ok) {
@@ -2019,20 +2027,21 @@
             function calculateReduction() {
                 let reductionPercentage = selectedReduction.value;
                 if (selectedReduction.type === 'custom') {
-                    reductionPercentage = parseFloat(customReductionInputModal.value);
+                    const customValue = parseFloat(customReductionInputModal.value);
+                    if (isNaN(customValue) || customValue < 0 || customValue > 100) {
+                        reductionResultsDiv.innerHTML = `
+                            <div class="p-3 border border-red-200 rounded-md bg-red-50">
+                                <p class="font-semibold text-red-700">Please enter a valid reduction percentage between 0 and 100 for custom reduction.</p>
+                            </div>
+                        `;
+                        totalResultsDiv.classList.add('hidden');
+                        return;
+                    }
+                    reductionPercentage = customValue;
                 }
 
                 reductionResultsDiv.innerHTML = ''; // Clear previous results
                 totalResultsDiv.classList.add('hidden'); // Hide totals until calculated
-
-                if (isNaN(reductionPercentage) || reductionPercentage < 0 || reductionPercentage > 100) {
-                    reductionResultsDiv.innerHTML = `
-                        <div class="p-3 border border-red-200 rounded-md bg-red-50">
-                            <p class="font-semibold text-red-700">Please enter a valid reduction percentage between 0 and 100.</p>
-                        </div>
-                    `;
-                    return;
-                }
 
                 if (selectedCharges.length === 0) {
                     reductionResultsDiv.innerHTML = `
@@ -2048,10 +2057,11 @@
                 let overallTotalFine = 0;
                 let hasLifeSentence = false;
 
-                selectedCharges.forEach(selectedChargeName => {
-                    const matchedCharge = penalCodesData.find(data =>
-                        data.charge.toLowerCase() === selectedChargeName.toLowerCase()
-                    );
+                selectedCharges.forEach(selectedFullChargeName => {
+                    const matchedCharge = penalCodesData.find(data => {
+                        const dataFullChargeName = (data.section && data.section !== 'N/A' ? `${data.section} - ` : '') + data.charge;
+                        return dataFullChargeName.toLowerCase() === selectedFullChargeName.toLowerCase();
+                    });
 
                     if (matchedCharge) {
                         const originalSentencing = matchedCharge.sentencingMonths;
@@ -2080,7 +2090,7 @@
 
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
+                                <p class="font-semibold">${selectedFullChargeName}</p>
                                 <p>Original Sentencing: ${originalSentencing === 999999 ? 'Life' : originalSentencing + ' Months'}</p>
                                 <p>Reduced Sentencing (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
@@ -2097,7 +2107,7 @@
                     } else {
                         resultsHtml += `
                             <div class="p-3 border border-red-200 rounded-md bg-red-50">
-                                <p class="font-semibold text-red-700">Error: Charge "${selectedChargeName}" not found in data.</p>
+                                <p class="font-semibold text-red-700">Error: Charge "${selectedFullChargeName}" not found in data.</p>
                             </div>
                         `;
                     }
@@ -2180,20 +2190,27 @@
                         listItem.classList.add('charge-citation');
                     }
 
+                    // Add 'selected' class if this item is currently selected in the modal
+                    if (chargesInModal.includes(fullChargeName)) {
+                        listItem.classList.add('selected');
+                    }
+
                     listItem.innerHTML = `
-                        <input type="checkbox" value="${item.charge}" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                        <input type="checkbox" value="${fullChargeName}" class="form-checkbox h-5 w-5 text-blue-600 rounded">
                         <span class="text-sm font-medium text-gray-900">${fullChargeName}</span>
                     `;
                     const checkbox = listItem.querySelector('input[type="checkbox"]');
-                    checkbox.checked = chargesInModal.includes(item.charge); // Set checked state based on chargesInModal
+                    checkbox.checked = chargesInModal.includes(fullChargeName); // Set checked state based on chargesInModal
 
                     checkbox.addEventListener('change', (e) => {
                         if (e.target.checked) {
-                            if (!chargesInModal.includes(item.charge)) {
-                                chargesInModal.push(item.charge);
+                            if (!chargesInModal.includes(fullChargeName)) {
+                                chargesInModal.push(fullChargeName);
+                                listItem.classList.add('selected'); // Add visual feedback
                             }
                         } else {
-                            chargesInModal = chargesInModal.filter(charge => charge !== item.charge);
+                            chargesInModal = chargesInModal.filter(charge => charge !== fullChargeName);
+                            listItem.classList.remove('selected'); // Remove visual feedback
                         }
                     });
                     chargesListDiv.appendChild(listItem);
