@@ -19,7 +19,6 @@
         - Report Info: Bail Conditions, HUT heinous crimes. Goal: Inform. Viz/Method: Detailed lists within expandable sections. Interaction: None. Justification: Presents comprehensive legal requirements clearly. Method: HTML/Tailwind.
         - Report Info: Specific Legislation (Marijuana, Weapons, Speed Limits). Goal: Inform/Organized. Viz/Method: Accordion/collapsible sections for each act. Interaction: User clicks to reveal definitions, limits, enforcement. Justification: Consolidates related laws into easily browsable units. Method: HTML/JS.
     -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,7 +29,7 @@
             padding: 0;
             font-family: 'Inter', sans-serif;
             /* Global box-sizing for consistent layout calculations */
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
         *, *::before, *::after {
             box-sizing: inherit; /* Inherit box-sizing for all elements */
@@ -256,13 +255,71 @@
             border-color: #3b82f6; /* border-blue-500 */
             box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5); /* ring-blue-500/50 */
         }
+
+        /* Custom style for iframe to ensure responsiveness and fill container */
+        .responsive-iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%; /* 4:3 Aspect Ratio (height / width * 100%) */
+            /* You can adjust padding-top for different aspect ratios */
+            /* e.g., for 16:9, use 56.25% (9/16*100) */
+            /* For Google Sheets, 75% or 100% might be suitable depending on content */
+        }
+
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.5rem; /* Match rounded-lg on parent div */
+        }
+
+        /* Message Modal styles */
+        #messageModal {
+            display: none;
+            position: fixed;
+            z-index: 200; /* Higher than other modals */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        #messageModal .modal-content {
+            max-width: 400px; /* Smaller for messages */
+            text-align: center;
+        }
+
+        #messageModal .modal-header {
+            border-bottom: none;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+            justify-content: center; /* Center title */
+        }
+
+        #messageModal .modal-body {
+            font-size: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        #messageModal .modal-footer {
+            border-top: none;
+            padding-top: 0;
+            justify-content: center; /* Center button */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col h-screen">
 
     <!-- Mobile Navigation Toggle Button - Only visible on small screens -->
     <div class="md:hidden p-4 bg-gray-800 text-white flex items-center justify-between">
-        <button id="mobile-nav-toggle" class="focus:outline-none">
+        <button id="mobile-nav-toggle" class="focus:outline-none" aria-label="Toggle Navigation">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
@@ -419,6 +476,7 @@
                                     <li>Handles administrative work.</li>
                                     <li>Responsible for warrant and other legal document verification, approval, or review.</li>
                                 </ul>
+                                <button class="learn-more-btn mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150" data-position="chief-justice">Learn More about the position</button>
                             </div>
                             <div class="bg-green-50 p-4 rounded-lg border border-green-200">
                                 <h4 class="font-semibold text-lg mb-2 text-green-800">Deputy Chief Justice - Mike Ross</h4>
@@ -431,6 +489,17 @@
                                     <li>Reviews civil cases.</li>
                                     <li>A member of the State Bar Review Board.</li>
                                 </ul>
+                                <button class="learn-more-btn mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150" data-position="deputy-chief-justice">Learn More about the position</button>
+                            </div>
+                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                                <h4 class="font-semibold text-lg mb-2 text-orange-800">Chief Prosecutor</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                    <li>Oversees criminal prosecutions for the State.</li>
+                                    <li>Supervises District Attorneys and special prosecutors.</li>
+                                    <li>Establishes prosecutorial standards and policies.</li>
+                                    <li>Collaborates with law enforcement and legislative bodies.</li>
+                                </ul>
+                                <button class="learn-more-btn mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150" data-position="chief-prosecutor">Learn More about the position</button>
                             </div>
                             <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
                                 <h4 class="font-semibold text-lg mb-2 text-purple-800">Lead Prosecutor</h4>
@@ -470,41 +539,167 @@
                     </div>
                 </div>
 
+                <!-- New detail pages for job positions (initially hidden) -->
+                <div id="chief-justice-details" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Chief Justice of the Supreme Court</h2>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                        <p class="text-lg leading-relaxed mb-4"><strong>Department:</strong> Judiciary Branch</p>
+                        <p class="text-lg leading-relaxed mb-4"><strong>Reports To:</strong> N/A (Highest judicial authority)</p>
+                        <h3 class="text-xl font-bold mb-2">Position Summary:</h3>
+                        <p class="text-gray-700 mb-4">The Chief Justice serves as the head of the Judiciary and presides over the Supreme Court. This role ensures the fair administration of justice, oversees judicial proceedings at the highest level, and manages the conduct, ethics, and standards of all judicial officers under their purview.</p>
+                        
+                        <h3 class="text-xl font-bold mb-2">Key Responsibilities:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 mb-4">
+                            <li>Preside over Supreme Court cases, appeals, and constitutional challenges.</li>
+                            <li>Interpret and uphold the Constitution and major legal statutes.</li>
+                            <li>Oversee the Judicial Code of Conduct and enforce disciplinary measures when needed.</li>
+                            <li>Administer oaths of office to high-ranking officials.</li>
+                            <li>Provide judicial leadership and guidance to lower courts and judicial personnel.</li>
+                            <li>Serve as the final authority on judicial procedure, precedent, and court policy.</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mb-2">Required Qualifications:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 mb-4">
+                            <li>Juris Doctor (JD) or equivalent legal education.</li>
+                            <li>Extensive experience in the judiciary or as a practicing attorney.</li>
+                            <li>Exceptional knowledge of constitutional, criminal, civil, and administrative law.</li>
+                            <li>Demonstrated impartiality, leadership, and legal acumen.</li>
+                        </ul>
+                        <button class="back-to-intro-btn mt-4 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-150">← Back to Introduction</button>
+                    </div>
+                </div>
+
+                <div id="deputy-chief-justice-details" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Deputy Chief Justice</h2>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                        <p class="text-lg leading-relaxed mb-4"><strong>Department:</strong> Judiciary Branch</p>
+                        <p class="text-lg leading-relaxed mb-4"><strong>Reports To:</strong> Chief Justice</p>
+                        <h3 class="text-xl font-bold mb-2">Position Summary:</h3>
+                        <p class="text-gray-700 mb-4">The Deputy Chief Justice assists the Chief Justice in the administration of the judicial system, presides over high-profile or appellate cases, and ensures consistency in court proceedings. This position often oversees the day-to-day functionality of court operations and serves as Acting Chief Justice in their absence.</p>
+                        
+                        <h3 class="text-xl font-bold mb-2">Key Responsibilities:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 mb-4">
+                            <li>Preside over appellate and major trial proceedings.</li>
+                            <li>Advise on court procedure, judicial appointments, and legal interpretations.</li>
+                            <li>Provide oversight of case management, judge training, and legal compliance.</li>
+                            <li>Support the Chief Justice in upholding judicial ethics and institutional integrity.</li>
+                            <li>Lead committees on judicial reform or disciplinary review.</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mb-2">Required Qualifications:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 mb-4">
+                            <li>Juris Doctor (JD) or equivalent legal degree.</li>
+                            <li>Strong record of experience in trial or appellate courts.</li>
+                            <li>Proven ability to interpret complex legal issues with neutrality.</li>
+                            <li>Exemplary leadership and organizational skills.</li>
+                        </ul>
+                        <button class="back-to-intro-btn mt-4 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-150">← Back to Introduction</button>
+                    </div>
+                </div>
+
+                <div id="chief-prosecutor-details" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Chief Prosecutor</h2>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                        <p class="text-lg leading-relaxed mb-4"><strong>Title:</strong> Chief Prosecutor</p>
+                        <p class="text-lg leading-relaxed mb-4"><strong>Department:</strong> Executive Branch – Department of Justice</p>
+                        <p class="text-lg leading-relaxed mb-4"><strong>Reports To:</strong> Attorney General or Secretary of Justice</p>
+                        <p class="text-lg leading-relaxed mb-4"><strong>Supervises:</strong> District Attorneys, Special Prosecutors, Legal Clerks</p>
+                        <h3 class="text-xl font-bold mb-2">Position Summary:</h3>
+                        <p class="text-gray-700 mb-4">The Chief Prosecutor is the highest-ranking official in the Department of Justice's prosecutorial division, responsible for overseeing criminal prosecutions on behalf of the State. This role shapes prosecutorial priorities and ensures the delivery of ethical and practical justice.</p>
+                        
+                        <h3 class="text-xl font-bold mb-2">Core Responsibilities:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 mb-4">
+                            <li>⚖️ <strong>Strategic Oversight</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Supervise criminal prosecutions, especially high-profile cases.</li>
+                                    <li>Evaluate major cases for legal sufficiency and strategic viability.</li>
+                                    <li>Approve charging decisions, plea agreements, and case dismissals.</li>
+                                </ul>
+                            </li>
+                            <li>👨‍⚖️ <strong>Leadership</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Oversee District Attorneys and assign cases based on expertise.</li>
+                                    <li>Review prosecutorial performance and outcomes.</li>
+                                    <li>Provide mentorship and legal education for staff.</li>
+                                </ul>
+                            </li>
+                            <li>📜 <strong>Policy Development</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Establish prosecutorial standards and internal policies.</li>
+                                    <li>Collaborate with legislative bodies on statutory reforms.</li>
+                                </ul>
+                            </li>
+                            <li>🕵️ <strong>Coordination</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Collaborate with law enforcement and investigative teams.</li>
+                                    <li>Provide legal direction for criminal investigations.</li>
+                                </ul>
+                            </li>
+                            <li>🧾 <strong>Accountability</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Act as the public spokesperson for prosecutorial decisions.</li>
+                                    <li>Address public concerns regarding prosecutorial practices.</li>
+                                </ul>
+                            </li>
+                            <li>⚖️ <strong>Judicial Liaison</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Represent the Department in sensitive trials.</li>
+                                    <li>Maintain relationships with judges and legal staff.</li>
+                                </ul>
+                            </li>
+                            <li>🧑‍💼 <strong>Administrative Duties</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Manage staffing and budgets for the prosecutorial division.</li>
+                                    <li>Handle disciplinary actions and prepare performance reports.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mb-2">Qualifications:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 mb-4">
+                            <li>Juris Doctor (JD) or equivalent.</li>
+                            <li>Minimum of 10 years of courtroom experience in criminal law.</li>
+                            <li>Proven leadership in a prosecutorial or judicial role.</li>
+                            <li>Strong knowledge of constitutional law and ethical obligations.</li>
+                        </ul>
+                        <button class="back-to-intro-btn mt-4 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-150">← Back to Introduction</button>
+                    </div>
+                </div>
+                <!-- End of new detail pages -->
+
+
                 <div id="sentencing-guidelines" class="content-section">
                     <div class="clearfix">
                         <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
                         <h2 class="text-3xl font-bold mb-4 text-gray-900">Sentencing Guidelines & Penalties</h2>
                     </div>
-                    <p class="mb-6 text-gray-600">This section provides an overview of various charges, their categories, and typical sentencing guidelines in months, along with associated fines. Understanding these benchmarks is crucial for negotiating pleas, advising clients on potential outcomes, and challenging disproportionate sentences. The charts below visualize median sentencing times and fines across different charge categories.</p>
+                    <p class="mb-6 text-gray-600">This section provides an overview of various charges, their categories, and typical sentencing guidelines in months, along with associated fines. Understanding these benchmarks is crucial for negotiating pleas, advising clients on potential outcomes, and challenging disproportionate sentences.</p>
                     <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
-                        <h3 class="font-bold text-xl mb-4 text-center">Charge Penalties Overview</h3>
-                        <p class="text-md text-gray-700 mb-4 text-center">Total Charges in List: <span id="totalChargesCount" class="font-bold text-blue-700"></span></p>
-                        <div class="overflow-x-auto mb-6">
-                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
-                                <thead class="bg-gray-100">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Section</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Charge</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Description</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Category</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Sentencing (Months)</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Fine ($)</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Section</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Charge</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentencing (Months)</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fine ($)</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                                     </tr>
                                 </thead>
-                                <tbody id="sentencingTableBody">
-                                    <!-- Data will be inserted here by JavaScript -->
+                                <tbody id="penalCodesTableBody" class="bg-white divide-y divide-gray-200">
+                                    <!-- Penal codes will be dynamically loaded here -->
                                 </tbody>
                             </table>
-                        </div>
-
-                        <h3 class="font-bold text-xl mb-4 text-center">Median Sentencing & Fine by Category</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="chart-container h-64 md:h-80">
-                                <canvas id="medianSentencingChart"></canvas>
-                            </div>
-                            <div class="chart-container h-64 md:h-80">
-                                <canvas id="medianFinesChart"></canvas>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -522,7 +717,7 @@
                                 <label for="chargeSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
                                     Selected Charge(s):
                                 </label>
-                                <div id="chargeSelectionDisplay" class="dropdown-display">
+                                <div id="chargeSelectionDisplay" class="dropdown-display" role="button" aria-expanded="false" aria-controls="chargeSelectionModal">
                                     <span>No charges selected</span>
                                     <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
@@ -531,7 +726,7 @@
                                 <label for="reductionSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
                                     Selected Reduction Percentage:
                                 </label>
-                                <div id="reductionSelectionDisplay" class="dropdown-display">
+                                <div id="reductionSelectionDisplay" class="dropdown-display" role="button" aria-expanded="false" aria-controls="reductionSelectionModal">
                                     <span>No Reduction (0%)</span>
                                     <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
@@ -555,17 +750,18 @@
                 </div>
 
                 <!-- Charge Selection Modal -->
-                <div id="chargeSelectionModal" class="modal">
+                <div id="chargeSelectionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="chargeSelectionModalTitle">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="text-2xl font-bold">Select Charges</h3>
-                            <span class="close-button" id="closeChargeModal">&times;</span>
+                            <h3 class="text-2xl font-bold" id="chargeSelectionModalTitle">Select Charges</h3>
+                            <button type="button" class="close-button" id="closeChargeModal" aria-label="Close select charges modal">&times;</button>
                         </div>
                         <div class="mb-4">
+                            <label for="chargeSearchInput" class="sr-only">Search charges</label>
                             <input type="text" id="chargeSearchInput" placeholder="Search charges..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         <div class="modal-body">
-                            <div id="chargesList" class="space-y-1">
+                            <div id="chargesList" class="space-y-1" role="group" aria-label="List of available charges">
                                 <!-- Charges will be dynamically loaded here -->
                             </div>
                         </div>
@@ -577,14 +773,14 @@
                 </div>
 
                 <!-- Reduction Selection Modal -->
-                <div id="reductionSelectionModal" class="modal">
+                <div id="reductionSelectionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="reductionSelectionModalTitle">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="text-2xl font-bold">Select Reduction Percentage</h3>
-                            <span class="close-button" id="closeReductionModal">&times;</span>
+                            <h3 class="text-2xl font-bold" id="reductionSelectionModalTitle">Select Reduction Percentage</h3>
+                            <button type="button" class="close-button" id="closeReductionModal" aria-label="Close select reduction modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <div id="reductionOptionsList" class="space-y-1">
+                            <div id="reductionOptionsList" class="space-y-1" role="radiogroup" aria-labelledby="reductionSelectionModalTitle">
                                 <!-- Reduction options will be dynamically loaded here -->
                                 <label class="reduction-list-item">
                                     <input type="radio" name="reductionOption" value="0" class="form-radio h-5 w-5 text-blue-600" checked>
@@ -621,11 +817,27 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <!-- No clear button needed for single selection radio buttons -->
                             <button id="applySelectedReductionBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Apply Selection</button>
                         </div>
                     </div>
                 </div>
+
+                <!-- Generic Message Modal -->
+                <div id="messageModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="messageModalTitle">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="text-xl font-bold" id="messageModalTitle">Message</h3>
+                            <button type="button" class="close-button" id="closeMessageModal" aria-label="Close message modal">&times;</button>
+                        </div>
+                        <div class="modal-body" id="messageModalBody">
+                            <!-- Message content will be inserted here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button id="okMessageModalBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">OK</button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div id="constitution" class="content-section">
                     <div class="clearfix">
@@ -664,7 +876,7 @@
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500 col-span-1 md:col-span-2 lg:col-span-3">
                             <h3 class="font-bold text-xl mb-2">Attorney-Client Privilege</h3>
-                            <p class="text-gray-600">A critical right that safeguards all forms of confidential communications between a lawyer and client for legal advice. A breach is immediate grounds for a mistrial motion.</p>
+                            <p class="text-gray-600">A critical right that safeguards all forms of confidential communications (verbal, written, electronic) between a lawyer and client for legal advice. A breach is immediate grounds for a mistrial motion.</p>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-orange-500 col-span-1 md:col-span-2 lg:col-span-3">
                             <h3 class="font-bold text-xl mb-2">Sixth Amendment Rights (Criminal Prosecutions)</h3>
@@ -690,11 +902,11 @@
                     <div class="space-y-4">
                         <!-- Marijuana Decriminalization Act -->
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg" aria-expanded="false" aria-controls="marijuana-content">
                                 <span>Marijuana Decriminalization Act</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="marijuana-content" class="accordion-content">
                                 <h4 class="font-bold text-lg mt-4 mb-2">Purpose & Justification</h4>
                                 <p class="text-gray-700 text-sm">Legalizes possession of small amounts for personal use to focus law enforcement on serious crimes. Justified by individual freedoms related to health, privacy, and dignity (Constitution Article III).</p>
                                 <h4 class="font-bold text-lg mt-4 mb-2">Key Details</h4>
@@ -708,11 +920,11 @@
 
                         <!-- Weapons & Driver's License Legislation -->
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg" aria-expanded="false" aria-controls="weapons-content">
                                 <span>Weapons & Driver's License Legislation</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="weapons-content" class="accordion-content">
                                 <h4 class="font-bold text-lg mt-4 mb-2">Purpose & Justification</h4>
                                 <p class="text-gray-700 text-sm">Regulates firearm ownership for public safety while upholding citizens' right to self-defense (Constitutional Justification: Self-defense and protection of others).</p>
                                 <h4 class="font-bold text-lg mt-4 mb-2">Key Details - Weapons</h4>
@@ -732,11 +944,11 @@
 
                         <!-- Speed Limits -->
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg" aria-expanded="false" aria-controls="speed-content">
                                 <span>Speed Limits</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="speed-content" class="accordion-content">
                                 <h4 class="font-bold text-lg mt-4 mb-2">Purpose & Justification</h4>
                                 <p class="text-gray-700 text-sm">Standardizes speed limits for enhanced traffic flow and safety. Justified by the Right to Health and Protection of Others (Constitution Article III).</p>
                                 <h4 class="font-bold text-lg mt-4 mb-2">Maximum Speed Limits</h4>
@@ -751,11 +963,11 @@
 
                         <!-- Stand Your Ground Doctrine -->
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg" aria-expanded="false" aria-controls="stand-your-ground-content">
                                 <span>Stand Your Ground Doctrine</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="stand-your-ground-content" class="accordion-content">
                                 <h4 class="font-bold text-lg mt-4 mb-2">Purpose & Justification</h4>
                                 <p class="text-gray-700 text-sm">Details reasonable steps for self-protection under threat of serious injury/death. Justified by the Right to Health and Protection of Others (Constitution Article III).</p>
                                 <h4 class="font-bold text-lg mt-4 mb-2">Application: Reasonable Steps (if safe/reasonable)</h4>
@@ -770,11 +982,11 @@
 
                         <!-- Good Samaritan Act -->
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left bg-blue-500 text-white rounded-t-lg" aria-expanded="false" aria-controls="good-samaritan-content">
                                 <span>Good Samaritan Act</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="good-samaritan-content" class="accordion-content">
                                 <h4 class="font-bold text-lg mt-4 mb-2">Overview</h4>
                                 <p class="text-gray-700 text-sm">This document serves as an official announcement regarding the introduction and implementation of the Good Samaritan Act within the jurisdiction of Los Santos. As of [4/8/2025], the City of Los Santos has formally adopted the Good Samaritan Act, which provides legal protection to individuals who voluntarily offer assistance during emergencies.</p>
                                 
@@ -1132,11 +1344,11 @@
                     <p class="mb-6 text-gray-600">High-stakes cases require tailored defense strategies that target common prosecution tactics. This section provides key strategic points for specific types of high-profile cases. Click each topic to expand and view critical areas to challenge, from search warrants to forensic evidence, and how to leverage specific legal concepts.</p>
                     <div class="space-y-4">
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left" aria-expanded="false" aria-controls="drug-trafficking-content">
                                 <span>Drug Trafficking</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="drug-trafficking-content" class="accordion-content">
                                 <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                     <li>Challenge the scope of search and seizure warrants. Were they overly broad or unsupported by probable cause?</li>
                                     <li>Leverage the <a href="#laws" class="text-blue-600 hover:underline">Marijuana Decriminalization Act</a>: mere presence or personal use of marijuana is not probable cause for further searching (refer to "Enforcement" details).</li>
@@ -1145,11 +1357,11 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left" aria-expanded="false" aria-controls="possession-substances-content">
                                 <span>Possession of Controlled Substances</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="possession-substances-content" class="accordion-content">
                                 <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                     <li>Challenge lack of knowledge or intent: Was the client aware of the substance's presence or its illegal nature?</li>
                                     <li>Move to suppress evidence based on unlawful search and seizure (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a> and <a href="#caselaw" class="text-blue-600 hover:underline">relevant Case Law</a>).</li>
@@ -1160,11 +1372,11 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left" aria-expanded="false" aria-controls="grand-theft-auto-content">
                                 <span>Grand Theft Auto</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="grand-theft-auto-content" class="accordion-content">
                                 <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                     <li>Challenge intent: Was there intent to permanently deprive the owner of the vehicle, or merely joyriding (temporary use)?</li>
                                     <li>Argue mistaken identity: Was the client clearly identified as the person who stole the vehicle?</li>
@@ -1175,11 +1387,11 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left" aria-expanded="false" aria-controls="obstruction-content">
                                 <span>Obstruction of a Government Official & Obstruction of Justice</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="obstruction-content" class="accordion-content">
                                 <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                     <li>Dispute intent: Did the client specifically intend to obstruct an official act, or were their actions misinterpreted?</li>
                                     <li>Argue that actions were within legal rights: e.g., refusing a search without a warrant, or exercising right to remain silent (refer to <a href="#constitution" class="text-blue-600 hover:underline">Core Constitutional Rights</a> and <a href="#caselaw" class="text-blue-600 hover:underline">Miranda v. Arizona</a>).</li>
@@ -1190,11 +1402,11 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left" aria-expanded="false" aria-controls="murder-content">
                                 <span>Murder & Attempted Murder</span>
                                 <span class="transform transition-transform duration-300">▼</span>
                             </button>
-                            <div class="accordion-content">
+                            <div id="murder-content" class="accordion-content">
                                 <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                     <li>Demand full disclosure of all forensic evidence, including collection timelines and lab reports.</li>
                                     <li>Utilize the <a href="#laws" class="text-blue-600 hover:underline">Stand Your Ground Doctrine</a> where applicable to justify your client's actions, ensuring all "reasonable steps" were considered.</li>
@@ -1345,7 +1557,7 @@
                         <h3 class="font-bold text-xl mb-3">Definitions & Granted Powers</h3>
                         <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
                             <li>Law Enforcement Officer (LEO): A sworn officer of the BCSO, LSPD, or SASP.</li>
-                            <li>Granted Powers: Enforce all state-wide and local laws, issue citations, provide investigative duties within their jurisdictions, and utilize appropriate force to protect citizens, themselves, and others.</li>
+                            <li>Granted Powers: Enforce all state-wide and local laws, issue citations, provide investigative duties within their jurisdictions, and utilize appropriate force to protect citizens, themselves and others.</li>
                         </ul>
                         <h3 class="font-bold text-xl mt-4 mb-3">Jurisdictions</h3>
                         <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
@@ -1438,24 +1650,22 @@
     </div>
 
     <script>
-        // Global variable to store penal codes data
-        let penalCodesData = [];
-        // Global variable to store currently selected charges for the calculator
-        let selectedCharges = []; // Stores charge names as strings
-        // Global variable for selected reduction percentage
-        let selectedReduction = {
-            type: 'standard', // 'standard' or 'custom'
-            value: 0 // Numeric percentage or '0' for no reduction
-        };
+        (function() { // IIFE for encapsulation
+            // Global variables (now scoped within the IIFE)
+            let penalCodesData = [];
+            let selectedCharges = []; // Stores charge names as strings
+            let selectedReduction = {
+                type: 'standard', // 'standard' or 'custom'
+                value: 0 // Numeric percentage
+            };
 
-        document.addEventListener('DOMContentLoaded', async function() {
+            // DOM Element References (cached for performance)
             const navItems = document.querySelectorAll('.nav-item');
             const contentSections = document.querySelectorAll('.content-section');
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-            const mobileSidebarContent = document.getElementById('mobile-sidebar-content'); 
+            const mobileSidebarContent = document.getElementById('mobile-sidebar-content');
             const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
 
-            // Calculator elements
             const chargeSelectionDisplay = document.getElementById('chargeSelectionDisplay');
             const reductionSelectionDisplay = document.getElementById('reductionSelectionDisplay');
             const applyReductionBtn = document.getElementById('applyReductionBtn');
@@ -1464,7 +1674,6 @@
             const finalTotalSentencingSpan = document.getElementById('finalTotalSentencing');
             const finalTotalFineSpan = document.getElementById('finalTotalFine');
 
-            // Charge Selection Modal elements
             const chargeSelectionModal = document.getElementById('chargeSelectionModal');
             const closeChargeModalBtn = document.getElementById('closeChargeModal');
             const chargeSearchInput = document.getElementById('chargeSearchInput');
@@ -1472,7 +1681,6 @@
             const clearAllChargesBtn = document.getElementById('clearAllChargesBtn');
             const applySelectedChargesBtn = document.getElementById('applySelectedChargesBtn');
 
-            // Reduction Selection Modal elements
             const reductionSelectionModal = document.getElementById('reductionSelectionModal');
             const closeReductionModalBtn = document.getElementById('closeReductionModal');
             const reductionOptionsList = document.getElementById('reductionOptionsList');
@@ -1480,208 +1688,211 @@
             const customReductionInputModal = document.getElementById('customReductionInputModal');
             const applySelectedReductionBtn = document.getElementById('applySelectedReductionBtn');
 
-            penalCodesData = [
-                { section: "S.A.C. § 1111", charge: "First Degree Murder", description: "A person who aids or abets in the commission of first-degree murder without directly committing the act of killing. (flatbacking)", category: "Federal", sentencingMonths: 60, fine: 10000 },
-                { section: "S.A.C. § 1114", charge: "Murder of a Public Servant or Peace Officer", description: "The intentional killing of a public servant or peace officer while they are performing their official duties, typically resulting in more severe penalties. (flatbacking)", category: "Federal", sentencingMonths: 80, fine: 15000 },
-                { section: "S.A.C. § 1114", charge: "Attempted Murder of a Public Servant or Peace Officer", description: "The act of attempting to unlawfully kill a public servant or peace officer, where the attempt is unsuccessful, but the intent to kill is clear.", category: "Federal", sentencingMonths: 60, fine: 10000 },
-                { section: "S.A.C. § 1595", charge: "Human Trafficking", description: "The illegal trade or exploitation of people through force, fraud, or coercion for purposes such as labor, sexual exploitation, or other forms of abuse.", category: "Federal", sentencingMonths: 40, fine: 12500 },
-                { section: "S.A.C. § 31", charge: "Plane Heist", description: "A robbery or theft involving an aircraft, where the criminals hijack the plane or steal cargo or passengers, typically involving violence or the threat of violence.", category: "Federal", sentencingMonths: 30, fine: 6000 },
-                { section: "S.A.C. § 2113", charge: "Big Bank Heist", description: "A robbery of a larger financial institution, often planned with the intent to steal large sums of money, typically involving advanced methods of theft and potentially violence.", category: "Federal", sentencingMonths: 90, fine: 25000 },
-                { section: "S.A.C. § 401", charge: "Contempt of Court Order", description: "Willfully violating a specific court-issued order, such as a restraining order, subpoena, or injunction.", category: "Federal", sentencingMonths: 15, fine: 2500 },
-                { section: "S.A.C. § 1621", charge: "Perjury", description: "Knowingly lying under oath during a court proceeding, investigation, or deposition.", category: "Federal", sentencingMonths: 30, fine: 5000 },
-                { section: "S.A.C. § 401", charge: "Contempt of Court (General)", description: "Disruptive or disrespectful behavior toward a judge or court that interferes with judicial proceedings.", category: "Federal", sentencingMonths: 10, fine: 2000 },
-                { section: "S.A.C. § 401", charge: "Aggravated Contempt", description: "Severe or repeated contempt of court, including threats, physical disruptions, or defiance of multiple orders.", category: "Federal", sentencingMonths: 35, fine: 6000 },
-                { section: "S.A.C. § 2332b", charge: "Terrorism", description: "Use or threat of violence against civilians or government institutions to intimidate or coerce for political, religious, or ideological goals.", category: "Federal", sentencingMonths: 70, fine: 10000 },
-                { section: "S.A.C. § 1503", charge: "Obstruction of Justice (Federal Charge)", description: "Interfering with federal investigations, court processes, or law enforcement actions, including destroying evidence or influencing witnesses.", category: "Federal", sentencingMonths: 25, fine: 2000 },
-                { section: "S.A.C. § 201", charge: "Government Corruption", description: "Misuse of public office for personal gain, including bribery, embezzlement, or unlawful influence over government contracts or services.", category: "Federal", sentencingMonths: 100, fine: 15000 },
-                { section: "S.A.C. § 912", charge: "Impersonating a Judge", description: "Falsely presenting oneself as a judicial officer, including issuing false rulings or orders.", category: "Federal", sentencingMonths: 40, fine: 7500 },
-                { section: "S.A.C. § 912", charge: "Impersonating a Government Official", description: "Claiming to be a federal or state official for influence, manipulation, or access to restricted areas.", category: "Federal", sentencingMonths: 30, fine: 6000 },
-                { section: "S.A.C. § 2241", charge: "Sexual Harassment", description: "Unwanted sexual advances, verbal or physical conduct of a sexual nature, especially in public or professional spaces.", category: "Federal", sentencingMonths: 25, fine: 4000 },
-                { section: "S.A.C. § 2241", charge: "Sexual Assault", description: "Non-consensual physical sexual contact, including groping or coerced touching, without penetration.", category: "Federal", sentencingMonths: 99999, fine: 200000 }, // NOTE: 99999 is an outlier, handled in median calculation
-                { section: "S.A.C. § 641", charge: "Theft of Government Property", description: "Unlawfully taking, possessing, or damaging property owned by a government agency or public institution. Includes vehicles, weapons, equipment, or funds.", category: "Federal", sentencingMonths: 30, fine: 5500 },
-                { section: "S.A.C. § 1512", charge: "Coercion", description: "Forcing someone to act against their will through threats, intimidation, blackmail, or manipulation, especially for unlawful gain or influence.", category: "Federal", sentencingMonths: 30, fine: 5500 },
-                { section: "S.A.C. § 201", charge: "Malfeasance in Office", description: "Misconduct or wrongdoing by a public official.", category: "Federal", sentencingMonths: 65, fine: 50000 },
-                { section: "S.A.C. 1504", charge: "Racketeer Influenced and Corrupt Organizations (RICO) Act", description: "Any person who is associated with an enterprise engaged in a pattern of racketeering activity—such as extortion, drug trafficking, illegal gambling, murder for hire, fraud, or other specified felonies—and who knowingly participates in or benefits from such activity, may be charged under the San Andreas RICO statute.", category: "Federal", sentencingMonths: 120, fine: 60000 },
-                
-                // Felony Charges
-                { section: "S.A.C. § 1001", charge: "False Reporting", description: "Knowingly providing false information to law enforcement or emergency services.", category: "Felony", sentencingMonths: 35, fine: 2000 },
-                { section: "S.A.C. § 1501", charge: "Obstruction of a Public Official", description: "Interfering with a public official in the lawful execution of their duties.", category: "Felony", sentencingMonths: 25, fine: 5000 },
-                { section: "S.A.C. § 2101", charge: "Inciting a Riot", description: "Encouraging or participating in behavior that leads to public unrest or violence.", category: "Felony", sentencingMonths: 25, fine: 2500 },
-                { section: "S.A.C. § 1512", charge: "Tampering", description: "Interfering with evidence, machinery, or legal processes with intent to deceive.", category: "Felony", sentencingMonths: 30, fine: 5000 },
-                { section: "N/A", charge: "Vigilantism", description: "Taking the law into one's own hands, acting as an unauthorized enforcer of justice.", category: "Felony", sentencingMonths: 35, fine: 1500 },
-                { section: "S.A.C. § 2261A", charge: "Stalking", description: "Repeated, unwanted attention or harassment that causes fear.", category: "Felony", sentencingMonths: 36, fine: 5000 },
-                { section: "S.A.C. § 2", charge: "Aiding and Abetting", description: "Assisting another in the commission of a crime.", category: "Felony", sentencingMonths: 20, fine: 5000 },
-                { section: "S.A.C. § 1028", charge: "Possession of Stolen Identification", description: "Having someone else's ID with intent to commit fraud or evade law enforcement.", category: "Felony", sentencingMonths: 10, fine: 2500 },
-                { section: "S.A.C. § 113", charge: "Assault", description: "Intentional act causing physical harm or fear of harm to another person.", category: "Felony", sentencingMonths: 30, fine: 5000 },
-                { section: "S.A.C. § 1201", charge: "Kidnapping", description: "Unlawfully restraining or transporting a person against their will.", category: "Felony", sentencingMonths: 30, fine: 5000 },
-                { section: "Varies by specific statute", charge: "Trespassing with Intent to Commit a Crime", description: "Entering property unlawfully with criminal intent.", category: "Felony", sentencingMonths: 40, fine: 2500 },
-                { section: "S.A.C. § 912", charge: "Impersonation", description: "Pretending to be another person for the purpose of deception.", category: "Felony", sentencingMonths: 20, fine: 2500 },
-                { section: "S.A.C. § 1341", charge: "  Fraud", description: "Intentional deception to secure unlawful gain, often financial.", category: "Felony", sentencingMonths: 15, fine: 2500 },
-                { section: "S.A.C. § 113", charge: "Aggravated Assault", description: "Assault with a deadly weapon or causing serious bodily harm.", category: "Felony", sentencingMonths: 50, fine: 6000 },
-                { section: "S.A.C. § 371", charge: "Conspiracy", description: "Agreement between two or more people to commit a criminal act.", category: "Felony", sentencingMonths: 35, fine: 4000 },
-                { section: "S.A.C. § 912", charge: "Impersonating a Police Officer", description: "Falsely presenting oneself as a law enforcement officer.", category: "Felony", sentencingMonths: 40, fine: 10000 },
-                { section: "S.A.C. § 1956", charge: "Money Laundering", description: "Concealing origins of illegally obtained money through transfers or shell accounts.", category: "Felony", sentencingMonths: 45, fine: 15000 },
-                { section: "S.A.C. § 1385", charge: "Trespassing on Government Property", description: "Unlawfully entering or remaining on government property.", category: "Felony", sentencingMonths: 25, fine: 1500 },
-                { section: "S.A.C. § 1112", charge: "Involuntary Manslaughter", description: "Causing death without intent, often due to recklessness or negligence.", category: "Felony", sentencingMonths: 35, fine: 5000 },
-                { section: "S.A.C. § 1112", charge: "Voluntary Manslaughter", description: "Killing in the \"heat of passion\" without premeditation.", category: "Felony", sentencingMonths: 50, fine: 6000 },
-                { section: "Varies by specific statute", charge: "Vehicular Manslaughter", description: "Causing death through negligent or reckless operation of a vehicle.", category: "Felony", sentencingMonths: 50, fine: 6000 },
-                { section: "Varies by specific statute", charge: "Attempted Vehicular Manslaughter", description: "Attempting to cause death or serious injury through negligent or reckless operation of a vehicle.", category: "Felony", sentencingMonths: 25, fine: 3500 },
-                { section: "S.A.C. § 3", charge: "Accessory to Second Degree Murder", description: "Assisting or facilitating a second-degree murder before or after the fact.", category: "Felony", sentencingMonths: 45, fine: 7000 },
-                { section: "S.A.C. § 3", charge: "Accessory to First Degree Murder", description: "Aiding in a premeditated, intentional killing.", category: "Felony", sentencingMonths: 45, fine: 7000 },
-                { section: "S.A.C. § 2118", charge: "Warehouse Heist", description: "Organized robbery of a warehouse, typically targeting high-value goods.", category: "Felony", sentencingMonths: 75, fine: 25000 },
-                { section: "S.A.C. § 2113", charge: "Store Robbery", description: "Using threat or force to steal from a commercial business.", category: "Felony", sentencingMonths: 60, fine: 15000 },
-                { section: "Varies by specific statute", charge: "Harassment", description: "Repeated, intentional behavior meant to alarm, annoy, torment, or terrorize another individual. This can include verbal abuse, threats, or physical gestures that cause emotional distress or fear.", category: "Felony", sentencingMonths: 15, fine: 2500 },
-                { section: "S.A.C. § 1113", charge: "Attempted Second Degree Murder", description: "A deliberate act intended to kill another person without premeditation or planning, where the attempt fails or the victim survives. This reflects serious intent and high risk to human life.", category: "Felony", sentencingMonths: 50, fine: 5000 },
-                { section: "S.A.C. § 2315", charge: "Possession of Stolen Property", description: "Holding or concealing property known to be stolen", category: "Felony", sentencingMonths: 25, fine: 3500 },
-                { section: "S.A.C. § 2313", charge: "Possession of a Stolen Vehicle", description: "Operating or possessing a vehicle known to be stolen", category: "Felony", sentencingMonths: 30, fine: 5000 },
-                { section: "S.A.C. § 1341", charge: "Attempted Fraud", description: "Attempting to deceive for financial or personal gain", category: "Felony", sentencingMonths: 25, fine: 3000 },
-                { section: "Varies by specific statute", charge: "Misappropriation of Lost Property", description: "Keeping lost property without effort to return it", category: "Felony", sentencingMonths: 25, fine: 2500 },
-                { section: "S.A.C. § 873", charge: "Extortion", description: "Forcing someone to act under threats or coercion", category: "Felony", sentencingMonths: 35, fine: 7000 },
-                { section: "Varies by specific statute", charge: "Grand Theft Auto", description: "Grand Theft Auto is the unlawful taking of a motor vehicle without the owner's consent and with the intent to permanently deprive them of it. It is typically charged as a felony, carrying penalties of 1 to 5 years in prison, significant fines, and a permanent criminal record.", category: "Felony", sentencingMonths: 30, fine: 5500 },
-                { section: "S.A.C. § 873", charge: "Attempted Extortion", description: "Attempting to coerce or threaten for gain", category: "Felony", sentencingMonths: 25, fine: 4000 },
-                { section: "Varies by specific statute", charge: "Criminal Threats", description: "Threatening serious harm with intent to instill fear", category: "Felony", sentencingMonths: 28, fine: 4500 },
-                { section: "S.A.C. § 922(g)(1)", charge: "Felon in Possession of a Firearm", description: "Convicted felon caught with a firearm", category: "Felony", sentencingMonths: 35, fine: 7500 },
-                { section: "S.A.C. § 751", charge: "Escape from Custody", description: "Unlawful departure from lawful detention or arrest", category: "Felony", sentencingMonths: 32, fine: 6000 },
-                { section: "Varies by specific statute", charge: "Assault on a Peace Officer", description: "Physical attack or violent threat toward a law officer", category: "Felony", sentencingMonths: 35, fine: 6500 },
-                { section: "21 U.S.C. § 844", charge: "Schedule I Substance Possession", description: "Possession of high-risk, illegal drugs (e.g., heroin, LSD)", category: "Felony", sentencingMonths: 35, fine: 6500 },
-                { section: "21 U.S.C. § 844", charge: "Schedule II Substance Possession", description: "Possession of drugs with high abuse potential (e.g., cocaine, meth)", category: "Felony", sentencingMonths: 30, fine: 5500 },
-                { section: "21 U.S.C. § 844", charge: "Schedule III Substance Possession", description: "Possession of moderate-risk controlled substances", category: "Felony", sentencingMonths: 28, fine: 4500 },
-                { section: "21 U.S.C. § 844", charge: "Schedule IV Substance Possession", description: "Possession of lower-risk substances (e.g., Xanax)", category: "Felony", sentencingMonths: 25, fine: 3500 },
-                { section: "Varies by specific statute", charge: "Negligent Discharge of a Firearm", description: "Carelessly firing a weapon in a way that endangers others", category: "Felony", sentencingMonths: 25, fine: 4000 },
-                { section: "Varies by specific statute", charge: "Gang-Related Shooting", description: "Discharging a firearm in a violent act affiliated with gang activity", category: "Felony", sentencingMonths: 35, fine: 10000 },
-                { section: "Varies by specific statute", charge: "Animal Cruelty", description: "Intentionally harming, neglecting, or killing an animal without cause", category: "Felony", sentencingMonths: 25, fine: 5000 },
-                { section: "Varies by specific statute", charge: "Resisting Without Violence", description: "Non-violent refusal to comply with lawful police orders", category: "Felony", sentencingMonths: 25, fine: 4000 },
-                { section: "Varies by specific statute", charge: "Resisting With Violence", description: "Physically resisting or assaulting while evading law enforcement", category: "Felony", sentencingMonths: 30, fine: 5500 },
-                { section: "S.A.C. § 2115", charge: "House Robbery", description: "Robbery of a house, typically targeting high value items.", category: "Felony", sentencingMonths: 20, fine: 4000 },
-                { section: "S.A.C. § 751", charge: "Failure to Comply", description: "Felony Failure to Comply occurs when an individual knowingly disregards a lawful order from law enforcement, such as fleeing from a police stop or resisting arrest in a dangerous manner. It is typically charged as a felony, carrying penalties of 1 to 5 years in prison, significant fines, and possible driver's license suspension.", category: "Felony", sentencingMonths: 15, fine: 2500 },
-                { section: "S.A.C. § 416", charge: "Felony Destruction of Property", description: "Intentional or reckless destruction of property valued over a designated threshold (typically $5,000 or more), including use of tools, fire, or repeated offenses.", category: "Felony", sentencingMonths: 30, fine: 10000 },
-                { section: "S.AC. § 601", charge: "Arson", description: "The intentional setting of fire to property, vehicles, buildings, or land with malicious intent. Includes attempts.", category: "Felony", sentencingMonths: 35, fine: 15000 },
+            const messageModal = document.getElementById('messageModal');
+            const messageModalTitle = document.getElementById('messageModalTitle');
+            const messageModalBody = document.getElementById('messageModalBody');
+            const closeMessageModalBtn = document.getElementById('closeMessageModal');
+            const okMessageModalBtn = document.getElementById('okMessageModalBtn');
 
-                // Serious Felony Charges
-                { section: "S.A.C. § 1113", charge: "Attempted Murder of a Civilian", description: "The act of trying to unlawfully kill another person without legal justification, where the victim is a civilian, and the attempt was unsuccessful.", category: "Serious Felony", sentencingMonths: 45, fine: 8000 },
-                { section: "S.A.C. § 1111", charge: "Second Degree Murder", description: "The intentional killing of a person without premeditation, often committed impulsively or in the heat of the moment, but with the knowledge that the act could cause death or harm.", category: "Serious Felony", sentencingMonths: 55, fine: 8500 },
-                { section: "S.A.C. § 3", charge: "Accessory to the Murder of a Public Servant or Officer", description: "A person who assists or helps plan the murder of a public servant or officer but does not directly commit the killing.", category: "Serious Felony", sentencingMonths: 40, fine: 6500 },
-                { section: "S.A.C. § 2113", charge: "Fleeca Bank Heist", description: "A criminal act where individuals rob a Fleeca Bank branch, typically involving armed robbery and the use of force to steal money or valuables.", category: "Serious Felony", sentencingMonths: 40, fine: 10000 },
-                { section: "S.A.C. § 2113", charge: "Armed Robbery", description: "The act of stealing property from another person using or threatening to use a weapon, with the intent to intimidate or force the victim into giving up their belongings.", category: "Serious Felony", sentencingMonths: 40, fine: 8000 },
-                // Weapon Related Serious Felony
-                { section: "S.A.C. § 641", charge: "Possession of Government-Issued Equipment or Weapons", description: "Unauthorized possession of weapons, gear, or tools that are exclusive to law enforcement, military, or government agencies.", category: "Serious Felony", sentencingMonths: 40, fine: 6500 },
-                // Drug Related Serious Felony
-                { section: "S.A.C. § 841", charge: "Cultivation of Marijuana (B)", description: "Large-scale or commercial marijuana grow operation without authorization, often exceeding legal plant limits.", category: "Serious Felony", sentencingMonths: 40, fine: 6000 },
-                { section: "S.A.C. § 841", charge: "Possession of a Controlled Substance with Intent to Distribute", description: "Possessing large quantities of illegal drugs or paraphernalia clearly intended for sale or trafficking.", category: "Serious Felony", sentencingMonths: 45, fine: 7500 },
-                { section: "S.A.C. § 841", charge: "Drug Trafficking", description: "Transporting, distributing, or importing illegal narcotics on a regional or national level — high-scale operation.", category: "Serious Felony", sentencingMonths: 60, fine: 3000 },
-                { section: "S.A.C. § 3101", charge: "Possession of Cocaine", description: "The suspect was found in possession of processed cocaine, with no regard to intent. (5 or more bags)", category: "Serious Felony", sentencingMonths: 15, fine: 10000 },
-                { section: "S.A.C. § 3102", charge: "Possession of Cocaine (Large Quantity)", description: "The suspect was found in possession of a substantial quantity of processed cocaine. (50 or more bags)", category: "Serious Felony", sentencingMonths: 36, fine: 7500 },
-                { section: "S.A.C. § 3103", charge: "Possession with Intent to Distribute", description: "The suspect was found in possession of cocaine in a quantity indicative of distribution, during a known drug sale incident. (10 or more bags)", category: "Serious Felony", sentencingMonths: 30, fine: 6000 },
-                { section: "S.A.C. § 3104", charge: "Possession with Intent to Distribute (Large Quantity)", description: "The suspect was found with a significant quantity of cocaine during a drug sale incident, clearly intended for distribution. (50 or more bags)", category: "Serious Felony", sentencingMonths: 45, fine: 10000 },
-                { section: "S.A.C. § 3105", charge: "Manufacturing of Cocaine", description: "The suspect was actively producing cocaine in known manufacturing zones, such as Cuba, Madagascar, or Horseshoe Island.", category: "Serious Felony", sentencingMonths: 60, fine: 15000 },
-                { section: "S.A.C. § 3106", charge: "Possession of Cocaine Manufacturing Materials", description: "The suspect was found in possession of materials commonly used in the production of cocaine, in a context indicating potential manufacturing activity.", category: "Serious Felony", sentencingMonths: 20, fine: 4500 },
-                { section: "S.A.C. § 3107", charge: "Drug Trafficking – Cocaine", description: "The suspect was involved in the transportation or smuggling of large quantities of cocaine, typically via maritime or aerial routes. (100 or more bags)", category: "Serious Felony", sentencingMonths: 75, fine: 20000 },
+            const learnMoreButtons = document.querySelectorAll('.learn-more-btn');
+            const backToIntroButtons = document.querySelectorAll('.back-to-intro-btn');
+            const accordionToggles = document.querySelectorAll('.accordion-toggle');
 
-                // Misdemeanor Charges
-                { section: "S.A.C. § 113", charge: "Simple Assault", description: "The intentional or reckless act of causing minor physical harm or offensive contact to another person without the use of a deadly weapon. Typically involves pushing, slapping, or punching without serious injury.", category: "Misdemeanor", sentencingMonths: 25, fine: 1500 },
-                { section: "S.A.C. § 113", charge: "Assault", description: "The deliberate infliction or attempted infliction of physical harm on another person, resulting in moderate injuries. This may include repeated striking, the use of blunt objects, or actions that cause notable pain or distress.", category: "Misdemeanor", sentencingMonths: 25, fine: 5000 },
-                { section: "Varies by specific statute", charge: "Evading", description: "Willfully fleeing or attempting to flee from law enforcement officers during a lawful traffic stop or pursuit, whether on foot or in a vehicle.", category: "Misdemeanor", sentencingMonths: 25, fine: 4000 },
-                { section: "Varies by specific statute", charge: "Disobeying a Police Officer", description: "Refusing to comply with lawful verbal or physical commands given by a peace officer in the line of duty, excluding fleeing or resisting.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
-                { section: "Varies by specific statute", charge: "Harassment", description: "Repeated and unwanted behavior, verbal or physical, directed toward another person with the intent to intimidate, threaten, or provoke emotional distress. This may include stalking-like behavior or aggressive communication.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
-                { section: "Varies by specific statute", charge: "Prostitution", description: "Engaging in, offering, or soliciting sexual acts in exchange for money or goods. This includes acting as a buyer or seller in the transaction.", category: "Misdemeanor", sentencingMonths: 25, fine: 500 },
-                { section: "Varies by specific statute", charge: "Disorderly Conduct", description: "Disruptive, loud, or offensive behavior in public that disturbs the peace, causes alarm, or provokes others. Includes public intoxication, verbal altercations, or offensive gestures.", category: "Misdemeanor", sentencingMonths: 25, fine: 750 },
-                { section: "Varies by specific statute", charge: "Failure to Provide Identification", description: "Refusing to present valid identification to a law enforcement officer when legally required to do so, particularly during stops, detentions, or arrests.", category: "Misdemeanor", sentencingMonths: 25, fine: 800 },
-                { section: "Varies by specific statute", charge: "Resisting Arrest", description: "Actively opposing, obstructing, or interfering with a law enforcement officer’s attempt to detain or arrest, without fleeing. This may include physical struggle or verbal noncompliance.", category: "Misdemeanor", sentencingMonths: 25, fine: 1500 },
-                { section: "Varies by specific statute", charge: "Disturbing the Peace", description: "Engaging in actions that disrupt the normal operations of public spaces, such as shouting, fighting, or loud arguments in public settings like streets, businesses, or government areas.", category: "Misdemeanor", sentencingMonths: 25, fine: 500 },
-                { section: "Varies by specific statute", charge: "Criminal Trespassing", description: "Unlawfully entering or remaining on private or government property without permission. This includes entering posted or fenced-off areas.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
-                { section: "Varies by specific statute", charge: "Public Urination", description: "Urinating in a public place in view of others", category: "Misdemeanor", sentencingMonths: 15, fine: 3000 },
-                { section: "Varies by specific statute", charge: "Public Defecation", description: "Defecating in a public area in view of others", category: "Misdemeanor", sentencingMonths: 15, fine: 3000 },
-                { section: "Varies by specific statute", charge: "Attempted Grand Theft Auto", description: "Attempted Grand Theft Auto occurs when a person takes significant steps toward stealing a motor vehicle but does not succeed in completing the theft. It still requires intent to permanently deprive the owner and is usually charged as a felony, with penalties including potential jail time and fines.", category: "Misdemeanor", sentencingMonths: 15, fine: 2500 },
-                { section: "S.A.C. § 415", charge: "Vandalism", description: "Willful destruction or defacement of public or private property, including graffiti, tagging, or minor property damage not exceeding a significant dollar amount.", category: "Misdemeanor", sentencingMonths: 10, fine: 2500 },
-                // Weapon Related Misdemeanor
-                { section: "Varies by specific statute", charge: "Brandishing", description: "Displaying a firearm in a threatening, careless, or intimidating manner without justification.", category: "Misdemeanor", sentencingMonths: 20, fine: 3000 },
-                { section: "Varies by specific statute", charge: "  Illegal Discharge of a Firearm", description: "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.", category: "Misdemeanor", sentencingMonths: 20, fine: 3500 },
-                // Drug Related Misdemeanor
-                { section: "S.A.C. § 844", charge: "Misdemeanor Possession of Marijuana", description: "Possessing a small personal-use quantity of marijuana without proper licensing or in a restricted area.", category: "Misdemeanor", sentencingMonths: 10, fine: 1500 },
+            /**
+             * Displays a custom message modal to the user.
+             * @param {string} title - The title for the message modal.
+             * @param {string} message - The message content.
+             */
+            function showMessageModal(title, message) {
+                messageModalTitle.textContent = title;
+                messageModalBody.innerHTML = message; // Use innerHTML for rich text if needed, otherwise textContent
+                messageModal.style.display = 'flex';
+                // Focus the OK button for accessibility
+                okMessageModalBtn.focus();
+            }
 
-                // Weapon Related Felony (moved from previous general felony)
-                { section: "S.A.C. § 922(g)", charge: "Illegal Possession of a Firearm", description: "Possessing a firearm without the proper licensing, registration, or legal authorization.", category: "Felony", sentencingMonths: 25, fine: 4500 },
-                { section: "S.A.C. § 922", charge: "Possession of Illegal Weapon Attachments", description: "Possessing or modifying a firearm with attachments that are banned, such as suppressors, extended mags, or illegal scopes.", category: "Felony", sentencingMonths: 30, fine: 5000 },
-                { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 2)", description: "Possession of a restricted mid-grade weapon (e.g., SMGs or tactical rifles) without the appropriate license or role.", category: "Felony", sentencingMonths: 35, fine: 5500 },
-                { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 3)", description: "Possession of high-grade military or automatic weapons with no authorization — includes LMGs, RPGs, or explosives.", category: "Federal", sentencingMonths: 45, fine: 7500 }, // This was in weapon related felony but classified as Federal. Keeping it Federal as per data.
+            /**
+             * Hides the custom message modal.
+             */
+            function hideMessageModal() {
+                messageModal.style.display = 'none';
+            }
 
-                // Citations
-                { section: "N/A", charge: "Loitering on Government Property", description: "Remaining on or near government buildings, facilities, or restricted zones without a lawful purpose or after being asked to leave.", category: "Citation", sentencingMonths: 5, fine: 750 },
-                { section: "N/A", charge: "Jaywalking", description: "Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.", category: "Citation", sentencingMonths: 0, fine: 500 },
-            ];
+            /**
+             * Robust CSV parser that handles quoted fields, commas, and various line endings.
+             * @param {string} csvString - The raw CSV string.
+             * @returns {Array<Object>} An array of objects, where each object represents a row.
+             */
+            function parseCSV(csvString) {
+                const lines = csvString.split(/\r?\n/).filter(line => line.trim() !== ''); // Handle various line endings and empty lines
+                if (lines.length === 0) {
+                    console.warn("CSV data is empty or malformed.");
+                    return [];
+                }
 
+                // Regex to split by comma, ignoring commas inside double quotes
+                const csvSplitRegex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
 
+                // Parse headers, removing BOM if present and trimming whitespace
+                const headers = lines[0].split(csvSplitRegex).map(header => header.replace(/^\ufeff/, '').trim());
+                const data = [];
+
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(csvSplitRegex).map(value => value.trim().replace(/^"|"$/g, '')); // Remove surrounding quotes
+                    if (values.length !== headers.length) {
+                        console.warn(`Skipping malformed row ${i + 1}: Expected ${headers.length} columns, got ${values.length}.`);
+                        continue; // Skip malformed rows
+                    }
+
+                    const row = {};
+                    headers.forEach((header, index) => {
+                        let value = values[index];
+                        // Convert specific columns to numbers, defaulting to 0 or null if invalid
+                        if (header === "Sentencing (Months)") {
+                            row[header] = parseInt(value, 10) || 0; // Default to 0 if parsing fails
+                        } else if (header === "Fine ($)") {
+                            row[header] = parseFloat(value) || 0; // Default to 0 if parsing fails
+                        } else {
+                            row[header] = value;
+                        }
+                    });
+                    data.push(row);
+                }
+                return data;
+            }
+
+            /**
+             * Fetches and parses the penal codes CSV data.
+             */
+            async function fetchPenalCodes() {
+                try {
+                    const fileName = 'Elevate RP | San Andreas Penal Codes  - San Andreas Penal Codes.csv';
+                    const encodedFileName = encodeURIComponent(fileName);
+                    const response = await fetch(encodedFileName);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const csvText = await response.text();
+                    penalCodesData = parseCSV(csvText);
+                    console.log("Penal Codes Data Loaded:", penalCodesData);
+                } catch (error) {
+                    console.error("Error fetching penal codes:", error);
+                    // Fallback to a hardcoded minimal set or display an error message
+                    penalCodesData = [
+                        { "Section": "S.A.C. § 113", "Charge": "Simple Assault", "Description": "Intentional physical harm.", "Category": "Misdemeanor", "Sentencing (Months)": 25, "Fine ($)": 1500 },
+                        { "Section": "S.A.C. § 1001", "Charge": "False Reporting", "Description": "Providing false info to LEO.", "Category": "Felony", "Sentencing (Months)": 35, "Fine ($)": 2000 },
+                        { "Section": "S.A.C. § 1111", "Charge": "First Degree Murder", "Description": "Premeditated killing.", "Category": "Federal", "Sentencing (Months)": 60, "Fine ($)": 10000 },
+                        { "Section": "S.A.C. § 2241", "Charge": "Sexual Assault", "Description": "Non-consensual sexual contact.", "Category": "Federal", "Sentencing (Months)": 99999, "Fine ($)": 200000 },
+                        { "Section": "N/A", "Charge": "Jaywalking", "Description": "Crossing street unlawfully.", "Category": "Citation", "Sentencing (Months)": 0, "Fine ($)": 500 },
+                    ];
+                    showMessageModal("Error", "Could not load penal codes data. Using fallback data.");
+                }
+            }
+
+            /**
+             * Renders the penal codes into the table on the Sentencing Guidelines page.
+             */
+            function renderPenalCodesTable() {
+                const tableBody = document.getElementById('penalCodesTableBody');
+                if (!tableBody) return;
+
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                penalCodesData.forEach(charge => {
+                    const row = document.createElement('tr');
+                    row.classList.add('hover:bg-gray-50');
+
+                    // Helper to get safe value (handles potential missing fields)
+                    const getSafeValue = (key, defaultValue = 'N/A') => {
+                        const value = charge[key];
+                        return (value !== undefined && value !== null && String(value).trim() !== '') ? value : defaultValue;
+                    };
+
+                    const sentencingText = getSafeValue("Sentencing (Months)") === 99999 ? 'Life' : getSafeValue("Sentencing (Months)") + ' Months';
+                    const fineText = `$${getSafeValue("Fine ($)").toLocaleString()}`;
+
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${getSafeValue("Section")}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getSafeValue("Charge")}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${getSafeValue("Category")}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sentencingText}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${fineText}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${getSafeValue("Description")}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            /**
+             * Updates the main content area based on the given hash.
+             * Manages active navigation items and content sections.
+             * @param {string} hash - The URL hash (e.g., '#introduction').
+             */
             function updateContent(hash) {
                 const targetHash = hash || '#introduction'; // Default to introduction
                 
+                let isDetailPageActive = false; // Flag to track if a detail page is shown
+
+                // Hide all main content sections and remove active class from nav items
                 contentSections.forEach(section => {
-                    if ('#' + section.id === targetHash) {
-                        section.classList.add('active');
-                    } else {
-                        section.classList.remove('active');
-                    }
+                    section.classList.remove('active');
+                });
+                navItems.forEach(nav => {
+                    nav.classList.remove('active');
                 });
 
-                // For mobile, close sidebar after clicking a nav item
-                if (window.innerWidth < 768 && mobileSidebarContent.classList.contains('active')) { // Use mobileSidebarContent
+                // Check if the targetHash corresponds to a job detail page
+                if (targetHash.endsWith('-details')) {
+                    const detailId = targetHash.substring(1); // Remove '#'
+                    const detailSection = document.getElementById(detailId);
+                    if (detailSection) {
+                        detailSection.classList.add('active');
+                        isDetailPageActive = true;
+                    }
+                }
+
+                // If not a detail page, or if a detail page wasn't found, handle main sections
+                if (!isDetailPageActive) {
+                    contentSections.forEach(section => {
+                        if ('#' + section.id === targetHash) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+
+                    navItems.forEach(nav => {
+                        if (nav.getAttribute('href') === targetHash) {
+                            nav.classList.add('active');
+                        } else {
+                            nav.classList.remove('active');
+                        }
+                    });
+
+                    // Call functions to create charts when relevant section is active
+                    if (targetHash === '#dueprocess') {
+                        createLimitationsChart();
+                    } else if (targetHash === '#tools') {
+                        createExpungementChart();
+                    } else if (targetHash === '#sentencing-guidelines') {
+                        renderPenalCodesTable(); // Render the table when this section is active
+                    }
+                }
+
+                // For mobile, close sidebar after clicking a nav item (applies to both main nav and back button from detail)
+                if (window.innerWidth < 768 && mobileSidebarContent.classList.contains('active')) {
                     mobileSidebarContent.classList.remove('active');
                     mobileSidebarOverlay.classList.remove('active');
                 }
-
-                navItems.forEach(nav => {
-                    if (nav.getAttribute('href') === targetHash) {
-                        nav.classList.add('active');
-                    } else {
-                        nav.classList.remove('active');
-                    }
-                });
-
-                // Call functions to populate table and create charts when relevant section is active
-                if (targetHash === '#sentencing-guidelines') {
-                    populateSentencingTable();
-                    createMedianSentencingChart();
-                    createMedianFinesChart();
-                    document.getElementById('totalChargesCount').textContent = penalCodesData.length;
-                } else if (targetHash === '#dueprocess') {
-                    createLimitationsChart();
-                } else if (targetHash === '#tools') {
-                    createExpungementChart();
-                }
             }
             
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetHash = this.getAttribute('href');
-                    history.pushState(null, null, targetHash);
-                    updateContent(targetHash);
-                });
-            });
-
-            window.addEventListener('popstate', function() {
-                updateContent(window.location.hash);
-            });
-
-            // Mobile nav toggle functionality
-            mobileNavToggle.addEventListener('click', function() {
-                mobileSidebarContent.classList.toggle('active');
-                mobileSidebarOverlay.classList.toggle('active');
-            });
-
-            // Close sidebar when clicking outside (on overlay)
-            mobileSidebarOverlay.addEventListener('click', function() {
-                mobileSidebarContent.classList.remove('active');
-                mobileSidebarOverlay.classList.remove('active');
-            });
-
-            updateContent(window.location.hash);
-
-            // Chart.js Implementations
+            /**
+             * Creates the Statute of Limitations Chart.
+             */
             function createLimitationsChart() {
                 const ctx = document.getElementById('limitationsChart')?.getContext('2d');
                 if (!ctx) return;
-                // Destroy existing chart instance if it exists to prevent re-initialization issues
-                if (window.limitationsChartInstance) {
+                if (window.limitationsChartInstance) { // Destroy existing chart instance
                     window.limitationsChartInstance.destroy();
                 }
                 window.limitationsChartInstance = new Chart(ctx, {
@@ -1690,7 +1901,7 @@
                         labels: ['Criminal Charges Filing', 'Evidence Collection'],
                         datasets: [{
                             label: 'Time Limit (Days)',
-                            data: [15, 15], /* Updated to 15 days based on Elevate Legislation */
+                            data: [15, 15],
                             backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(239, 68, 68, 0.7)'],
                             borderColor: ['rgba(59, 130, 246, 1)', 'rgba(239, 68, 68, 1)'],
                             borderWidth: 1
@@ -1707,20 +1918,22 @@
                 });
             }
 
+            /**
+             * Creates the Expungement Fees Chart.
+             */
             function createExpungementChart() {
                 const ctx = document.getElementById('expungementChart')?.getContext('2d');
                 if (!ctx) return;
-                // Destroy existing chart instance if it exists
-                if (window.expungementChartInstance) {
+                if (window.expungementChartInstance) { // Destroy existing chart instance
                     window.expungementChartInstance.destroy();
                 }
                 window.expungementChartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Infraction', 'Misdemeanor', 'Felony'], /* Updated labels based on Elevate Legislation */
+                        labels: ['Infraction', 'Misdemeanor', 'Felony'],
                         datasets: [{
                             label: 'Fee ($)',
-                            data: [1500, 3000, 6000], /* Updated data based on Elevate Legislation */
+                            data: [1500, 3000, 6000],
                             backgroundColor: ['rgba(16, 185, 129, 0.7)', 'rgba(251, 191, 36, 0.7)', 'rgba(220, 38, 38, 0.7)'],
                             borderColor: ['rgba(16, 185, 129, 1)', 'rgba(251, 191, 36, 1)', 'rgba(220, 38, 38, 1)'],
                             borderWidth: 1
@@ -1737,187 +1950,22 @@
                 });
             }
 
-            // Function to calculate median
-            function calculateMedian(arr) {
-                if (arr.length === 0) return 0;
-                const sorted = Array.from(arr).sort((a, b) => a - b);
-                const middle = Math.floor(sorted.length / 2);
-                if (sorted.length % 2 === 0) {
-                    return (sorted[middle - 1] + sorted[middle]) / 2;
-                }
-                return sorted[middle];
-            }
-
-            // Group data by category and calculate medians
-            const categories = {};
-            penalCodesData.forEach(item => {
-                const category = item.category.trim(); // Trim whitespace
-                if (!categories[category]) {
-                    categories[category] = {
-                        sentencingMonths: [],
-                        fines: []
-                    };
-                }
-                // Exclude the outlier 99999 from median calculation
-                if (item.sentencingMonths !== 99999) {
-                    categories[category].sentencingMonths.push(item.sentencingMonths);
-                }
-                categories[category].fines.push(item.fine);
-            });
-
-            const medianSentencing = {};
-            const medianFines = {};
-            Object.keys(categories).forEach(category => {
-                medianSentencing[category] = calculateMedian(categories[category].sentencingMonths);
-                medianFines[category] = calculateMedian(categories[category].fines);
-            });
-
-            const chartLabels = Object.keys(medianSentencing);
-            const chartSentencingData = chartLabels.map(label => medianSentencing[label]);
-            const chartFinesData = chartLabels.map(label => medianFines[label]);
-
-
-            function createMedianSentencingChart() {
-                const ctx = document.getElementById('medianSentencingChart')?.getContext('2d');
-                if (!ctx) return;
-                if (window.medianSentencingChartInstance) {
-                    window.medianSentencingChartInstance.destroy();
-                }
-                window.medianSentencingChartInstance = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: chartLabels,
-                        datasets: [{
-                            label: 'Median Sentencing (Months)',
-                            data: chartSentencingData,
-                            backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: { beginAtZero: true, title: { display: true, text: 'Months' } }
-                        },
-                        plugins: { legend: { display: false } }
-                    }
-                });
-            }
-
-            function createMedianFinesChart() {
-                const ctx = document.getElementById('medianFinesChart')?.getContext('2d');
-                if (!ctx) return;
-                if (window.medianFinesChartInstance) {
-                    window.medianFinesChartInstance.destroy();
-                }
-                window.medianFinesChartInstance = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: chartLabels,
-                        datasets: [{
-                            label: 'Median Fine ($)',
-                            data: chartFinesData,
-                            backgroundColor: 'rgba(153, 102, 255, 0.7)',
-                            borderColor: 'rgba(153, 102, 255, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: { beginAtZero: true, title: { display: true, text: 'Fine ($)' } }
-                        },
-                        plugins: { legend: { display: false } }
-                    }
-                });
-            }
-
-            // Function to populate the sentencing table
-            function populateSentencingTable() {
-                const tableBody = document.getElementById('sentencingTableBody');
-                if (!tableBody) return;
-                tableBody.innerHTML = ''; // Clear existing content
-
-                penalCodesData.forEach(item => {
-                    const row = tableBody.insertRow();
-                    row.classList.add('border-b');
-                    row.innerHTML = `
-                        <td class="py-2 px-4 text-sm text-gray-700">${item.section || ''}</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">${item.charge || ''}</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">${item.description || ''}</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">${item.category || ''}</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">${item.sentencingMonths === 99999 ? 'Life' : item.sentencingMonths || ''}</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">$${item.fine?.toLocaleString() || ''}</td>
-                    `;
-                });
-            }
-
-
-            // Case Law Tabs
-            const caseTabs = document.querySelectorAll('.case-tab');
-            const caseContents = document.querySelectorAll('.case-content');
-            
-            caseTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const targetCase = this.dataset.case;
-
-                    caseTabs.forEach(t => {
-                        t.classList.remove('border-blue-500', 'text-blue-600');
-                        t.classList.add('text-gray-500');
-                    });
-                    this.classList.add('border-blue-500', 'text-blue-600');
-                    this.classList.remove('text-gray-500');
-
-                    caseContents.forEach(content => {
-                        if (content.id === 'case-' + targetCase) {
-                            content.classList.remove('hidden');
-                        } else {
-                            content.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-
-            // Accordion for Strategic Defense and Specific Legislation (Rewritten)
-            const accordionToggles = document.querySelectorAll('.accordion-toggle');
-            accordionToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const content = this.nextElementSibling; // This is the .accordion-content div
-                    const icon = this.querySelector('span:last-child');
-                    
-                    content.classList.toggle('expanded'); // Toggle the expanded class
-                    if (content.classList.contains('expanded')) {
-                        icon.style.transform = 'rotate(180deg)';
-                    } else {
-                        icon.style.transform = 'rotate(0deg)';
-                    }
-                });
-            });
-
-            // Logic for Charge Reduction Calculator
-            applyReductionBtn.addEventListener('click', calculateReduction);
-
-            // Function to calculate reduction
+            /**
+             * Calculates and displays the reduction for selected charges.
+             */
             function calculateReduction() {
                 let reductionPercentage = selectedReduction.value;
                 if (selectedReduction.type === 'custom') {
-                    reductionPercentage = parseFloat(customReductionInputModal.value);
+                    const customValue = parseFloat(customReductionInputModal.value);
+                    if (isNaN(customValue) || customValue < 0 || customValue > 100) {
+                        showMessageModal("Invalid Input", "Please enter a valid custom percentage between 0 and 100.");
+                        return;
+                    }
+                    reductionPercentage = customValue;
                 }
 
                 reductionResultsDiv.innerHTML = ''; // Clear previous results
                 totalResultsDiv.classList.add('hidden'); // Hide totals until calculated
-
-                if (isNaN(reductionPercentage) || reductionPercentage < 0 || reductionPercentage > 100) {
-                    reductionResultsDiv.innerHTML = `
-                        <div class="p-3 border border-red-200 rounded-md bg-red-50">
-                            <p class="font-semibold text-red-700">Please enter a valid reduction percentage between 0 and 100.</p>
-                        </div>
-                    `;
-                    return;
-                }
 
                 if (selectedCharges.length === 0) {
                     reductionResultsDiv.innerHTML = `
@@ -1935,20 +1983,20 @@
 
                 selectedCharges.forEach(selectedChargeName => {
                     const matchedCharge = penalCodesData.find(data =>
-                        data.charge.toLowerCase() === selectedChargeName.toLowerCase()
+                        data.Charge.toLowerCase() === selectedChargeName.toLowerCase()
                     );
 
                     if (matchedCharge) {
-                        const originalSentencing = matchedCharge.sentencingMonths;
-                        const originalFine = matchedCharge.fine;
-                        const sacCode = matchedCharge.section && matchedCharge.section !== 'N/A' ? matchedCharge.section : 'N/A';
+                        const originalSentencing = matchedCharge["Sentencing (Months)"];
+                        const originalFine = matchedCharge["Fine ($)"];
+                        const sacCode = matchedCharge.Section && matchedCharge.Section !== 'N/A' ? matchedCharge.Section : 'N/A';
 
                         let currentReducedSentencingText;
                         let currentReducedFineText;
                         let currentReducedSentencingValue = 0;
                         let currentReducedFineValue = 0;
 
-                        if (matchedCharge.charge === "Sexual Assault" || originalSentencing === 99999) {
+                        if (originalSentencing === 99999) { // Sentinel for 'Life'
                             currentReducedSentencingText = 'Life';
                             currentReducedFineText = `<span class="font-bold text-green-700">$${(originalFine * (1 - (reductionPercentage / 100))).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>`;
                             currentReducedFineValue = originalFine * (1 - (reductionPercentage / 100));
@@ -1965,7 +2013,7 @@
 
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
+                                <p class="font-semibold">${matchedCharge.Charge} (${sacCode})</p>
                                 <p>Original Sentencing: ${originalSentencing === 99999 ? 'Life' : originalSentencing + ' Months'}</p>
                                 <p>Reduced Sentencing (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
@@ -1973,8 +2021,9 @@
                             </div>
                         `;
                         if (currentReducedSentencingValue === 99999) {
+                            overallTotalSentencing = 'Life';
                             hasLifeSentence = true;
-                        } else {
+                        } else if (!hasLifeSentence) {
                             overallTotalSentencing += currentReducedSentencingValue;
                         }
                         overallTotalFine += currentReducedFineValue;
@@ -1982,7 +2031,7 @@
                     } else {
                         resultsHtml += `
                             <div class="p-3 border border-red-200 rounded-md bg-red-50">
-                                <p class="font-semibold text-red-700">Error: Charge "${selectedChargeName}" not found in data.</p>
+                                <p class="font-semibold text-red-700">Error: Charge "${selectedChargeName}" not found in data. Please refresh if you believe this is an error.</p>
                             </div>
                         `;
                     }
@@ -1990,7 +2039,7 @@
                 reductionResultsDiv.innerHTML = resultsHtml;
 
                 totalResultsDiv.classList.remove('hidden');
-                if (hasLifeSentence) {
+                if (overallTotalSentencing === 'Life') {
                     finalTotalSentencingSpan.textContent = 'Life';
                 } else {
                     finalTotalSentencingSpan.textContent = `${overallTotalSentencing.toFixed(0)} Months`;
@@ -1999,64 +2048,47 @@
             }
 
             // --- Charge Selection Modal Logic ---
-            let chargesInModal = []; // Temporary array to hold selections while modal is open
+            let chargesInModal = []; // Temporary array for selections while modal is open
 
-            chargeSelectionDisplay.addEventListener('click', openChargeSelectionModal);
-            closeChargeModalBtn.addEventListener('click', closeChargeSelectionModal);
-            chargeSelectionModal.addEventListener('click', (e) => {
-                if (e.target === chargeSelectionModal) { // Close when clicking outside content
-                    closeChargeSelectionModal();
-                }
-            });
-
-            chargeSearchInput.addEventListener('keyup', renderChargesListInModal);
-
-            clearAllChargesBtn.addEventListener('click', () => {
-                selectedCharges = []; // Clear main selection
-                chargesInModal = []; // Clear temporary selection
-                updateChargeSelectionDisplay();
-                renderChargesListInModal(); // Re-render modal list with all unchecked
-                // Also clear calculator results
-                reductionResultsDiv.innerHTML = `
-                    <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                        <p class="text-gray-600">Select charges and a reduction to see results.</p>
-                    </div>
-                `;
-                totalResultsDiv.classList.add('hidden');
-            });
-
-            applySelectedChargesBtn.addEventListener('click', () => {
-                selectedCharges = [...chargesInModal]; // Commit temporary selections to main
-                updateChargeSelectionDisplay();
-                closeChargeSelectionModal();
-            });
-
+            /**
+             * Opens the charge selection modal and populates it.
+             */
             function openChargeSelectionModal() {
                 chargesInModal = [...selectedCharges]; // Copy current selections to temporary
                 renderChargesListInModal(); // Render charges with current selections
-                chargeSelectionModal.style.display = 'flex'; // Show modal
+                chargeSelectionModal.style.display = 'flex';
                 chargeSearchInput.value = ''; // Clear search input
+                chargeSelectionDisplay.setAttribute('aria-expanded', 'true');
             }
 
+            /**
+             * Closes the charge selection modal.
+             */
             function closeChargeSelectionModal() {
-                chargeSelectionModal.style.display = 'none'; // Hide modal
+                chargeSelectionModal.style.display = 'none';
+                chargeSelectionDisplay.setAttribute('aria-expanded', 'false');
             }
 
+            /**
+             * Renders the list of charges within the selection modal, filtered by search term.
+             */
             function renderChargesListInModal() {
-                chargesListDiv.innerHTML = ''; // Clear previous list
+                chargesListDiv.innerHTML = '';
                 const searchTerm = chargeSearchInput.value.toLowerCase();
 
                 const filteredCharges = penalCodesData.filter(item => {
-                    const fullChargeName = (item.section && item.section !== 'N/A' ? `${item.section} - ` : '') + item.charge;
+                    const sectionPrefix = (item.Section && item.Section !== 'N/A') ? `${item.Section} - ` : '';
+                    const fullChargeName = `${sectionPrefix}${item.Charge}`;
                     return fullChargeName.toLowerCase().includes(searchTerm);
                 });
 
                 filteredCharges.forEach(item => {
-                    const fullChargeName = (item.section && item.section !== 'N/A' ? `${item.section} - ` : '') + item.charge;
+                    const sectionPrefix = (item.Section && item.Section !== 'N/A') ? `${item.Section} - ` : '';
+                    const fullChargeName = `${sectionPrefix}${item.Charge}`;
                     const listItem = document.createElement('label');
                     listItem.classList.add('charges-list-item');
 
-                    const categoryClass = item.category.toLowerCase().replace(/\s/g, '-');
+                    const categoryClass = item.Category.toLowerCase().replace(/\s/g, '-');
                     if (categoryClass.includes('felony') || categoryClass.includes('federal')) {
                         listItem.classList.add('charge-felony');
                     } else if (categoryClass.includes('misdemeanor')) {
@@ -2066,30 +2098,34 @@
                     }
 
                     listItem.innerHTML = `
-                        <input type="checkbox" value="${item.charge}" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                        <input type="checkbox" value="${item.Charge}" class="form-checkbox h-5 w-5 text-blue-600 rounded">
                         <span class="text-sm font-medium text-gray-900">${fullChargeName}</span>
                     `;
                     const checkbox = listItem.querySelector('input[type="checkbox"]');
-                    checkbox.checked = chargesInModal.includes(item.charge); // Set checked state based on chargesInModal
+                    checkbox.checked = chargesInModal.includes(item.Charge);
+                    checkbox.value = item.Charge; // Ensure value is the charge name
 
                     checkbox.addEventListener('change', (e) => {
                         if (e.target.checked) {
-                            if (!chargesInModal.includes(item.charge)) {
-                                chargesInModal.push(item.charge);
+                            if (!chargesInModal.includes(item.Charge)) {
+                                chargesInModal.push(item.Charge);
                             }
                         } else {
-                            chargesInModal = chargesInModal.filter(charge => charge !== item.charge);
+                            chargesInModal = chargesInModal.filter(charge => charge !== item.Charge);
                         }
                     });
                     chargesListDiv.appendChild(listItem);
                 });
             }
 
+            /**
+             * Updates the display of selected charges in the calculator section.
+             */
             function updateChargeSelectionDisplay() {
                 const displaySpan = chargeSelectionDisplay.querySelector('span');
                 if (selectedCharges.length === 0) {
                     displaySpan.textContent = 'No charges selected';
-                } else if (selectedCharges.length <= 3) { // Display up to 3 names
+                } else if (selectedCharges.length <= 3) {
                     displaySpan.textContent = selectedCharges.join(', ');
                 } else {
                     displaySpan.textContent = `${selectedCharges.length} charges selected`;
@@ -2099,47 +2135,9 @@
             // --- Reduction Selection Modal Logic ---
             let tempReductionSelection = { ...selectedReduction }; // Temporary variable for modal
 
-            reductionSelectionDisplay.addEventListener('click', openReductionSelectionModal);
-            closeReductionModalBtn.addEventListener('click', closeReductionSelectionModal);
-            reductionSelectionModal.addEventListener('click', (e) => {
-                if (e.target === reductionSelectionModal) {
-                    closeReductionSelectionModal();
-                }
-            });
-
-            // Event listener for radio buttons in the modal
-            reductionOptionsList.addEventListener('change', (e) => {
-                if (e.target.name === 'reductionOption') {
-                    tempReductionSelection.type = 'standard';
-                    tempReductionSelection.value = parseFloat(e.target.value);
-                    if (e.target.value === 'custom') {
-                        tempReductionSelection.type = 'custom';
-                        customReductionInputModalDiv.classList.remove('hidden');
-                        customReductionInputModal.focus();
-                    } else {
-                        customReductionInputModalDiv.classList.add('hidden');
-                    }
-                }
-            });
-
-            applySelectedReductionBtn.addEventListener('click', () => {
-                if (tempReductionSelection.type === 'custom') {
-                    const customValue = parseFloat(customReductionInputModal.value);
-                    if (isNaN(customValue) || customValue < 0 || customValue > 100) {
-                        // Keep modal open and show error (or handle visually in UI)
-                        alert("Please enter a valid custom percentage between 0 and 100."); // Using alert for simplicity, replace with custom modal
-                        return;
-                    }
-                    selectedReduction.value = customValue;
-                    selectedReduction.type = 'custom';
-                } else {
-                    selectedReduction.value = tempReductionSelection.value;
-                    selectedReduction.type = 'standard';
-                }
-                updateReductionSelectionDisplay();
-                closeReductionSelectionModal();
-            });
-
+            /**
+             * Opens the reduction selection modal.
+             */
             function openReductionSelectionModal() {
                 tempReductionSelection = { ...selectedReduction }; // Sync temporary with current global selection
 
@@ -2170,12 +2168,20 @@
                 }
 
                 reductionSelectionModal.style.display = 'flex';
+                reductionSelectionDisplay.setAttribute('aria-expanded', 'true');
             }
 
+            /**
+             * Closes the reduction selection modal.
+             */
             function closeReductionSelectionModal() {
                 reductionSelectionModal.style.display = 'none';
+                reductionSelectionDisplay.setAttribute('aria-expanded', 'false');
             }
 
+            /**
+             * Updates the display of the selected reduction percentage in the calculator section.
+             */
             function updateReductionSelectionDisplay() {
                 const displaySpan = reductionSelectionDisplay.querySelector('span');
                 if (selectedReduction.type === 'custom') {
@@ -2188,51 +2194,219 @@
                 }
             }
 
-            // Initial display updates on load
-            updateChargeSelectionDisplay();
-            updateReductionSelectionDisplay();
+            /**
+             * Sets up all event listeners for navigation, modals, and calculator.
+             */
+            function initEventListeners() {
+                navItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetHash = this.getAttribute('href');
+                        history.pushState(null, null, targetHash);
+                        updateContent(targetHash);
+                    });
+                });
 
-            // Use MutationObserver to initialize charts and tables only when their section becomes visible
-            const generalObserver = new MutationObserver((mutations) => {
-                for (let mutation of mutations) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                        const targetElement = mutation.target;
-                        if (targetElement.classList.contains('active')) {
-                           if (targetElement.id === 'dueprocess') {
-                                createLimitationsChart();
-                           } else if (targetElement.id === 'tools') {
-                                createExpungementChart();
-                           } else if (targetElement.id === 'sentencing-guidelines') {
-                                populateSentencingTable();
-                                createMedianSentencingChart();
-                                createMedianFinesChart();
-                                document.getElementById('totalChargesCount').textContent = penalCodesData.length;
-                           }
+                window.addEventListener('popstate', function() {
+                    updateContent(window.location.hash);
+                });
+
+                // Mobile nav toggle functionality
+                mobileNavToggle.addEventListener('click', function() {
+                    mobileSidebarContent.classList.toggle('active');
+                    mobileSidebarOverlay.classList.toggle('active');
+                });
+
+                // Close sidebar when clicking outside (on overlay)
+                mobileSidebarOverlay.addEventListener('click', function() {
+                    mobileSidebarContent.classList.remove('active');
+                    mobileSidebarOverlay.classList.remove('active');
+                });
+
+                // Handle "Learn More" buttons for job positions
+                learnMoreButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const positionId = this.dataset.position + '-details';
+                        history.pushState(null, null, '#' + positionId);
+                        updateContent('#' + positionId);
+                    });
+                });
+
+                // Handle "Back to Introduction" buttons on job detail pages
+                backToIntroButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        history.pushState(null, null, '#introduction');
+                        updateContent('#introduction');
+                    });
+                });
+
+                // Accordion functionality for collapsible sections
+                accordionToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function() {
+                        const content = this.nextElementSibling;
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                        if (content.classList.contains('expanded')) {
+                            content.classList.remove('expanded');
+                            this.setAttribute('aria-expanded', 'false');
+                            this.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                        } else {
+                            // Close other open accordions in the same section for cleaner UI
+                            accordionToggles.forEach(otherToggle => {
+                                if (otherToggle !== this) {
+                                    otherToggle.nextElementSibling.classList.remove('expanded');
+                                    otherToggle.setAttribute('aria-expanded', 'false');
+                                    otherToggle.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                                }
+                            });
+                            content.classList.add('expanded');
+                            this.setAttribute('aria-expanded', 'true');
+                            this.querySelector('span:last-child').style.transform = 'rotate(180deg)';
+                        }
+                    });
+                });
+
+                // Case law tabs functionality
+                const caseTabs = document.querySelectorAll('.case-tab');
+                const caseContents = document.querySelectorAll('.case-content');
+
+                caseTabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        // Remove active state from all tabs and hide all content
+                        caseTabs.forEach(t => {
+                            t.classList.remove('border-b-2', 'border-blue-500', 'text-blue-600');
+                            t.classList.add('text-gray-500');
+                        });
+                        caseContents.forEach(c => c.classList.add('hidden'));
+
+                        // Add active state to clicked tab
+                        this.classList.add('border-b-2', 'border-blue-500', 'text-blue-600');
+                        this.classList.remove('text-gray-500');
+
+                        // Show corresponding content
+                        const targetId = this.dataset.case;
+                        document.getElementById('case-' + targetId).classList.remove('hidden');
+                    });
+                });
+
+                // Calculator event listeners
+                applyReductionBtn.addEventListener('click', calculateReduction);
+                chargeSelectionDisplay.addEventListener('click', openChargeSelectionModal);
+                closeChargeModalBtn.addEventListener('click', closeChargeSelectionModal);
+                chargeSelectionModal.addEventListener('click', (e) => {
+                    if (e.target === chargeSelectionModal) { closeChargeSelectionModal(); }
+                });
+                chargeSearchInput.addEventListener('keyup', renderChargesListInModal);
+                clearAllChargesBtn.addEventListener('click', () => {
+                    selectedCharges = [];
+                    chargesInModal = [];
+                    updateChargeSelectionDisplay();
+                    renderChargesListInModal();
+                    // Clear calculator results on clear
+                    reductionResultsDiv.innerHTML = `<div class="p-3 border border-blue-200 rounded-md bg-blue-50"><p class="text-gray-600">Select charges and a reduction to see results.</p></div>`;
+                    totalResultsDiv.classList.add('hidden');
+                });
+                applySelectedChargesBtn.addEventListener('click', () => {
+                    selectedCharges = [...chargesInModal];
+                    updateChargeSelectionDisplay();
+                    closeChargeSelectionModal();
+                });
+
+                reductionSelectionDisplay.addEventListener('click', openReductionSelectionModal);
+                closeReductionModalBtn.addEventListener('click', closeReductionSelectionModal);
+                reductionSelectionModal.addEventListener('click', (e) => {
+                    if (e.target === reductionSelectionModal) { closeReductionSelectionModal(); }
+                });
+                reductionOptionsList.addEventListener('change', (e) => {
+                    if (e.target.name === 'reductionOption') {
+                        tempReductionSelection.type = 'standard';
+                        tempReductionSelection.value = parseFloat(e.target.value);
+                        if (e.target.value === 'custom') {
+                            tempReductionSelection.type = 'custom';
+                            customReductionInputModalDiv.classList.remove('hidden');
+                            customReductionInputModal.focus();
+                        } else {
+                            customReductionInputModalDiv.classList.add('hidden');
                         }
                     }
-                }
-            });
+                });
+                applySelectedReductionBtn.addEventListener('click', () => {
+                    if (tempReductionSelection.type === 'custom') {
+                        const customValue = parseFloat(customReductionInputModal.value);
+                        if (isNaN(customValue) || customValue < 0 || customValue > 100) {
+                            showMessageModal("Invalid Input", "Please enter a valid custom percentage between 0 and 100.");
+                            return;
+                        }
+                        selectedReduction.value = customValue;
+                        selectedReduction.type = 'custom';
+                    } else {
+                        selectedReduction.value = tempReductionSelection.value;
+                        selectedReduction.type = 'standard';
+                    }
+                    updateReductionSelectionDisplay();
+                    closeReductionSelectionModal();
+                });
 
-            contentSections.forEach(section => {
-                generalObserver.observe(section, { attributes: true });
-            });
-
-            // Initial calls for currently active section on page load
-            if (document.querySelector('#introduction').classList.contains('active')) {
-                // No charts for introduction
-            } else if (document.querySelector('#charge-calculator').classList.contains('active')) {
-                // No charts for calculator section directly, but it's the default when opened
-            } else if (document.querySelector('#dueprocess').classList.contains('active')) {
-                createLimitationsChart();
-            } else if (document.querySelector('#tools').classList.contains('active')) {
-                createExpungementChart();
-            } else if (document.querySelector('#sentencing-guidelines').classList.contains('active')) {
-                populateSentencingTable();
-                createMedianSentencingChart();
-                createMedianFinesChart();
-                document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+                // Message modal buttons
+                closeMessageModalBtn.addEventListener('click', hideMessageModal);
+                okMessageModalBtn.addEventListener('click', hideMessageModal);
+                messageModal.addEventListener('click', (e) => {
+                    if (e.target === messageModal) { hideMessageModal(); }
+                });
             }
-        });
+
+            /**
+             * Initializes the application: fetches data, sets up event listeners, and displays initial content.
+             */
+            async function initializeApp() {
+                await fetchPenalCodes();
+                initEventListeners();
+                updateContent(window.location.hash); // Initial content load
+                updateChargeSelectionDisplay(); // Initial display for calculator
+                updateReductionSelectionDisplay(); // Initial display for calculator
+
+                // Use MutationObserver to initialize charts and table only when their section becomes visible
+                const generalObserver = new MutationObserver((mutations) => {
+                    for (let mutation of mutations) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            const targetElement = mutation.target;
+                            if (targetElement.classList.contains('active')) {
+                                if (targetElement.id === 'dueprocess') {
+                                    createLimitationsChart();
+                                } else if (targetElement.id === 'tools') {
+                                    createExpungementChart();
+                                } else if (targetElement.id === 'sentencing-guidelines') {
+                                    renderPenalCodesTable();
+                                }
+                            }
+                        }
+                    }
+                });
+
+                contentSections.forEach(section => {
+                    generalObserver.observe(section, { attributes: true });
+                });
+
+                // Initialize accordion states
+                accordionToggles.forEach(toggle => {
+                    const content = toggle.nextElementSibling;
+                    // Check if accordion is expanded by default (e.g. if the markup had 'expanded' class initially)
+                    if (content.classList.contains('expanded')) {
+                        toggle.setAttribute('aria-expanded', 'true');
+                        toggle.querySelector('span:last-child').style.transform = 'rotate(180deg)';
+                    } else {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        toggle.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+
+            // Start the application when the DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', initializeApp);
+
+        })(); // End of IIFE
     </script>
 </body>
 </html>
