@@ -1722,17 +1722,44 @@
              * Fetches and parses the penal codes JSON data.
              */
             async function fetchPenalCodes() {
+                const localFileName = 'Criminal Charges JSON Data.txt';
+                const githubRawUrl = 'https://raw.githubusercontent.com/Tony-Dunkle/DOJ-Training/5a299a41214e534d457734926deaed9c294eae9f/Criminal%20Charges%20JSON%20Data.txt';
+
+                let fetchedData = null;
+                let errorMessage = '';
+
+                // Try fetching from local file first
                 try {
-                    const fileName = 'Criminal Charges JSON Data; // Set file location for JSON
-                    const encodedFileName = encodeURIComponent(fileName);
-                    const response = await fetch(encodedFileName);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                    const localResponse = await fetch(encodeURIComponent(localFileName));
+                    if (localResponse.ok) {
+                        fetchedData = await localResponse.json();
+                        console.log("Penal Codes Data loaded from local file.");
+                    } else {
+                        throw new Error(`Local file HTTP error! status: ${localResponse.status}`);
                     }
-                    const jsonData = await response.json();
+                } catch (localError) {
+                    console.warn("Failed to load penal codes from local file:", localError);
+                    errorMessage += `Failed to load from local file: ${localError.message}. `;
                     
+                    // Fallback to GitHub URL if local fails
+                    try {
+                        const githubResponse = await fetch(githubRawUrl);
+                        if (githubResponse.ok) {
+                            fetchedData = await githubResponse.json();
+                            console.log("Penal Codes Data loaded from GitHub fallback URL.");
+                            errorMessage = ''; // Clear previous error if successful
+                        } else {
+                            throw new Error(`GitHub fallback HTTP error! status: ${githubResponse.status}`);
+                        }
+                    } catch (githubError) {
+                        console.error("Failed to load penal codes from GitHub fallback URL:", githubError);
+                        errorMessage += `Failed to load from GitHub: ${githubError.message}. Falling back to default data.`;
+                    }
+                }
+
+                if (fetchedData) {
                     // Process JSON data: convert Prison Time and Fine to numbers
-                    penalCodesData = jsonData.map(charge => {
+                    penalCodesData = fetchedData.map(charge => {
                         // Safely parse "Prison Time", handle nulls and non-numeric values
                         let prisonTime = parseInt(charge["Prison Time"]);
                         if (isNaN(prisonTime)) {
@@ -1752,10 +1779,9 @@
                             "Fine": fine
                         };
                     });
-                    console.log("Penal Codes Data Loaded:", penalCodesData);
-                } catch (error) {
-                    console.error("Error fetching penal codes:", error);
-                    // Fallback to a hardcoded minimal set or display an error message
+                    console.log("Processed Penal Codes Data:", penalCodesData);
+                } else {
+                    // If both fetches fail, use hardcoded minimal set
                     penalCodesData = [
                         { "Code": "S.A.C. § 113", "Charge": "Simple Assault", "Description": "Intentional physical harm.", "Category": "Misdemeanor", "Prison Time": 25, "Fine": 1500 },
                         { "Code": "S.A.C. § 1001", "Charge": "False Reporting", "Description": "Providing false info to LEO.", "Category": "Felony", "Prison Time": 35, "Fine": 2000 },
@@ -1763,7 +1789,11 @@
                         { "Code": "S.A.C. § 2241-A", "Charge": "Sexual Assault (Non-Penetrative)", "Description": "Non-consensual sexual contact including touching or coercion.", "Category": "Federal", "Prison Time": 999999, "Fine": 200000 },
                         { "Code": null, "Charge": "Jaywalking", "Description": "Crossing street unlawfully.", "Category": "Citation", "Prison Time": 0, "Fine": 500 },
                     ];
-                    showMessageModal("Error", "Could not load penal codes data. Using fallback data. Ensure 'Criminal Charges JSON Data.txt' is correctly formatted JSON.");
+                    if (errorMessage) {
+                        showMessageModal("Data Load Error", errorMessage);
+                    } else {
+                        showMessageModal("Data Load Error", "Could not load penal codes data from any source. Using fallback data.");
+                    }
                 }
             }
 
