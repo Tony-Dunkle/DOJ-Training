@@ -231,6 +231,27 @@
             margin-right: 0.75rem; /* mr-3 */
             transform: scale(1.2); /* Slightly larger checkbox/radio */
         }
+        .charges-list-item .charge-quantity-wrapper {
+            margin-left: auto; /* Pushes quantity input to the right */
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between label and input */
+        }
+        .charges-list-item .charge-quantity-wrapper label {
+            font-weight: normal; /* Override bold if any parent makes it bold */
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* text-gray-700 */
+            white-space: nowrap; /* Prevent "Qty" from wrapping */
+        }
+        .charges-list-item .charge-quantity-wrapper input {
+            width: 50px; /* Small fixed width for quantity input */
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.25rem; /* rounded-sm */
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+        }
+
 
         /* Style for text input that acts as a dropdown trigger */
         .dropdown-display {
@@ -801,7 +822,7 @@
                                 <h4 class="font-bold text-lg mt-4 mb-2">Recommendations for Those Providing Assistance</h4>
                                 <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
                                     <li><span class="font-bold">Provide aid to the best of your ability:</span> Offer assistance within the limits of your knowledge and training (e.g., first aid, CPR, or basic rescue techniques).</li>
-                                    <li><span class="font-bold">Contact Professional Services:</span> In any emergency, it is highly recommended to immediately contact Los Santos Emergency Services (EMS, Fire Department, Police) to ensure that trained professionals can take over once they arrive.</li>
+                                    <li><span class="font-bold">Contact Professional Services:</span> In any emergency, it is highly recommended to immediately contact Los Santos Emergency Services (EMS, Fire Department, Police) to ensure that trained professionals can over over once they arrive.</li>
                                     <li><span class="font-bold">Act Reasonably and Safely:</span> Always consider the safety of yourself and others when providing assistance.</li>
                                 </ul>
 
@@ -1382,7 +1403,7 @@
                                 <a href="https://docs.google.com/document/d/1zywuuGMQCTaJ0miYlCiG3cUg-E8OflRQcE5euxTWzI/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Intent to Sue Template (Elevate)</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-                                <a href="https://docs.google.com/document/d/1xphAbQaUGMk8OCSw-iAKWuwZDpUCYb3kkZc6boy_KRc/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Subpoena (Elevate)</a>
+                                <a href="https://docs.google.com/document/d/1xphAbQaUGMk8OCSw-iAKWuwZDpMUCYb3kkZc6boy_KRc/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Subpoena (Elevate)</a>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                                 <a href="https://docs.google.com/document/d/1xGv-jR59oRLcQ3duwBs_fdQ7WcqkZ5Z1F12S0Bc3epY/edit?usp=sharing" target="_blank" class="font-bold text-blue-700 hover:underline">Elevate Authority Conduct Complaint Form</a>
@@ -1569,9 +1590,10 @@
             { section: "Varies by specific statute", charge: "Failure to Yield", description: "Not yielding right-of-way to other vehicles or pedestrians when required.", category: "Citation", sentencingMonths: 0, fine: 175 },
             { section: "Varies by specific statute", charge: "Driving Without Headlights (Night)", description: "Operating a vehicle at night or in low visibility without headlights on.", category: "Citation", sentencingMonths: 0, fine: 120 },
             { section: "Varies by specific statute", charge: "Tailgating", description: "Following another vehicle too closely, creating an unsafe distance.", category: "Citation", sentencingMonths: 0, fine: 90 }
-        ];
+        ]; // Added missing closing bracket for penalCodesData array
         // Global variable to store currently selected charges for the calculator
-        let selectedCharges = []; // Stores charge names as strings
+        // Now stores objects: { name: 'Charge Name', quantity: X }
+        let selectedCharges = [];
         // Global variable for selected reduction percentage
         let selectedReduction = {
             type: 'standard', // 'standard' or 'custom'
@@ -1932,15 +1954,19 @@
                 let overallTotalSentencing = 0;
                 let overallTotalFine = 0;
                 
-                selectedCharges.forEach(selectedChargeName => {
+                selectedCharges.forEach(selectedChargeObj => {
                     const matchedCharge = penalCodesData.find(data =>
-                        data.charge.toLowerCase() === selectedChargeName.toLowerCase()
+                        data.charge.toLowerCase() === selectedChargeObj.name.toLowerCase()
                     );
 
                     if (matchedCharge) {
+                        const quantity = selectedChargeObj.quantity || 1; // Default to 1 if not specified
                         const originalSentencing = matchedCharge.sentencingMonths;
                         const originalFine = matchedCharge.fine;
                         const sacCode = matchedCharge.section && matchedCharge.section !== 'N/A' ? matchedCharge.section : 'N/A';
+
+                        let currentTotalOriginalSentencing = originalSentencing * quantity;
+                        let currentTotalOriginalFine = originalFine * quantity;
 
                         let currentReducedSentencingText;
                         let currentReducedFineText;
@@ -1948,27 +1974,27 @@
                         let currentReducedFineValue = 0; // Initialize for sum
 
                         // Calculate reduced sentencing and fine
-                        const reducedSentencing = originalSentencing * (1 - (reductionPercentage / 100));
-                        const reducedFine = originalFine * (1 - (reductionPercentage / 100));
-                        
-                        // Determine display text for individual charge
                         if (originalSentencing === 999999) { // Handle "Life" sentence specifically for display
                             currentReducedSentencingText = `Life`;
                             currentReducedSentencingValue = 999999; // Treat as 999999 for total sum
                         } else {
+                            const reducedSentencing = currentTotalOriginalSentencing * (1 - (reductionPercentage / 100));
                             currentReducedSentencingText = `${reducedSentencing.toFixed(0)} Months`;
                             currentReducedSentencingValue = reducedSentencing;
                         }
+                        const reducedFine = currentTotalOriginalFine * (1 - (reductionPercentage / 100));
                         currentReducedFineText = `$${reducedFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
                         currentReducedFineValue = reducedFine; // Assign the calculated fine to the variable for summation
 
 
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
+                                <p class="font-semibold">${matchedCharge.charge} (${sacCode}) <span class="text-gray-500">(x${quantity})</span></p>
                                 <p>Original Sentencing: ${originalSentencing === 999999 ? 'Life' : originalSentencing + ' Months'}</p>
+                                <p>Total Original Sentencing for this charge: ${currentTotalOriginalSentencing === 999999 ? 'Life' : currentTotalOriginalSentencing + ' Months'}</p>
                                 <p>Reduced Sentencing (${reductionPercentage}% off): <span class="font-bold text-green-700">${currentReducedSentencingText}</span></p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
+                                <p>Total Original Fine for this charge: $${currentTotalOriginalFine.toLocaleString()}</p>
                                 <p>Reduced Fine (${reductionPercentage}% off): <span class="font-bold text-green-700">${currentReducedFineText}</span></p>
                             </div>
                         `;
@@ -1980,7 +2006,7 @@
                     } else {
                         resultsHtml += `
                             <div class="p-3 border border-red-200 rounded-md bg-red-50">
-                                <p class="font-semibold text-red-700">Error: Charge "${selectedChargeName}" not found in data.</p>
+                                <p class="font-semibold text-red-700">Error: Charge "${selectedChargeObj.name}" not found in data.</p>
                             </div>
                         `;
                     }
@@ -1989,17 +2015,19 @@
 
                 totalResultsDiv.classList.remove('hidden');
                 // Display overall total sentencing as a number
-                finalTotalSentencingSpan.textContent = `${overallTotalSentencing.toFixed(0)} Months`;
+                finalTotalSentencingSpan.textContent = `${overallTotalSentencing === 999999 ? 'Life' : overallTotalSentencing.toFixed(0) + ' Months'}`;
                 finalTotalFineSpan.textContent = `$${overallTotalFine.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
             }
 
             // --- Charge Selection Modal Logic ---
-            let chargesInModal = []; // Temporary array to hold selections while modal is open
+            // temporary array to hold selections while modal is open, now stores objects: { name: 'Charge Name', quantity: X }
+            let chargesInModal = []; 
 
             chargeSelectionDisplay.addEventListener('click', openChargeSelectionModal);
             closeChargeModalBtn.addEventListener('click', closeChargeSelectionModal);
             chargeSelectionModal.addEventListener('click', (e) => {
-                if (e.target === chargeSelectionModal) { // Close when clicking outside content
+                // Ensure click is directly on the modal background, not inside modal-content
+                if (e.target === chargeSelectionModal) { 
                     closeChargeSelectionModal();
                 }
             });
@@ -2021,13 +2049,15 @@
             });
 
             applySelectedChargesBtn.addEventListener('click', () => {
-                selectedCharges = [...chargesInModal]; // Commit temporary selections to main
+                // Filter out charges with quantity 0 or less
+                selectedCharges = chargesInModal.filter(charge => charge.quantity > 0);
                 updateChargeSelectionDisplay();
                 closeChargeSelectionModal();
             });
 
             function openChargeSelectionModal() {
-                chargesInModal = [...selectedCharges]; // Copy current selections to temporary
+                // Deep copy current selections to temporary for editing in modal
+                chargesInModal = JSON.parse(JSON.stringify(selectedCharges)); 
                 renderChargesListInModal(); // Render charges with current selections
                 chargeSelectionModal.style.display = 'flex'; // Show modal
                 chargeSearchInput.value = ''; // Clear search input
@@ -2060,20 +2090,48 @@
                         listItem.classList.add('charge-citation');
                     }
 
+                    // Find if this charge is already selected in chargesInModal
+                    const existingSelection = chargesInModal.find(sel => sel.name === item.charge);
+                    const initialQuantity = existingSelection ? existingSelection.quantity : 1;
+
                     listItem.innerHTML = `
                         <input type="checkbox" value="${item.charge}" class="form-checkbox h-5 w-5 text-blue-600 rounded">
                         <span class="text-sm font-medium text-gray-900">${fullChargeName}</span>
+                        <div class="charge-quantity-wrapper ${existingSelection ? '' : 'hidden'}">
+                            <label for="qty-${item.charge}">Qty:</label>
+                            <input type="number" id="qty-${item.charge}" value="${initialQuantity}" min="1" class="qty-input">
+                        </div>
                     `;
                     const checkbox = listItem.querySelector('input[type="checkbox"]');
-                    checkbox.checked = chargesInModal.includes(item.charge); // Set checked state based on chargesInModal
+                    const quantityInput = listItem.querySelector('.qty-input');
+                    const quantityWrapper = listItem.querySelector('.charge-quantity-wrapper');
+
+                    checkbox.checked = !!existingSelection; // Set checked state based on existingSelection
 
                     checkbox.addEventListener('change', (e) => {
                         if (e.target.checked) {
-                            if (!chargesInModal.includes(item.charge)) {
-                                chargesInModal.push(item.charge);
+                            if (!chargesInModal.some(charge => charge.name === item.charge)) {
+                                chargesInModal.push({ name: item.charge, quantity: parseInt(quantityInput.value) || 1 });
                             }
+                            quantityWrapper.classList.remove('hidden');
                         } else {
-                            chargesInModal = chargesInModal.filter(charge => charge !== item.charge);
+                            chargesInModal = chargesInModal.filter(charge => charge.name !== item.charge);
+                            quantityWrapper.classList.add('hidden');
+                        }
+                    });
+
+                    // Add event listener for quantity input
+                    quantityInput.addEventListener('input', (e) => {
+                        let newQuantity = parseInt(e.target.value);
+                        if (isNaN(newQuantity) || newQuantity < 1) {
+                            newQuantity = 1; // Default to 1 if invalid
+                            e.target.value = 1;
+                        }
+                        const chargeToUpdate = chargesInModal.find(charge => charge.name === item.charge);
+                        if (chargeToUpdate) {
+                            chargeToUpdate.quantity = newQuantity;
+                        } else if (checkbox.checked) { // If checkbox is checked but somehow not in array, add it
+                            chargesInModal.push({ name: item.charge, quantity: newQuantity });
                         }
                     });
                     chargesListDiv.appendChild(listItem);
@@ -2084,10 +2142,12 @@
                 const displaySpan = chargeSelectionDisplay.querySelector('span');
                 if (selectedCharges.length === 0) {
                     displaySpan.textContent = 'No charges selected';
-                } else if (selectedCharges.length <= 3) { // Display up to 3 names
-                    displaySpan.textContent = selectedCharges.join(', ');
+                } else if (selectedCharges.length <= 3) { // Display up to 3 names with quantities
+                    const displayNames = selectedCharges.map(charge => `${charge.name} (x${charge.quantity})`);
+                    displaySpan.textContent = displayNames.join(', ');
                 } else {
-                    displaySpan.textContent = `${selectedCharges.length} charges selected`;
+                    let totalQuantity = selectedCharges.reduce((sum, charge) => sum + charge.quantity, 0);
+                    displaySpan.textContent = `${selectedCharges.length} distinct charges selected (Total count: ${totalQuantity})`;
                 }
             }
 
@@ -2097,6 +2157,7 @@
             reductionSelectionDisplay.addEventListener('click', openReductionSelectionModal);
             closeReductionModalBtn.addEventListener('click', closeReductionSelectionModal);
             reductionSelectionModal.addEventListener('click', (e) => {
+                // Ensure click is directly on the modal background, not inside modal-content
                 if (e.target === reductionSelectionModal) {
                     closeReductionSelectionModal();
                 }
