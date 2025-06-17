@@ -30,7 +30,7 @@
             padding: 0;
             font-family: 'Inter', sans-serif;
             /* Global box-sizing for consistent layout calculations */
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
         *, *::before, *::after {
             box-sizing: inherit; /* Inherit box-sizing for all elements */
@@ -1439,31 +1439,33 @@
 
     <script>
         // Global variable to store penal codes data
-        // Data is now directly embedded instead of loaded from a CSV
         let penalCodesData = [
-            { section: "S.A.C. § 1111", charge: "First Degree Murder", description: "A person who aids or abets in the commission of first-degree murder without directly committing the act of killing. (flatbacking)", category: "Federal", sentencingMonths: 60, fine: 10000 },
-            { section: "S.A.C. § 1114", charge: "Murder of a Public Servant or Peace Officer", description: "The intentional killing of a public servant or peace officer while they are performing their official duties, typically resulting in more severe penalties. (flatbacking)", category: "Federal", sentencingMonths: 80, fine: 15000 },
-            { section: "S.A.C. § 1114", charge: "Attempted Murder of a Public Servant or Peace Officer", description: "The act of attempting to unlawfully kill a public servant or peace officer, where the attempt is unsuccessful, but the intent to kill is clear.", category: "Federal", sentencingMonths: 60, fine: 10000 },
-            { section: "S.A.C. § 1595", charge: "Human Trafficking", description: "The illegal trade or exploitation of people through force, fraud, or coercion for purposes such as labor, sexual exploitation, or other forms of abuse.", category: "Federal", sentencingMonths: 40, fine: 12500 },
-            { section: "S.A.C. § 31", charge: "Plane Heist", description: "A robbery or theft involving an aircraft, where the criminals hijack the plane or steal cargo or passengers, typically involving violence or the threat of violence.", category: "Federal", sentencingMonths: 30, fine: 6000 },
-            { section: "S.A.C. § 2113", charge: "Big Bank Heist", description: "A robbery of a larger financial institution, often planned with the intent to steal large sums of money, typically involving advanced methods of theft and potentially violence.", category: "Federal", sentencingMonths: 90, fine: 25000 },
-            { section: "S.A.C. § 401", charge: "Contempt of Court Order", description: "Willfully violating a specific court-issued order, such as a restraining order, subpoena, or injunction.", category: "Federal", sentencingMonths: 15, fine: 2500 },
-            { section: "S.A.C. § 1621", charge: "Perjury", description: "Knowingly lying under oath during a court proceeding, investigation, or deposition.", category: "Federal", sentencingMonths: 30, fine: 5000 },
-            { section: "S.A.C. § 401", charge: "Contempt of Court (General)", description: "Disruptive or disrespectful behavior toward a judge or court that interferes with judicial proceedings.", category: "Federal", sentencingMonths: 10, fine: 2000 },
-            { section: "S.A.C. § 401", charge: "Aggravated Contempt", description: "Severe or repeated contempt of court, including threats, physical disruptions, or defiance of multiple orders.", category: "Federal", sentencingMonths: 35, fine: 6000 },
-            { section: "S.A.C. § 2332b", charge: "Terrorism", description: "Use or threat of violence against civilians or government institutions to intimidate or coerce for political, religious, or ideological goals.", category: "Federal", sentencingMonths: 70, fine: 10000 },
-            { section: "S.A.C. § 1503", charge: "Obstruction of Justice (Federal Charge)", description: "Interfering with federal investigations, court processes, or law enforcement actions, including destroying evidence or influencing witnesses.", category: "Federal", sentencingMonths: 25, fine: 2000 },
-            { section: "S.A.C. § 201", charge: "Government Corruption", description: "Misuse of public office for personal gain, including bribery, embezzlement, or unlawful influence over government contracts or services.", category: "Federal", sentencingMonths: 100, fine: 15000 },
-            { section: "S.A.C. § 912", charge: "Impersonating a Judge", description: "Falsely presenting oneself as a judicial officer, including issuing false rulings or orders.", category: "Federal", sentencingMonths: 40, fine: 7500 },
-            { section: "S.A.C. § 912", charge: "Impersonating a Government Official", description: "Claiming to be a federal or state official for influence, manipulation, or access to restricted areas.", category: "Federal", sentencingMonths: 30, fine: 6000 },
-            { section: "S.A.C. § 2241", charge: "Sexual Harassment", description: "Unwanted sexual advances, verbal or physical conduct of a sexual nature, especially in public or professional spaces.", category: "Federal", sentencingMonths: 25, fine: 4000 },
-            { section: "S.A.C. § 2241", charge: "Sexual Assault", description: "Non-consensual physical sexual contact, including groping or coerced touching, without penetration.", category: "Federal", sentencingMonths: 99999, fine: 200000 }, // NOTE: 99999 is an outlier, handled in median calculation
-            { section: "S.A.C. § 641", charge: "Theft of Government Property", description: "Unlawfully taking, possessing, or damaging property owned by a government agency or public institution. Includes vehicles, weapons, equipment, or funds.", category: "Federal", sentencingMonths: 30, fine: 5500 },
-            { section: "S.A.C. § 1512", charge: "Coercion", description: "Forcing someone to act against their will through threats, intimidation, blackmail, or manipulation, especially for unlawful gain or influence.", category: "Federal", sentencingMonths: 30, fine: 5500 },
-            { section: "S.A.C. § 201", charge: "Malfeasance in Office", description: "Misconduct or wrongdoing by a public official.", category: "Federal", sentencingMonths: 65, fine: 50000 },
-            { section: "S.A.C. 1504", charge: "Racketeer Influenced and Corrupt Organizations (RICO) Act", description: "Any person who is associated with an enterprise engaged in a pattern of racketeering activity—such as extortion, drug trafficking, illegal gambling, murder for hire, fraud, or other specified felonies—and who knowingly participates in or benefits from such activity, may be charged under the San Andreas RICO statute.", category: "Federal", sentencingMonths: 120, fine: 60000 },
-            
-            // Felony Charges
+            { section: "§ 1111", charge: "First Degree Murder", description: "Knowingly and willfully causing the death of another with premeditation, or aiding and abetting in such a murder. (Flatbacking applicable)", category: "Federal", sentencingMonths: 70, fine: 25000 },
+            { section: "§ 1111-A", charge: "Association: First Degree Murder", description: "Criminal association or aiding in a murder plot or execution.", category: "Federal", sentencingMonths: 35, fine: 12500 },
+            { section: "§ 1114", charge: "Murder of a Public Servant or Peace Officer", description: "Intentional killing of a government official during lawful duties.", category: "Federal", sentencingMonths: 70, fine: 30000 },
+            { section: "§ 1114-A", charge: "Attempted Murder of a Public Servant", description: "Attempt to kill a public servant with clear intent, act incomplete.", category: "Federal", sentencingMonths: 60, fine: 20000 },
+            { section: "§ 1114-B", charge: "Association: Attempted Murder of a Public Servant", description: "Accomplice in an attempted murder of a public servant.", category: "Federal", sentencingMonths: 30, fine: 10000 },
+            { section: "§ 1595", charge: "Human Trafficking", description: "Coerced exploitation of individuals for labor or sexual acts.", category: "Federal", sentencingMonths: 60, fine: 25000 },
+            { section: "§ 2332b", charge: "Terrorism", description: "Acts or threats of violence meant to intimidate or influence government or civilians.", category: "Federal", sentencingMonths: 120, fine: 60000 },
+            { section: "§ 1504", charge: "RICO Act", description: "Engagement in or benefiting from an organized pattern of felony crimes.", category: "Federal", sentencingMonths: 70, fine: 25000 },
+            { section: "§ 1504-A", charge: "Association: RICO Activity", description: "Criminally associated with an enterprise engaged in racketeering.", category: "Federal", sentencingMonths: 35, fine: 12500 },
+            { section: "§ 31", charge: "Plane Heist", description: "Theft or hijacking of an aircraft or cargo through force or threat.", category: "Federal", sentencingMonths: 65, fine: 50000 },
+            { section: "§ 2113", charge: "Major Bank Robbery", description: "Armed or violent robbery of a financial institution.", category: "Federal", sentencingMonths: 70, fine: 30000 },
+            { section: "§ 2113-A", charge: "Association: Major Robbery", description: "Acting in concert with others to plan or execute a major robbery.", category: "Federal", sentencingMonths: 35, fine: 15000 },
+            { section: "§ 401", charge: "Contempt of Court (General)", description: "Disruption or disrespect interfering with court operations.", category: "Federal", sentencingMonths: 15, fine: 2500 },
+            { section: "§ 401-A", charge: "Contempt of Court Order", description: "Defying a specific, active court order or ruling.", category: "Federal", sentencingMonths: 30, fine: 5000 },
+            { section: "§ 401-B", charge: "Aggravated Contempt", description: "Repeated violations or threats against the judiciary.", category: "Federal", sentencingMonths: 35, fine: 6000 },
+            { section: "§ 1503", charge: "Obstruction of Justice", description: "Tampering with evidence, interfering with investigations or proceedings.", category: "Federal", sentencingMonths: 40, fine: 7500 },
+            { section: "§ 912-A", charge: "Impersonating a Judge", description: "Falsely acting as a judicial officer to issue rulings or orders.", category: "Federal", sentencingMonths: 30, fine: 6000 },
+            { section: "§ 912-B", charge: "Impersonating a Government Official", description: "Pretending to be a public official for influence or access.", category: "Federal", sentencingMonths: 25, fine: 4000 },
+            { section: "§ 201", charge: "Government Corruption / Malfeasance", description: "Misusing public office for personal gain or engaging in misconduct.", category: "Federal", sentencingMonths: 60, fine: 25000 },
+            { section: "§ 2241", charge: "Sexual Harassment", description: "Unwanted verbal or physical conduct of a sexual nature.", category: "Federal", sentencingMonths: 30, fine: 5500 },
+            { section: "§ 2241-A", charge: "Sexual Assault (Non-Penetrative)", description: "Non-consensual sexual contact including touching or coercion.", category: "Federal", sentencingMonths: 999999, fine: 200000 },
+            { section: "§ 641", charge: "Theft of Government Property", description: "Unauthorized possession or destruction of government-owned property.", category: "Federal", sentencingMonths: 25, fine: 2000 },
+            { section: "§ 1512", charge: "Coercion", description: "Forcing another to act unlawfully or against their will using threats.", category: "Federal", sentencingMonths: 30, fine: 6000 },
+            { section: "§ 1919", charge: "Anarchism", description: "Inciting or organizing unlawful attempts to undermine lawful governance.", category: "Federal", sentencingMonths: 25, fine: 25000 },
+            // Misdemeanor and Citation categories are not provided in the new data, keeping original
+            // Placeholder for other felony/misdemeanor/citation charges
             { section: "S.A.C. § 1001", charge: "False Reporting", description: "Knowingly providing false information to law enforcement or emergency services.", category: "Felony", sentencingMonths: 35, fine: 2000 },
             { section: "S.A.C. § 1501", charge: "Obstruction of a Public Official", description: "Interfering with a public official in the lawful execution of their duties.", category: "Felony", sentencingMonths: 25, fine: 5000 },
             { section: "S.A.C. § 2101", charge: "Inciting a Riot", description: "Encouraging or participating in behavior that leads to public unrest or violence.", category: "Felony", sentencingMonths: 25, fine: 2500 },
@@ -1476,7 +1478,7 @@
             { section: "S.A.C. § 1201", charge: "Kidnapping", description: "Unlawfully restraining or transporting a person against their will.", category: "Felony", sentencingMonths: 30, fine: 5000 },
             { section: "Varies by specific statute", charge: "Trespassing with Intent to Commit a Crime", description: "Entering property unlawfully with criminal intent.", category: "Felony", sentencingMonths: 40, fine: 2500 },
             { section: "S.A.C. § 912", charge: "Impersonation", description: "Pretending to be another person for the purpose of deception.", category: "Felony", sentencingMonths: 20, fine: 2500 },
-            { section: "S.A.C. § 1341", charge: "  Fraud", description: "Intentional deception to secure unlawful gain, often financial.", category: "Felony", sentencingMonths: 15, fine: 2500 },
+            { section: "S.A.C. § 1341", charge: "Fraud", description: "Intentional deception to secure unlawful gain, often financial.", category: "Felony", sentencingMonths: 15, fine: 2500 },
             { section: "S.A.C. § 113", charge: "Aggravated Assault", description: "Assault with a deadly weapon or causing serious bodily harm.", category: "Felony", sentencingMonths: 50, fine: 6000 },
             { section: "S.A.C. § 371", charge: "Conspiracy", description: "Agreement between two or more people to commit a criminal act.", category: "Felony", sentencingMonths: 35, fine: 4000 },
             { section: "S.A.C. § 912", charge: "Impersonating a Police Officer", description: "Falsely presenting oneself as a law enforcement officer.", category: "Felony", sentencingMonths: 40, fine: 10000 },
@@ -1490,7 +1492,7 @@
             { section: "S.A.C. § 3", charge: "Accessory to First Degree Murder", description: "Aiding in a premeditated, intentional killing.", category: "Felony", sentencingMonths: 45, fine: 7000 },
             { section: "S.A.C. § 2118", charge: "Warehouse Heist", description: "Organized robbery of a warehouse, typically targeting high-value goods.", category: "Felony", sentencingMonths: 75, fine: 25000 },
             { section: "S.A.C. § 2113", charge: "Store Robbery", description: "Using threat or force to steal from a commercial business.", category: "Felony", sentencingMonths: 60, fine: 15000 },
-            { section: "Varies by specific statute", charge: "Harassment", description: "Repeated, intentional behavior meant to alarm, annoy, torment, or terrorize another individual. This can include verbal abuse, threats, or physical gestures that cause emotional distress or fear.", category: "Felony", sentencingMonths: 15, fine: 2500 },
+            { section: "Varies by specific statute", charge: "Harassment (Felony)", description: "Repeated, intentional behavior meant to alarm, annoy, torment, or terrorize another individual. This can include verbal abuse, threats, or physical gestures that cause emotional distress or fear, elevated to felony due to severity or persistence.", category: "Felony", sentencingMonths: 15, fine: 2500 },
             { section: "S.A.C. § 1113", charge: "Attempted Second Degree Murder", description: "A deliberate act intended to kill another person without premeditation or planning, where the attempt fails or the victim survives. This reflects serious intent and high risk to human life.", category: "Felony", sentencingMonths: 50, fine: 5000 },
             { section: "S.A.C. § 2315", charge: "Possession of Stolen Property", description: "Holding or concealing property known to be stolen", category: "Felony", sentencingMonths: 25, fine: 3500 },
             { section: "S.A.C. § 2313", charge: "Possession of a Stolen Vehicle", description: "Operating or possessing a vehicle known to be stolen", category: "Felony", sentencingMonths: 30, fine: 5000 },
@@ -1516,16 +1518,15 @@
             { section: "S.A.C. § 751", charge: "Failure to Comply", description: "Felony Failure to Comply occurs when an individual knowingly disregards a lawful order from law enforcement, such as fleeing from a police stop or resisting arrest in a dangerous manner. It is typically charged as a felony, carrying penalties of 1 to 5 years in prison, significant fines, and possible driver's license suspension.", category: "Felony", sentencingMonths: 15, fine: 2500 },
             { section: "S.A.C. § 416", charge: "Felony Destruction of Property", description: "Intentional or reckless destruction of property valued over a designated threshold (typically $5,000 or more), including use of tools, fire, or repeated offenses.", category: "Felony", sentencingMonths: 30, fine: 10000 },
             { section: "S.AC. § 601", charge: "Arson", description: "The intentional setting of fire to property, vehicles, buildings, or land with malicious intent. Includes attempts.", category: "Felony", sentencingMonths: 35, fine: 15000 },
-
-            // Serious Felony Charges
+            { section: "S.A.C. § 922(g)", charge: "Illegal Possession of a Firearm", description: "Possessing a firearm without the proper licensing, registration, or legal authorization.", category: "Felony", sentencingMonths: 25, fine: 4500 },
+            { section: "S.A.C. § 922", charge: "Possession of Illegal Weapon Attachments", description: "Possessing or modifying a firearm with attachments that are banned, such as suppressors, extended mags, or illegal scopes.", category: "Felony", sentencingMonths: 30, fine: 5000 },
+            { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 2)", description: "Possession of a restricted mid-grade weapon (e.g., SMGs or tactical rifles) without the appropriate license or role.", category: "Felony", sentencingMonths: 35, fine: 5500 },
             { section: "S.A.C. § 1113", charge: "Attempted Murder of a Civilian", description: "The act of trying to unlawfully kill another person without legal justification, where the victim is a civilian, and the attempt was unsuccessful.", category: "Serious Felony", sentencingMonths: 45, fine: 8000 },
             { section: "S.A.C. § 1111", charge: "Second Degree Murder", description: "The intentional killing of a person without premeditation, often committed impulsively or in the heat of the moment, but with the knowledge that the act could cause death or harm.", category: "Serious Felony", sentencingMonths: 55, fine: 8500 },
             { section: "S.A.C. § 3", charge: "Accessory to the Murder of a Public Servant or Officer", description: "A person who assists or helps plan the murder of a public servant or officer but does not directly commit the killing.", category: "Serious Felony", sentencingMonths: 40, fine: 6500 },
             { section: "S.A.C. § 2113", charge: "Fleeca Bank Heist", description: "A criminal act where individuals rob a Fleeca Bank branch, typically involving armed robbery and the use of force to steal money or valuables.", category: "Serious Felony", sentencingMonths: 40, fine: 10000 },
             { section: "S.A.C. § 2113", charge: "Armed Robbery", description: "The act of stealing property from another person using or threatening to use a weapon, with the intent to intimidate or force the victim into giving up their belongings.", category: "Serious Felony", sentencingMonths: 40, fine: 8000 },
-            // Weapon Related Serious Felony
             { section: "S.A.C. § 641", charge: "Possession of Government-Issued Equipment or Weapons", description: "Unauthorized possession of weapons, gear, or tools that are exclusive to law enforcement, military, or government agencies.", category: "Serious Felony", sentencingMonths: 40, fine: 6500 },
-            // Drug Related Serious Felony
             { section: "S.A.C. § 841", charge: "Cultivation of Marijuana (B)", description: "Large-scale or commercial marijuana grow operation without authorization, often exceeding legal plant limits.", category: "Serious Felony", sentencingMonths: 40, fine: 6000 },
             { section: "S.A.C. § 841", charge: "Possession of a Controlled Substance with Intent to Distribute", description: "Possessing large quantities of illegal drugs or paraphernalia clearly intended for sale or trafficking.", category: "Serious Felony", sentencingMonths: 45, fine: 7500 },
             { section: "S.A.C. § 841", charge: "Drug Trafficking", description: "Transporting, distributing, or importing illegal narcotics on a regional or national level — high-scale operation.", category: "Serious Felony", sentencingMonths: 60, fine: 3000 },
@@ -1536,13 +1537,13 @@
             { section: "S.A.C. § 3105", charge: "Manufacturing of Cocaine", description: "The suspect was actively producing cocaine in known manufacturing zones, such as Cuba, Madagascar, or Horseshoe Island.", category: "Serious Felony", sentencingMonths: 60, fine: 15000 },
             { section: "S.A.C. § 3106", charge: "Possession of Cocaine Manufacturing Materials", description: "The suspect was found in possession of materials commonly used in the production of cocaine, in a context indicating potential manufacturing activity.", category: "Serious Felony", sentencingMonths: 20, fine: 4500 },
             { section: "S.A.C. § 3107", charge: "Drug Trafficking – Cocaine", description: "The suspect was involved in the transportation or smuggling of large quantities of cocaine, typically via maritime or aerial routes. (100 or more bags)", category: "Serious Felony", sentencingMonths: 75, fine: 20000 },
-
+            { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 3)", description: "Possession of high-grade military or automatic weapons with no authorization — includes LMGs, RPGs, or explosives.", category: "Serious Felony", sentencingMonths: 45, fine: 7500 },
             // Misdemeanor Charges
             { section: "S.A.C. § 113", charge: "Simple Assault", description: "The intentional or reckless act of causing minor physical harm or offensive contact to another person without the use of a deadly weapon. Typically involves pushing, slapping, or punching without serious injury.", category: "Misdemeanor", sentencingMonths: 25, fine: 1500 },
-            { section: "S.A.C. § 113", charge: "Assault", description: "The deliberate infliction or attempted infliction of physical harm on another person, resulting in moderate injuries. This may include repeated striking, the use of blunt objects, or actions that cause notable pain or distress.", category: "Misdemeanor", sentencingMonths: 25, fine: 5000 },
+            { section: "S.A.C. § 113", charge: "Assault (Misdemeanor)", description: "The deliberate infliction or attempted infliction of physical harm on another person, resulting in moderate injuries. This may include repeated striking, the use of blunt objects, or actions that cause notable pain or distress.", category: "Misdemeanor", sentencingMonths: 25, fine: 5000 },
             { section: "Varies by specific statute", charge: "Evading", description: "Willfully fleeing or attempting to flee from law enforcement officers during a lawful traffic stop or pursuit, whether on foot or in a vehicle.", category: "Misdemeanor", sentencingMonths: 25, fine: 4000 },
             { section: "Varies by specific statute", charge: "Disobeying a Police Officer", description: "Refusing to comply with lawful verbal or physical commands given by a peace officer in the line of duty, excluding fleeing or resisting.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
-            { section: "Varies by specific statute", charge: "Harassment", description: "Repeated and unwanted behavior, verbal or physical, directed toward another person with the intent to intimidate, threaten, or provoke emotional distress. This may include stalking-like behavior or aggressive communication.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
+            { section: "Varies by specific statute", charge: "Harassment (Misdemeanor)", description: "Repeated and unwanted behavior, verbal or physical, directed toward another person with the intent to intimidate, threaten, or provoke emotional distress. This may include stalking-like behavior or aggressive communication.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
             { section: "Varies by specific statute", charge: "Prostitution", description: "Engaging in, offering, or soliciting sexual acts in exchange for money or goods. This includes acting as a buyer or seller in the transaction.", category: "Misdemeanor", sentencingMonths: 25, fine: 500 },
             { section: "Varies by specific statute", charge: "Disorderly Conduct", description: "Disruptive, loud, or offensive behavior in public that disturbs the peace, causes alarm, or provokes others. Includes public intoxication, verbal altercations, or offensive gestures.", category: "Misdemeanor", sentencingMonths: 25, fine: 750 },
             { section: "Varies by specific statute", charge: "Failure to Provide Identification", description: "Refusing to present valid identification to a law enforcement officer when legally required to do so, particularly during stops, detentions, or arrests.", category: "Misdemeanor", sentencingMonths: 25, fine: 800 },
@@ -1551,23 +1552,23 @@
             { section: "Varies by specific statute", charge: "Criminal Trespassing", description: "Unlawfully entering or remaining on private or government property without permission. This includes entering posted or fenced-off areas.", category: "Misdemeanor", sentencingMonths: 25, fine: 1000 },
             { section: "Varies by specific statute", charge: "Public Urination", description: "Urinating in a public place in view of others", category: "Misdemeanor", sentencingMonths: 15, fine: 3000 },
             { section: "Varies by specific statute", charge: "Public Defecation", description: "Defecating in a public area in view of others", category: "Misdemeanor", sentencingMonths: 15, fine: 3000 },
-            { section: "Varies by specific statute", charge: "Attempted Grand Theft Auto", description: "Attempted Grand Theft Auto occurs when a person takes significant steps toward stealing a motor vehicle but does not succeed in completing the theft. It still requires intent to permanently deprive the owner and is usually charged as a felony, with penalties including potential jail time and fines.", category: "Misdemeanor", sentencingMonths: 15, fine: 2500 },
+            { section: "Varies by specific statute", charge: "Attempted Grand Theft Auto (Misdemeanor)", description: "Attempted Grand Theft Auto occurs when a person takes significant steps toward stealing a motor vehicle but does not succeed in completing the theft. This could be a misdemeanor if the vehicle value is low or the attempt is minor.", category: "Misdemeanor", sentencingMonths: 15, fine: 2500 },
             { section: "S.A.C. § 415", charge: "Vandalism", description: "Willful destruction or defacement of public or private property, including graffiti, tagging, or minor property damage not exceeding a significant dollar amount.", category: "Misdemeanor", sentencingMonths: 10, fine: 2500 },
-            // Weapon Related Misdemeanor
             { section: "Varies by specific statute", charge: "Brandishing", description: "Displaying a firearm in a threatening, careless, or intimidating manner without justification.", category: "Misdemeanor", sentencingMonths: 20, fine: 3000 },
-            { section: "Varies by specific statute", charge: "  Illegal Discharge of a Firearm", description: "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.", category: "Misdemeanor", sentencingMonths: 20, fine: 3500 },
-            // Drug Related Misdemeanor
+            { section: "Varies by specific statute", charge: "Illegal Discharge of a Firearm", description: "Firing a weapon in public or unauthorized areas without lawful cause, not aimed to harm but still dangerous.", category: "Misdemeanor", sentencingMonths: 20, fine: 3500 },
             { section: "S.A.C. § 844", charge: "Misdemeanor Possession of Marijuana", description: "Possessing a small personal-use quantity of marijuana without proper licensing or in a restricted area.", category: "Misdemeanor", sentencingMonths: 10, fine: 1500 },
-
-            // Weapon Related Felony (moved from previous general felony)
-            { section: "S.A.C. § 922(g)", charge: "Illegal Possession of a Firearm", description: "Possessing a firearm without the proper licensing, registration, or legal authorization.", category: "Felony", sentencingMonths: 25, fine: 4500 },
-            { section: "S.A.C. § 922", charge: "Possession of Illegal Weapon Attachments", description: "Possessing or modifying a firearm with attachments that are banned, such as suppressors, extended mags, or illegal scopes.", category: "Felony", sentencingMonths: 30, fine: 5000 },
-            { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 2)", description: "Possession of a restricted mid-grade weapon (e.g., SMGs or tactical rifles) without the appropriate license or role.", category: "Felony", sentencingMonths: 35, fine: 5500 },
-            { section: "Varies by specific statute", charge: "Illegal Possession of a Weapon (Class 3)", description: "Possession of high-grade military or automatic weapons with no authorization — includes LMGs, RPGs, or explosives.", category: "Federal", sentencingMonths: 45, fine: 7500 }, // This was in weapon related felony but classified as Federal. Keeping it Federal as per data.
-
             // Citations
             { section: "N/A", charge: "Loitering on Government Property", description: "Remaining on or near government buildings, facilities, or restricted zones without a lawful purpose or after being asked to leave.", category: "Citation", sentencingMonths: 5, fine: 750 },
             { section: "N/A", charge: "Jaywalking", description: "Crossing a street outside of a designated crosswalk or against a traffic signal, creating a public safety concern.", category: "Citation", sentencingMonths: 0, fine: 500 },
+            { section: "Varies by specific statute", charge: "Speeding (Minor)", description: "Driving moderately above the posted speed limit, typically 1-15 mph over.", category: "Citation", sentencingMonths: 0, fine: 250 },
+            { section: "Varies by specific statute", charge: "Parking Violation", description: "Illegally parking in a restricted area, blocking a driveway, or exceeding time limits.", category: "Citation", sentencingMonths: 0, fine: 100 },
+            { section: "Varies by specific statute", charge: "Failure to Signal", description: "Not using a turn signal when changing lanes or turning.", category: "Citation", sentencingMonths: 0, fine: 75 },
+            { section: "Varies by specific statute", charge: "Expired Registration/License Plates", description: "Operating a vehicle with expired registration or license plates.", category: "Citation", sentencingMonths: 0, fine: 150 },
+            { section: "Varies by specific statute", charge: "Littering (Minor)", description: "Discarding small waste in a public area.", category: "Citation", sentencingMonths: 0, fine: 200 },
+            { section: "Varies by specific statute", charge: "Pedestrian Interference", description: "Obstructing pedestrian traffic or pathways.", category: "Citation", sentencingMonths: 0, fine: 50 },
+            { section: "Varies by specific statute", charge: "Failure to Yield", description: "Not yielding right-of-way to other vehicles or pedestrians when required.", category: "Citation", sentencingMonths: 0, fine: 175 },
+            { section: "Varies by specific statute", charge: "Driving Without Headlights (Night)", description: "Operating a vehicle at night or in low visibility without headlights on.", category: "Citation", sentencingMonths: 0, fine: 120 },
+            { section: "Varies by specific statute", charge: "Tailgating", description: "Following another vehicle too closely, creating an unsafe distance.", category: "Citation", sentencingMonths: 0, fine: 90 }
         ];
         // Global variable to store currently selected charges for the calculator
         let selectedCharges = []; // Stores charge names as strings
@@ -1756,8 +1757,8 @@
                         fines: []
                     };
                 }
-                // Exclude the outlier 99999 from median calculation
-                if (item.sentencingMonths !== 99999) {
+                // Exclude the outlier 999999 from median calculation
+                if (item.sentencingMonths !== 999999) {
                     categories[category].sentencingMonths.push(item.sentencingMonths);
                 }
                 categories[category].fines.push(item.fine);
@@ -1847,7 +1848,7 @@
                         <td class="py-2 px-4 text-sm text-gray-700">${item.charge || ''}</td>
                         <td class="py-2 px-4 text-sm text-gray-700">${item.description || ''}</td>
                         <td class="py-2 px-4 text-sm text-gray-700">${item.category || ''}</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">${item.sentencingMonths === 99999 ? 'Life' : item.sentencingMonths || ''}</td>
+                        <td class="py-2 px-4 text-sm text-gray-700">${item.sentencingMonths === 999999 ? 'Life' : item.sentencingMonths || ''}</td>
                         <td class="py-2 px-4 text-sm text-gray-700">$${item.fine?.toLocaleString() || ''}</td>
                     `;
                 });
@@ -1950,9 +1951,9 @@
                         const reducedFine = originalFine * (1 - (reductionPercentage / 100));
                         
                         // Determine display text for individual charge
-                        if (originalSentencing === 99999) { // Handle "Life" sentence specifically for display
+                        if (originalSentencing === 999999) { // Handle "Life" sentence specifically for display
                             currentReducedSentencingText = `Life`;
-                            currentReducedSentencingValue = 99999; // Treat as 99999 for total sum
+                            currentReducedSentencingValue = 999999; // Treat as 999999 for total sum
                         } else {
                             currentReducedSentencingText = `${reducedSentencing.toFixed(0)} Months`;
                             currentReducedSentencingValue = reducedSentencing;
@@ -1964,7 +1965,7 @@
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
                                 <p class="font-semibold">${matchedCharge.charge} (${sacCode})</p>
-                                <p>Original Sentencing: ${originalSentencing === 99999 ? 'Life' : originalSentencing + ' Months'}</p>
+                                <p>Original Sentencing: ${originalSentencing === 999999 ? 'Life' : originalSentencing + ' Months'}</p>
                                 <p>Reduced Sentencing (${reductionPercentage}% off): <span class="font-bold text-green-700">${currentReducedSentencingText}</span></p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
                                 <p>Reduced Fine (${reductionPercentage}% off): <span class="font-bold text-green-700">${currentReducedFineText}</span></p>
@@ -2050,7 +2051,7 @@
                     listItem.classList.add('charges-list-item');
 
                     const categoryClass = item.category.toLowerCase().replace(/\s/g, '-');
-                    if (categoryClass.includes('felony') || categoryClass.includes('federal')) {
+                    if (categoryClass.includes('felony') || categoryClass.includes('federal') || categoryClass.includes('serious-felony')) {
                         listItem.classList.add('charge-felony');
                     } else if (categoryClass.includes('misdemeanor')) {
                         listItem.classList.add('charge-misdemeanor');
