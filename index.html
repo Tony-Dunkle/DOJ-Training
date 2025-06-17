@@ -524,7 +524,7 @@
                                 </label>
                                 <div id="chargeSelectionDisplay" class="dropdown-display">
                                     <span>No charges selected</span>
-                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    <svg class="w-5 h-5 text-gray-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
                             </div>
                             <div class="mb-4">
@@ -1716,10 +1716,11 @@
                 window.expungementChartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Infraction', 'Misdemeanor', 'Felony'], /* Updated labels based on Elevate Legislation */
+                        // Updated labels to reflect the categories in penalCodesData more accurately
+                        labels: ['Citation', 'Misdemeanor', 'Felony/Federal'],
                         datasets: [{
                             label: 'Fee ($)',
-                            data: [1500, 3000, 6000], /* Updated data based on Elevate Legislation */
+                            data: [1500, 3000, 6000], /* Fees remain hardcoded as per requirements */
                             backgroundColor: ['rgba(16, 185, 129, 0.7)', 'rgba(251, 191, 36, 0.7)', 'rgba(220, 38, 38, 0.7)'],
                             borderColor: ['rgba(16, 185, 129, 1)', 'rgba(251, 191, 36, 1)', 'rgba(220, 38, 38, 1)'],
                             borderWidth: 1
