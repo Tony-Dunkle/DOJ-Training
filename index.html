@@ -1719,73 +1719,51 @@
             }
 
             /**
-             * Robust CSV parser that handles quoted fields, commas, and various line endings.
-             * @param {string} csvString - The raw CSV string.
-             * @returns {Array<Object>} An array of objects, where each object represents a row.
-             */
-            function parseCSV(csvString) {
-                const lines = csvString.split(/\r?\n/).filter(line => line.trim() !== ''); // Handle various line endings and empty lines
-                if (lines.length === 0) {
-                    console.warn("CSV data is empty or malformed.");
-                    return [];
-                }
-
-                // Regex to split by comma, ignoring commas inside double quotes
-                const csvSplitRegex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
-
-                // Parse headers, removing BOM if present and trimming whitespace
-                const headers = lines[0].split(csvSplitRegex).map(header => header.replace(/^\ufeff/, '').trim());
-                const data = [];
-
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(csvSplitRegex).map(value => value.trim().replace(/^"|"$/g, '')); // Remove surrounding quotes
-                    if (values.length !== headers.length) {
-                        console.warn(`Skipping malformed row ${i + 1}: Expected ${headers.length} columns, got ${values.length}.`);
-                        continue; // Skip malformed rows
-                    }
-
-                    const row = {};
-                    headers.forEach((header, index) => {
-                        let value = values[index];
-                        // Convert specific columns to numbers, defaulting to 0 or null if invalid
-                        if (header === "Sentencing (Months)") {
-                            row[header] = parseInt(value, 10) || 0; // Default to 0 if parsing fails
-                        } else if (header === "Fine ($)") {
-                            row[header] = parseFloat(value) || 0; // Default to 0 if parsing fails
-                        } else {
-                            row[header] = value;
-                        }
-                    });
-                    data.push(row);
-                }
-                return data;
-            }
-
-            /**
-             * Fetches and parses the penal codes CSV data.
+             * Fetches and parses the penal codes JSON data.
              */
             async function fetchPenalCodes() {
                 try {
-                    const fileName = 'Criminal Charges JSON Data';
+                    const fileName = 'Criminal Charges JSON Data.txt'; // Set file location for JSON
                     const encodedFileName = encodeURIComponent(fileName);
                     const response = await fetch(encodedFileName);
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    const csvText = await response.text();
-                    penalCodesData = parseCSV(csvText);
+                    const jsonData = await response.json();
+                    
+                    // Process JSON data: convert Prison Time and Fine to numbers
+                    penalCodesData = jsonData.map(charge => {
+                        // Safely parse "Prison Time", handle nulls and non-numeric values
+                        let prisonTime = parseInt(charge["Prison Time"]);
+                        if (isNaN(prisonTime)) {
+                            // Assign a sentinel value for 'Life' or 0 if parsing fails and it's not 'Life'
+                            prisonTime = (charge["Charge"] === "Sexual Assault (Non-Penetrative)") ? 999999 : 0;
+                        }
+                        
+                        // Safely parse "Fine", handle nulls and non-numeric values
+                        let fine = parseFloat(String(charge["Fine"]).replace(/,/g, '')); // Remove commas before parsing
+                        if (isNaN(fine)) {
+                            fine = 0; // Default to 0 if parsing fails
+                        }
+
+                        return {
+                            ...charge,
+                            "Prison Time": prisonTime,
+                            "Fine": fine
+                        };
+                    });
                     console.log("Penal Codes Data Loaded:", penalCodesData);
                 } catch (error) {
                     console.error("Error fetching penal codes:", error);
                     // Fallback to a hardcoded minimal set or display an error message
                     penalCodesData = [
-                        { "Section": "S.A.C. § 113", "Charge": "Simple Assault", "Description": "Intentional physical harm.", "Category": "Misdemeanor", "Sentencing (Months)": 25, "Fine ($)": 1500 },
-                        { "Section": "S.A.C. § 1001", "Charge": "False Reporting", "Description": "Providing false info to LEO.", "Category": "Felony", "Sentencing (Months)": 35, "Fine ($)": 2000 },
-                        { "Section": "S.A.C. § 1111", "Charge": "First Degree Murder", "Description": "Premeditated killing.", "Category": "Federal", "Sentencing (Months)": 60, "Fine ($)": 10000 },
-                        { "Section": "S.A.C. § 2241", "Charge": "Sexual Assault", "Description": "Non-consensual sexual contact.", "Category": "Federal", "Sentencing (Months)": 99999, "Fine ($)": 200000 },
-                        { "Section": "N/A", "Charge": "Jaywalking", "Description": "Crossing street unlawfully.", "Category": "Citation", "Sentencing (Months)": 0, "Fine ($)": 500 },
+                        { "Code": "S.A.C. § 113", "Charge": "Simple Assault", "Description": "Intentional physical harm.", "Category": "Misdemeanor", "Prison Time": 25, "Fine": 1500 },
+                        { "Code": "S.A.C. § 1001", "Charge": "False Reporting", "Description": "Providing false info to LEO.", "Category": "Felony", "Prison Time": 35, "Fine": 2000 },
+                        { "Code": "S.A.C. § 1111", "Charge": "First Degree Murder", "Description": "Premeditated killing.", "Category": "Federal", "Prison Time": 60, "Fine": 10000 },
+                        { "Code": "S.A.C. § 2241-A", "Charge": "Sexual Assault (Non-Penetrative)", "Description": "Non-consensual sexual contact including touching or coercion.", "Category": "Federal", "Prison Time": 999999, "Fine": 200000 },
+                        { "Code": null, "Charge": "Jaywalking", "Description": "Crossing street unlawfully.", "Category": "Citation", "Prison Time": 0, "Fine": 500 },
                     ];
-                    showMessageModal("Error", "Could not load penal codes data. Using fallback data.");
+                    showMessageModal("Error", "Could not load penal codes data. Using fallback data. Ensure 'Criminal Charges JSON Data.txt' is correctly formatted JSON.");
                 }
             }
 
@@ -1802,22 +1780,26 @@
                     const row = document.createElement('tr');
                     row.classList.add('hover:bg-gray-50');
 
-                    // Helper to get safe value (handles potential missing fields)
-                    const getSafeValue = (key, defaultValue = 'N/A') => {
-                        const value = charge[key];
-                        return (value !== undefined && value !== null && String(value).trim() !== '') ? value : defaultValue;
+                    // Helper to get safe value (handles potential missing fields or nulls)
+                    const getSafeValue = (obj, key, defaultValue = 'N/A') => {
+                        const value = obj[key];
+                        // Check for undefined, null, or empty string after trimming
+                        return (value !== undefined && value !== null && String(value).trim() !== '') ? String(value).trim() : defaultValue;
                     };
 
-                    const sentencingText = getSafeValue("Sentencing (Months)") === 99999 ? 'Life' : getSafeValue("Sentencing (Months)") + ' Months';
-                    const fineText = `$${getSafeValue("Fine ($)").toLocaleString()}`;
+                    const sentencingValue = charge["Prison Time"];
+                    const fineValue = charge["Fine"];
+
+                    const sentencingText = (sentencingValue === 999999 || sentencingValue === 99999) ? 'Life' : `${sentencingValue} Months`;
+                    const fineText = `$${fineValue.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 
                     row.innerHTML = `
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${getSafeValue("Section")}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getSafeValue("Charge")}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${getSafeValue("Category")}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${getSafeValue(charge, "Code")}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getSafeValue(charge, "Charge")}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${getSafeValue(charge, "Category")}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sentencingText}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${fineText}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">${getSafeValue("Description")}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">${getSafeValue(charge, "Description")}</td>
                     `;
                     tableBody.appendChild(row);
                 });
@@ -1982,26 +1964,27 @@
                 let hasLifeSentence = false;
 
                 selectedCharges.forEach(selectedChargeName => {
+                    // Match by "Charge" property from JSON
                     const matchedCharge = penalCodesData.find(data =>
-                        data.Charge.toLowerCase() === selectedChargeName.toLowerCase()
+                        data.Charge && data.Charge.toLowerCase() === selectedChargeName.toLowerCase()
                     );
 
                     if (matchedCharge) {
-                        const originalSentencing = matchedCharge["Sentencing (Months)"];
-                        const originalFine = matchedCharge["Fine ($)"];
-                        const sacCode = matchedCharge.Section && matchedCharge.Section !== 'N/A' ? matchedCharge.Section : 'N/A';
+                        const originalSentencing = matchedCharge["Prison Time"]; // Directly use number
+                        const originalFine = matchedCharge["Fine"]; // Directly use number
+                        const code = matchedCharge.Code && matchedCharge.Code !== 'N/A' ? matchedCharge.Code : 'N/A';
 
                         let currentReducedSentencingText;
                         let currentReducedFineText;
                         let currentReducedSentencingValue = 0;
                         let currentReducedFineValue = 0;
 
-                        if (originalSentencing === 99999) { // Sentinel for 'Life'
+                        if (originalSentencing === 999999 || originalSentencing === 99999) { // Sentinel for 'Life'
                             currentReducedSentencingText = 'Life';
                             currentReducedFineText = `<span class="font-bold text-green-700">$${(originalFine * (1 - (reductionPercentage / 100))).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>`;
                             currentReducedFineValue = originalFine * (1 - (reductionPercentage / 100));
                             hasLifeSentence = true;
-                            currentReducedSentencingValue = 99999;
+                            currentReducedSentencingValue = 999999;
                         } else {
                             const reducedSentencing = originalSentencing * (1 - (reductionPercentage / 100));
                             const reducedFine = originalFine * (1 - (reductionPercentage / 100));
@@ -2013,14 +1996,14 @@
 
                         resultsHtml += `
                             <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                <p class="font-semibold">${matchedCharge.Charge} (${sacCode})</p>
-                                <p>Original Sentencing: ${originalSentencing === 99999 ? 'Life' : originalSentencing + ' Months'}</p>
+                                <p class="font-semibold">${matchedCharge.Charge} (${code})</p>
+                                <p>Original Sentencing: ${originalSentencing === 999999 ? 'Life' : originalSentencing + ' Months'}</p>
                                 <p>Reduced Sentencing (${reductionPercentage}% off): ${currentReducedSentencingText}</p>
                                 <p>Original Fine: $${originalFine.toLocaleString()}</p>
                                 <p>Reduced Fine (${reductionPercentage}% off): ${currentReducedFineText}</p>
                             </div>
                         `;
-                        if (currentReducedSentencingValue === 99999) {
+                        if (currentReducedSentencingValue === 999999) {
                             overallTotalSentencing = 'Life';
                             hasLifeSentence = true;
                         } else if (!hasLifeSentence) {
@@ -2077,19 +2060,19 @@
                 const searchTerm = chargeSearchInput.value.toLowerCase();
 
                 const filteredCharges = penalCodesData.filter(item => {
-                    const sectionPrefix = (item.Section && item.Section !== 'N/A') ? `${item.Section} - ` : '';
-                    const fullChargeName = `${sectionPrefix}${item.Charge}`;
+                    const codePrefix = (item.Code && item.Code !== 'N/A' && item.Code !== null) ? `${item.Code} - ` : '';
+                    const fullChargeName = `${codePrefix}${item.Charge}`;
                     return fullChargeName.toLowerCase().includes(searchTerm);
                 });
 
                 filteredCharges.forEach(item => {
-                    const sectionPrefix = (item.Section && item.Section !== 'N/A') ? `${item.Section} - ` : '';
-                    const fullChargeName = `${sectionPrefix}${item.Charge}`;
+                    const codePrefix = (item.Code && item.Code !== 'N/A' && item.Code !== null) ? `${item.Code} - ` : '';
+                    const fullChargeName = `${codePrefix}${item.Charge}`;
                     const listItem = document.createElement('label');
                     listItem.classList.add('charges-list-item');
 
-                    const categoryClass = item.Category.toLowerCase().replace(/\s/g, '-');
-                    if (categoryClass.includes('felony') || categoryClass.includes('federal')) {
+                    const categoryClass = (item.Category || '').toLowerCase().replace(/\s/g, '-');
+                    if (categoryClass.includes('felony') || categoryClass.includes('federal') || categoryClass.includes('serious-felony')) {
                         listItem.classList.add('charge-felony');
                     } else if (categoryClass.includes('misdemeanor')) {
                         listItem.classList.add('charge-misdemeanor');
@@ -2246,27 +2229,27 @@
                 accordionToggles.forEach(toggle => {
                     toggle.addEventListener('click', function() {
                         const content = this.nextElementSibling;
-                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        // const isExpanded = this.getAttribute('aria-expanded') === 'true'; // Removed as it's set below
 
-                        if (content.classList.contains('expanded')) {
-                            content.classList.remove('expanded');
-                            this.setAttribute('aria-expanded', 'false');
-                            this.querySelector('span:last-child').style.transform = 'rotate(0deg)';
-                        } else {
-                            // Close other open accordions in the same section for cleaner UI
-                            accordionToggles.forEach(otherToggle => {
-                                if (otherToggle !== this) {
-                                    otherToggle.nextElementSibling.classList.remove('expanded');
-                                    otherToggle.setAttribute('aria-expanded', 'false');
-                                    otherToggle.querySelector('span:last-child').style.transform = 'rotate(0deg)';
-                                }
-                            });
-                            content.classList.add('expanded');
-                            this.setAttribute('aria-expanded', 'true');
-                            this.querySelector('span:last-child').style.transform = 'rotate(180deg)';
-                        }
+                        // Toggle content visibility
+                        content.classList.toggle('expanded');
+
+                        // Update aria-expanded attribute and arrow rotation
+                        const isNowExpanded = content.classList.contains('expanded');
+                        this.setAttribute('aria-expanded', isNowExpanded);
+                        this.querySelector('span:last-child').style.transform = isNowExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+
+                        // Close other open accordions in the same section for cleaner UI
+                        accordionToggles.forEach(otherToggle => {
+                            if (otherToggle !== this && otherToggle.nextElementSibling.classList.contains('expanded')) {
+                                otherToggle.nextElementSibling.classList.remove('expanded');
+                                otherToggle.setAttribute('aria-expanded', 'false');
+                                otherToggle.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                            }
+                        });
                     });
                 });
+
 
                 // Case law tabs functionality
                 const caseTabs = document.querySelectorAll('.case-tab');
