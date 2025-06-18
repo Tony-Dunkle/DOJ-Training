@@ -277,6 +277,16 @@
             border-color: #3b82f6; /* border-blue-500 */
             box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5); /* ring-blue-500/50 */
         }
+
+        /* Case Law Tab Styling */
+        .case-tab {
+            transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+        }
+
+        .case-tab.active-case-tab-underline {
+            border-bottom: 2px solid #3b82f6; /* Blue-500 */
+            color: #3b82f6; /* Blue-600 */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col h-screen">
@@ -309,26 +319,29 @@
                 <a href="#introduction" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">👋</span> Introduction
                 </a>
-                <a href="#sentencing-guidelines" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">📊</span> Sentencing Guidelines
-                </a>
-                <a href="#charge-calculator" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">🧮</span> Reduction Calculator
-                </a>
                 <a href="#constitution" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">📜</span> Constitution & Rights
                 </a>
                 <a href="#laws" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">📖</span> Specific Legislation
                 </a>
+                <a href="#sentencing-guidelines" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📊</span> Sentencing Guidelines & Penalties
+                </a>
+                <a href="#charge-calculator" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🧮</span> Charge Reduction Calculator
+                </a>
                 <a href="#dueprocess" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">⚖️</span> Due Process & Court
+                    <span class="mr-3">⚖️</span> Due Process & Court Protocols
+                </a>
+                <a href="#courtroom" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🧑‍⚖️</span> Courtroom Procedures & Objections
                 </a>
                 <a href="#search" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">🔍</span> Search & Seizure
                 </a>
                 <a href="#foia" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">📂</span> FOIA & Evidence
+                    <span class="mr-3">📂</span> FOIA & Evidence Disclosure
                 </a>
                 <a href="#caselaw" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">📚</span> Case Law Library
@@ -336,14 +349,11 @@
                 <a href="#strategy" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">🎯</span> Strategic Defense
                 </a>
-                <a href="#courtroom" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">�‍⚖️</span> Courtroom Procedures & Objections
-                </a>
                 <a href="#tools" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">🛠️</span> Legal Tools & Admin
+                    <span class="mr-3">🛠️</span> Legal Tools & Administrative Processes
                 </a>
                 <a href="#leos" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">👮</span> LEO Powers & Definitions
+                    <span class="mr-3">👮</span> Law Enforcement Powers & Definitions
                 </a>
                 <a href="#important-links" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">🔗</span> Important Links
@@ -368,26 +378,29 @@
                 <a href="#introduction" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">👋</span> Introduction
                 </a>
-                <a href="#sentencing-guidelines" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">📊</span> Sentencing Guidelines
-                </a>
-                <a href="#charge-calculator" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">🧮</span> Reduction Calculator
-                </a>
                 <a href="#constitution" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">📜</span> Constitution & Rights
                 </a>
                 <a href="#laws" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">📖</span> Specific Legislation
                 </a>
+                <a href="#sentencing-guidelines" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">📊</span> Sentencing Guidelines & Penalties
+                </a>
+                <a href="#charge-calculator" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🧮</span> Charge Reduction Calculator
+                </a>
                 <a href="#dueprocess" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">⚖️</span> Due Process & Court
+                    <span class="mr-3">⚖️</span> Due Process & Court Protocols
+                </a>
+                <a href="#courtroom" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
+                    <span class="mr-3">🧑‍⚖️</span> Courtroom Procedures & Objections
                 </a>
                 <a href="#search" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">🔍</span> Search & Seizure
                 </a>
                 <a href="#foia" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">📂</span> FOIA & Evidence
+                    <span class="mr-3">📂</span> FOIA & Evidence Disclosure
                 </a>
                 <a href="#caselaw" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">📚</span> Case Law Library
@@ -395,14 +408,11 @@
                 <a href="#strategy" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">🎯</span> Strategic Defense
                 </a>
-                <a href="#courtroom" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">🧑‍⚖️</span> Courtroom Procedures & Objections
-                </a>
                 <a href="#tools" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">🛠️</span> Legal Tools & Admin
+                    <span class="mr-3">🛠️</span> Legal Tools & Administrative Processes
                 </a>
                 <a href="#leos" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
-                    <span class="mr-3">👮</span> LEO Powers & Definitions
+                    <span class="mr-3">👮</span> Law Enforcement Powers & Definitions
                 </a>
                 <a href="#important-links" class="nav-item flex items-center px-4 py-3 hover:bg-gray-700 transition duration-150">
                     <span class="mr-3">🔗</span> Important Links
@@ -487,163 +497,6 @@
                                     <li>Has no arrest powers outside of the courthouse.</li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="sentencing-guidelines" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Sentencing Guidelines & Penalties</h2>
-                    </div>
-                    <p class="mb-6 text-gray-600">This section provides an overview of various charges, their categories, and typical sentencing guidelines in months, along with associated fines. Understanding these benchmarks is crucial for negotiating pleas, advising clients on potential outcomes, and challenging disproportionate sentences. The charts below visualize median sentencing times and fines across different charge categories.</p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
-                        <h3 class="font-bold text-xl mb-4 text-center">Charge Penalties Overview</h3>
-                        <p class="text-md text-gray-700 mb-4 text-center">Total Charges in List: <span id="totalChargesCount" class="font-bold text-blue-700"></span></p>
-                        <div class="overflow-x-auto mb-6">
-                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
-                                <thead class="bg-gray-100">
-                                    <tr>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Section</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Charge</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Description</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Category</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Sentencing (Months)</th>
-                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Fine ($)</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="sentencingTableBody">
-                                    <!-- Data will be inserted here by JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h3 class="font-bold text-xl mb-4 text-center">Median Sentencing & Fine by Category</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="chart-container h-64 md:h-80">
-                                <canvas id="medianSentencingChart"></canvas>
-                            </div>
-                            <div class="chart-container h-64 md:h-80">
-                                <canvas id="medianFinesChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- New section for the calculator -->
-                <div id="charge-calculator" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Charge Reduction Calculator</h2>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[calc(100vh-150px)]">
-                        <div class="md:col-span-1">
-                            <h3 class="font-bold text-xl mb-4">Select Charge(s) & Reduction</h3>
-                            <div class="mb-4">
-                                <label for="chargeSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Selected Charge(s):
-                                </label>
-                                <div id="chargeSelectionDisplay" class="dropdown-display">
-                                    <span>No charges selected</span>
-                                    <svg class="w-5 h-5 text-gray-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label for="reductionSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Selected Reduction Percentage:
-                                </label>
-                                <div id="reductionSelectionDisplay" class="dropdown-display">
-                                    <span>No Reduction (0%)</span>
-                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                </div>
-                            </div>
-                            <button id="applyReductionBtn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Calculate Reduction</button>
-                        </div>
-                        <div class="md:col-span-1 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <h3 class="font-bold text-xl mb-4">Calculated Reductions</h3>
-                            <div id="reductionResults" class="space-y-4 h-64 overflow-y-auto">
-                                <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
-                                    <p class="text-gray-600">Select charges and a reduction to see results.</p>
-                                </div>
-                            </div>
-                            <div id="totalResults" class="mt-6 pt-4 border-t border-gray-300 hidden">
-                                <h4 class="font-bold text-lg mb-2">Final Totals</h4>
-                                <p>Total Sentencing: <span id="finalTotalSentencing" class="font-bold text-green-800"></span></p>
-                                <p>Total Fine: <span id="finalTotalFine" class="font-bold text-green-800"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charge Selection Modal -->
-                <div id="chargeSelectionModal" class="modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="text-2xl font-bold">Select Charges</h3>
-                            <span class="close-button" id="closeChargeModal">&times;</span>
-                        </div>
-                        <div class="mb-4">
-                            <input type="text" id="chargeSearchInput" placeholder="Search charges..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-                        <div class="modal-body">
-                            <div id="chargesList" class="space-y-1">
-                                <!-- Charges will be dynamically loaded here -->
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="clearAllChargesBtn" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Clear All Charges</button>
-                            <button id="applySelectedChargesBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Apply Selection</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reduction Selection Modal -->
-                <div id="reductionSelectionModal" class="modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="text-2xl font-bold">Select Reduction Percentage</h3>
-                            <span class="close-button" id="closeReductionModal">&times;</span>
-                        </div>
-                        <div class="modal-body">
-                            <div id="reductionOptionsList" class="space-y-1">
-                                <!-- Reduction options will be dynamically loaded here -->
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="0" class="form-radio h-5 w-5 text-blue-600" checked>
-                                    <span class="text-sm font-medium text-gray-900">No Reduction (0%)</span>
-                                </label>
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="5" class="form-radio h-5 w-5 text-blue-600">
-                                    <span class="text-sm font-medium text-gray-900">5% Reduction</span>
-                                </label>
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="10" class="form-radio h-5 w-5 text-blue-600">
-                                    <span class="text-sm font-medium text-gray-900">10% Reduction</span>
-                                </label>
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="25" class="form-radio h-5 w-5 text-blue-600">
-                                    <span class="text-sm font-medium text-gray-900">25% Reduction</span>
-                                </label>
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="50" class="form-radio h-5 w-5 text-blue-600">
-                                    <span class="text-sm font-medium text-gray-900">50% Reduction</span>
-                                </label>
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="75" class="form-radio h-5 w-5 text-blue-600">
-                                    <span class="text-sm font-medium text-gray-900">75% Reduction</span>
-                                </label>
-                                <label class="reduction-list-item">
-                                    <input type="radio" name="reductionOption" value="custom" class="form-radio h-5 w-5 text-blue-600">
-                                    <span class="text-sm font-medium text-gray-900">Custom Percentage</span>
-                                </label>
-                                <div id="customReductionInputModalDiv" class="mt-4 p-2 border border-gray-300 rounded-md hidden">
-                                    <label for="customReductionInputModal" class="block text-xs font-medium text-gray-700 mb-1">Enter Custom Percentage (0-100):</label>
-                                    <input type="number" id="customReductionInputModal" min="0" max="100" class="w-full p-1 border border-gray-300 rounded-md text-sm" placeholder="e.g., 15">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- No clear button needed for single selection radio buttons -->
-                            <button id="applySelectedReductionBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Apply Selection</button>
                         </div>
                     </div>
                 </div>
@@ -840,10 +693,167 @@
                     </div>
                 </div>
 
+                <div id="sentencing-guidelines" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Sentencing Guidelines & Penalties</h2>
+                    </div>
+                    <p class="mb-6 text-gray-600">This section provides an overview of various charges, their categories, and typical sentencing guidelines in months, along with associated fines. Understanding these benchmarks is crucial for negotiating pleas, advising clients on potential outcomes, and challenging disproportionate sentences. The charts below visualize median sentencing times and fines across different charge categories.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                        <h3 class="font-bold text-xl mb-4 text-center">Charge Penalties Overview</h3>
+                        <p class="text-md text-gray-700 mb-4 text-center">Total Charges in List: <span id="totalChargesCount" class="font-bold text-blue-700"></span></p>
+                        <div class="overflow-x-auto mb-6">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Section</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Charge</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Description</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Category</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Sentencing (Months)</th>
+                                        <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Fine ($)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sentencingTableBody">
+                                    <!-- Data will be inserted here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 class="font-bold text-xl mb-4 text-center">Median Sentencing & Fine by Category</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="chart-container h-64 md:h-80">
+                                <canvas id="medianSentencingChart"></canvas>
+                            </div>
+                            <div class="chart-container h-64 md:h-80">
+                                <canvas id="medianFinesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New section for the calculator -->
+                <div id="charge-calculator" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Charge Reduction Calculator</h2>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[calc(100vh-150px)]">
+                        <div class="md:col-span-1">
+                            <h3 class="font-bold text-xl mb-4">Select Charge(s) & Reduction</h3>
+                            <div class="mb-4">
+                                <label for="chargeSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Selected Charge(s):
+                                </label>
+                                <div id="chargeSelectionDisplay" class="dropdown-display">
+                                    <span>No charges selected</span>
+                                    <svg class="w-5 h-5 text-gray-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="reductionSelectionDisplay" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Selected Reduction Percentage:
+                                </label>
+                                <div id="reductionSelectionDisplay" class="dropdown-display">
+                                    <span>No Reduction (0%)</span>
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                            <button id="applyReductionBtn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Calculate Reduction</button>
+                        </div>
+                        <div class="md:col-span-1 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <h3 class="font-bold text-xl mb-4">Calculated Reductions</h3>
+                            <div id="reductionResults" class="space-y-4 h-64 overflow-y-auto">
+                                <div class="p-3 border border-blue-200 rounded-md bg-blue-50">
+                                    <p class="text-gray-600">Select charges and a reduction to see results.</p>
+                                </div>
+                            </div>
+                            <div id="totalResults" class="mt-6 pt-4 border-t border-gray-300 hidden">
+                                <h4 class="font-bold text-lg mb-2">Final Totals</h4>
+                                <p>Total Sentencing: <span id="finalTotalSentencing" class="font-bold text-green-800"></span></p>
+                                <p>Total Fine: <span id="finalTotalFine" class="font-bold text-green-800"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charge Selection Modal -->
+                <div id="chargeSelectionModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="text-2xl font-bold">Select Charges</h3>
+                            <span class="close-button" id="closeChargeModal">&times;</span>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" id="chargeSearchInput" placeholder="Search charges..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="modal-body">
+                            <div id="chargesList" class="space-y-1">
+                                <!-- Charges will be dynamically loaded here -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="clearAllChargesBtn" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Clear All Charges</button>
+                            <button id="applySelectedChargesBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Apply Selection</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reduction Selection Modal -->
+                <div id="reductionSelectionModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="text-2xl font-bold">Select Reduction Percentage</h3>
+                            <span class="close-button" id="closeReductionModal">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div id="reductionOptionsList" class="space-y-1">
+                                <!-- Reduction options will be dynamically loaded here -->
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="0" class="form-radio h-5 w-5 text-blue-600" checked>
+                                    <span class="text-sm font-medium text-gray-900">No Reduction (0%)</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="5" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">5% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="10" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">10% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="25" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">25% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="50" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">50% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="75" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">75% Reduction</span>
+                                </label>
+                                <label class="reduction-list-item">
+                                    <input type="radio" name="reductionOption" value="custom" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="text-sm font-medium text-gray-900">Custom Percentage</span>
+                                </label>
+                                <div id="customReductionInputModalDiv" class="mt-4 p-2 border border-gray-300 rounded-md hidden">
+                                    <label for="customReductionInputModal" class="block text-xs font-medium text-gray-700 mb-1">Enter Custom Percentage (0-100):</label>
+                                    <input type="number" id="customReductionInputModal" min="0" max="100" class="w-full p-1 border border-gray-300 rounded-md text-sm" placeholder="e.g., 15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- No clear button needed for single selection radio buttons -->
+                            <button id="applySelectedReductionBtn" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Apply Selection</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="dueprocess" class="content-section">
                     <div class="clearfix">
                         <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Deep Dive: Due Process & Court Proceedings</h2>
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Due Process & Court Protocols</h2>
                     </div>
                     <p class="mb-6 text-gray-600">This section provides an in-depth look at due process, court procedures, and crucial legal nuances. It covers everything from investigative holds and trial outcomes to attorney-client confidentiality and double jeopardy. The information here is vital for understanding the procedural landscape and identifying opportunities for defense.</p>
                     <div class="space-y-6">
@@ -984,255 +994,12 @@
                     </div>
                 </div>
                 
-                <div id="search" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Search & Seizure Protocols</h2>
-                    </div>
-                    <p class="mb-6 text-gray-600">Protecting clients from unlawful searches is a primary function of a defense attorney. This section outlines the strict requirements for a valid warrant and the specific, narrow exceptions where a warrantless search may be lawful. Always challenge searches that fall outside these clear boundaries.</p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-2xl mb-4 text-center">Search & Seizure Framework</h3>
-                        <div class="space-y-6">
-                            <div class="p-4 bg-blue-100 border-2 border-blue-500 rounded-lg text-center">
-                                <h4 class="font-bold text-xl">General Rule: Search Warrant Required</h4>
-                                <p class="text-sm mt-1">For real and private property, a duly issued and executed Search Warrant is required, absent probable cause with exigency. Must be executed within 7 spiritual days (John Doe warrants: 3 days).</p>
-                                <h5 class="font-bold text-lg mt-3">Warrant Requirements:</h5>
-                                <ul class="mt-2 text-left list-disc list-inside mx-auto max-w-md text-gray-700 text-sm">
-                                    <li>Articulable probable cause from sworn LEO detailing crime(s).</li>
-                                    <li>Articulable probable cause explaining why listed properties should be searched.</li>
-                                    <li>Reasonable info supporting evidence found in properties (Officer's observations or verifiable informant).</li>
-                                    <li>If warrant lacks accurate info of what is to be searched, it shall be denied.</li>
-                                </ul>
-                            </div>
-                            <div class="flex justify-center text-2xl font-bold text-gray-500">↓ Optional Exceptions ↓</div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="p-4 bg-gray-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Plain Sight</h4>
-                                    <p class="text-sm">If LEO witnesses an illegal item/circumstance from public space or during execution of another lawful warrant, scope can be expanded to include/seize these items.</p>
-                                </div>
-                                <div class="p-4 bg-gray-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Vehicle Exception ("Automobile Exception")</h4>
-                                    <p class="text-sm">Warrantless search when probable cause exists, due to vehicle's mobility and risk of evidence destruction (Carroll v. United States).</p>
-                                </div>
-                                <div class="p-4 bg-gray-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Medical Safety</h4>
-                                    <p class="text-sm">Search permitted for safety of transporting armed/dangerous individuals for medical care in government vehicle. Citizen can refuse, but LEO/Medical not required to transport/treat further.</p>
-                                </div>
-                                <div class="p-4 bg-gray-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Consent</h4>
-                                    <p class="text-sm">Valid if properly documented and freely given permission to search property without warrant.</p>
-                                    </div>
-                            </div>
-                            <div class="p-4 bg-green-100 border-2 border-green-500 rounded-lg text-center">
-                                <h4 class="font-bold text-xl mb-1">Search of Person/Vehicle During Detention/Arrest</h4>
-                                <p class="text-sm mt-1">Subject to immediate search of person if: subject to transport/arrest to document possessions, sufficient probable cause of illegal items, or need to identify suspect. Vehicles in operation/constructive possession during crime or subject to impoundment are also subject to search without warrant.</p>
-                            </div>
-                            <div class="flex justify-center text-2xl font-bold text-gray-500">↓ Special Warrant Requests ↓</div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="p-4 bg-yellow-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Sealing</h4>
-                                    <p class="text-sm">Personal names/records withheld from record to protect citizens.</p>
-                                </div>
-                                <div class="p-4 bg-yellow-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Raid</h4>
-                                    <p class="text-sm">Execution of warrant without primary citizen(s) in custody.</p>
-                                </div>
-                                <div class="p-4 bg-yellow-100 rounded-lg border">
-                                    <h4 class="font-bold text-lg mb-1">Delayed Notice</h4>
-                                    <p class="text-sm">Extra time before notification of signed warrant sent to citizen(s).</p>
-                                    </div>
-                            </div>
-                        </div>
-                        <p class="mt-6 text-center font-semibold text-red-600">Defense Note: Challenge any unlawful or overly broad search as unconstitutional under state and common law.</p>
-                    </div>
-                </div>
-
-                <div id="foia" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">FOIA Requests & Evidence Disclosure</h2>
-                    </div>
-                    <p class="mb-6 text-gray-600">The state's case is built on evidence, and you have a right to see it. This section details the formal process for requesting police reports via the Freedom of Information Act (FOIA) and the steps to take if your request is denied. Mastering this process is key to ensuring you have all necessary discovery.</p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-4 text-center">FOIA Request Process</h3>
-                        <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
-                            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                                <p class="font-bold">Step 1: Submit Request</p>
-                                <p class="text-sm">Written communication (email/letter) to PD Dispatch/Reception/On-Duty LEO through an attorney. Must clearly describe records and include contact info.</p>
-                            </div>
-                            <p class="text-2xl font-bold text-blue-500">→</p>
-                            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                                <p class="font-bold">Step 2: Review Protocol</p>
-                                <p class="text-sm">FOIA'd Officer acknowledges in 24 hrs. Standard review 24 hrs to check exemptions.</p>
-                            </div>
-                            <p class="text-2xl font-bold text-blue-500">→</p>
-                            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                                <p class="font-bold">Step 3: Response & Delivery</p>
-                                <p class="text-sm">Max 3 days from request for response. Delivered via formal written documentation (email/text).</p>
-                            </div>
-                            <p class="text-2xl font-bold text-blue-500">→</p>
-                            <div class="p-4 bg-yellow-100 rounded-lg shadow-sm">
-                                <p class="font-bold">Step 4: If Denied?</p>
-                                <p class="text-sm">File an appeal to a sitting Judge/Justice within 48 hours of denial. Determination made within 48 hours.</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 pt-4 border-t">
-                            <h4 class="font-semibold text-lg">Exemptions & Compelling Evidence:</h4>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 text-sm space-y-1">
-                                <li>Exemptions: Active Investigation, Active Arrest Warrant, Trade Secrets, Internal Government Communications, Warrant/Subpoena (separate provisions).</li>
-                                <li>Compelling Evidence: Use subpoenas or discovery orders when FOIA is insufficient.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="caselaw" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Case Law Library</h2>
-                    </div>
-                    <p class="mb-6 text-gray-600">Landmark common law and case precedents provide powerful tools to restrict police overreach and protect client rights. This interactive library details key cases recognized in San Andreas. Click on each case name to see its core principle and how to apply it in your defense strategy to suppress improperly obtained evidence or statements, and understand the nuances of the law.</p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <div class="flex flex-wrap border-b mb-4">
-                            <button data-case="terry" class="case-tab p-3 font-semibold border-b-2 border-blue-500 text-blue-600 flex-shrink-0">Terry v. Ohio</button>
-                            <button data-case="miranda" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Miranda v. Arizona</button>
-                            <button data-case="tekoh" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Tekoh v. Vega (2022)</button>
-                            <button data-case="garner" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Tennessee v. Garner</button>
-                            <button data-case="mimms" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Pennsylvania v. Mimms</button>
-                            <button data-case="houghton" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Wyoming v. Houghton</button>
-                            <button data-case="carroll" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Carroll v. United States</button>
-                        </div>
-                        <div id="case-content-area">
-                            <div id="case-terry" class="case-content">
-                                <h4 class="font-bold text-xl">"Stop and Frisk" Principle</h4>
-                                <p class="mt-2 text-gray-600">Police may stop and frisk without probable cause for arrest if they have reasonable suspicion that the person has committed, is committing, or is about to commit a crime AND has a reasonable belief the person "may be armed and presently dangerous."</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: Suppress any evidence obtained from a "stop and frisk" that was not supported by articulable reasonable suspicion of both criminal activity AND being armed/dangerous.</p>
-                            </div>
-                            <div id="case-miranda" class="case-content hidden">
-                                <h4 class="font-bold text-xl">Custodial Interrogation Warnings</h4>
-                                <p class="mt-2 text-gray-600">Statements from a defendant in custody during interrogation are admissible ONLY if law enforcement informed them of their right to remain silent and right to an attorney before interrogation, and these rights were exercised or waived knowingly, voluntarily, and intelligently.</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: Suppress any statements taken from a client during a custodial interrogation where Miranda warnings were not properly given.</p>
-                            </div>
-                            <div id="case-tekoh" class="case-content hidden">
-                                <h4 class="font-bold text-xl">Un-Mirandized Statements Inadmissibility</h4>
-                                <p class="mt-2 text-gray-600">Statements taken without Miranda warnings are only inadmissible if the prosecution attempts to use them for incriminating purposes. LEOs are not required to Mirandize someone if they don't intend to ask incriminating questions.</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: Argue for the suppression of any un-Mirandized statement if the prosecution attempts to introduce it, even indirectly, to incriminate your client. If questions are non-incriminating, the lack of Miranda may not be grounds for suppression.</p>
-                            </div>
-                            <div id="case-garner" class="case-content hidden">
-                                <h4 class="font-bold text-xl">Deadly Force Against Fleeing Suspects</h4>
-                                <p class="mt-2 text-gray-600">The use of deadly force to prevent the escape of an unarmed, non-dangerous fleeing suspect is an unreasonable seizure. Deadly force may only be used if the officer has probable cause to believe the suspect poses a significant threat of death or serious physical injury to the officer or others.</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: Challenge the use of deadly force if the client was unarmed and not posing a significant threat, arguing for suppression of evidence or charges related to an unlawful seizure.</p>
-                            </div>
-                            <div id="case-mimms" class="case-content hidden">
-                                <h4 class="font-bold text-xl">Ordering Driver Out of Vehicle</h4>
-                                <p class="mt-2 text-gray-600">Law enforcement may give a lawful order to the driver of a vehicle to exit the vehicle during a lawful detention (e.g., traffic stop) without infringing on the individual's rights. Officer safety is considered sufficient reason.</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: While officers can order a driver out, challenge any subsequent searches or actions if they exceed the scope of the initial lawful detention, or if the initial detention itself was unlawful.</p>
-                            </div>
-                            <div id="case-houghton" class="case-content hidden">
-                                <h4 class="font-bold text-xl">Vehicle Search & Passenger Belongings</h4>
-                                <p class="mt-2 text-gray-600">If a search of a vehicle is being conducted with probable cause, law enforcement may inspect anything found within the vehicle if that item had the ability to conceal an item of interest, even if it belongs to a passenger.</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: Challenge if the initial probable cause for the vehicle search was lacking, or if the item searched could not reasonably conceal the object of interest (e.g., searching a small coin purse for a large weapon).</p>
-                            </div>
-                            <div id="case-carroll" class="case-content hidden">
-                                <h4 class="font-bold text-xl">"Automobile Exception"</h4>
-                                <p class="mt-2 text-gray-600">As long as law enforcement has probable cause to search a vehicle, they are not required to obtain a search warrant. This is due to the vehicle's mobility and the increased risk of evidence tampering compared to stationary property.</p>
-                                <p class="mt-4 font-semibold text-green-700">Defense Application: Focus challenges on whether genuine probable cause existed before the search. If probable cause was absent, the search is unlawful despite the exception.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="strategy" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Strategic Defense in High-Profile Cases</h2>
-                    </div>
-                    <p class="mb-6 text-red-700 bg-red-100 p-3 rounded-lg border border-red-300">
-                        Disclaimer: These are useful steps and potential defenses for your cases, but hard work, meticulous preparation, and extensive research are the only ways to ensure a successful case outcome. Each case is unique and requires a tailored approach.
-                    </p>
-                    <p class="mb-6 text-gray-600">High-stakes cases require tailored defense strategies that target common prosecution tactics. This section provides key strategic points for specific types of high-profile cases. Click each topic to expand and view critical areas to challenge, from search warrants to forensic evidence, and how to leverage specific legal concepts.</p>
-                    <div class="space-y-4">
-                        <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
-                                <span>Drug Trafficking</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </button>
-                            <div class="accordion-content">
-                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
-                                    <li>Challenge the scope of search and seizure warrants. Were they overly broad or unsupported by probable cause?</li>
-                                    <li>Leverage the <a href="#laws" class="text-blue-600 hover:underline">Marijuana Decriminalization Act</a>: mere presence or personal use of marijuana is not probable cause for further searching (refer to "Enforcement" details).</li>
-                                    <li>Examine warrant justifications for overreach, staleness, or lack of probable cause (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a>).</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
-                                <span>Possession of Controlled Substances</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </button>
-                            <div class="accordion-content">
-                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
-                                    <li>Challenge lack of knowledge or intent: Was the client aware of the substance's presence or its illegal nature?</li>
-                                    <li>Move to suppress evidence based on unlawful search and seizure (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a> and <a href="#caselaw" class="text-blue-600 hover:underline">relevant Case Law</a>).</li>
-                                    <li>Challenge the chain of custody for the seized substance: Were proper procedures followed from collection to lab analysis?</li>
-                                    <li>Argue for personal use quantity vs. intent to distribute based on amount and packaging.</li>
-                                    <li>Explore medical necessity defense if applicable (requires verifiable medical documentation).</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
-                                <span>Grand Theft Auto</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </button>
-                            <div class="accordion-content">
-                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
-                                    <li>Challenge intent: Was there intent to permanently deprive the owner of the vehicle, or merely joyriding (temporary use)?</li>
-                                    <li>Argue mistaken identity: Was the client clearly identified as the person who stole the vehicle?</li>
-                                    <li>Assert consent: Did the client have permission from the owner (or someone with apparent authority) to use the vehicle?</li>
-                                    <li>Investigate if the vehicle was already stolen or abandoned: Was the client aware of its status?</li>
-                                    <li>Move to suppress evidence if the vehicle was recovered via an unlawful search or seizure (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a> and <a href="#caselaw" class="text-blue-600 hover:underline">Carroll v. United States</a>).</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
-                                <span>Obstruction of a Government Official & Obstruction of Justice</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </button>
-                            <div class="accordion-content">
-                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
-                                    <li>Dispute intent: Did the client specifically intend to obstruct an official act, or were their actions misinterpreted?</li>
-                                    <li>Argue that actions were within legal rights: e.g., refusing a search without a warrant, or exercising right to remain silent (refer to <a href="#constitution" class="text-blue-600 hover:underline">Core Constitutional Rights</a> and <a href="#caselaw" class="text-blue-600 hover:underline">Miranda v. Arizona</a>).</li>
-                                    <li>Challenge knowledge of official status: Was it clear that the individual being "obstructed" was a government official acting in their capacity?</li>
-                                    <li>Investigate the "official act" itself: Was the government official performing a lawful duty at the time of the alleged obstruction?</li>
-                                    <li>Seek clarification on the distinction between mere uncooperativeness and active obstruction.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-sm">
-                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
-                                <span>Murder & Attempted Murder</span>
-                                <span class="transform transition-transform duration-300">▼</span>
-                            </button>
-                            <div class="accordion-content">
-                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
-                                    <li>Demand full disclosure of all forensic evidence, including collection timelines and lab reports.</li>
-                                    <li>Utilize the <a href="#laws" class="text-blue-600 hover:underline">Stand Your Ground Doctrine</a> where applicable to justify your client's actions, ensuring all "reasonable steps" were considered.</li>
-                                    <li>Aggressively cross-examine witnesses on inconsistencies and challenge any gaps in the chain of custody for evidence.</li>
-                                    <li>Consider <a href="#dueprocess" class="text-blue-600 hover:underline">Double Jeopardy</a> defense if client was previously tried for related lesser charges and new charges arise from the same incident.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="courtroom" class="content-section">
                     <div class="clearfix">
                         <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Courtroom Procedures & Etiquette</h2>
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Courtroom Procedures & Objections</h2>
                     </div>
-                    <p class="mb-6 text-gray-600">This section provides a comprehensive guide to basic courtroom proceedings and essential etiquette for all participants. Adhering to these procedures ensures a fair and orderly trial, upholding the integrity of the judicial process.</p>
+                    <p class="mb-6 text-gray-600">This section provides a comprehensive guide to basic courtroom proceedings, essential etiquette, and common objections for all participants. Adhering to these procedures ensures a fair and orderly trial, upholding the integrity of the judicial process.</p>
 
                     <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
                         <h3 class="font-bold text-2xl mb-4 text-center">Basic Court Proceedings</h3>
@@ -1403,11 +1170,282 @@
                         </div>
                     </div>
                 </div>
+                
+                <div id="search" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Search & Seizure Protocols</h2>
+                    </div>
+                    <p class="mb-6 text-gray-600">Protecting clients from unlawful searches is a primary function of a defense attorney. This section outlines the strict requirements for a valid warrant and the specific, narrow exceptions where a warrantless search may be lawful. Always challenge searches that fall outside these clear boundaries.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-2xl mb-4 text-center">Search & Seizure Framework</h3>
+                        <div class="space-y-6">
+                            <div class="p-4 bg-blue-100 border-2 border-blue-500 rounded-lg text-center">
+                                <h4 class="font-bold text-xl">General Rule: Search Warrant Required</h4>
+                                <p class="text-sm mt-1">For real and private property, a duly issued and executed Search Warrant is required, absent probable cause with exigency. Must be executed within 7 spiritual days (John Doe warrants: 3 days).</p>
+                                <h5 class="font-bold text-lg mt-3">Warrant Requirements:</h5>
+                                <ul class="mt-2 text-left list-disc list-inside mx-auto max-w-md text-gray-700 text-sm">
+                                    <li>Articulable probable cause from sworn LEO detailing crime(s).</li>
+                                    <li>Articulable probable cause explaining why listed properties should be searched.</li>
+                                    <li>Reasonable info supporting evidence found in properties (Officer's observations or verifiable informant).</li>
+                                    <li>If warrant lacks accurate info of what is to be searched, it shall be denied.</li>
+                                </ul>
+                            </div>
+                            <div class="flex justify-center text-2xl font-bold text-gray-500">↓ Optional Exceptions ↓</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-gray-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Plain Sight</h4>
+                                    <p class="text-sm">If LEO witnesses an illegal item/circumstance from public space or during execution of another lawful warrant, scope can be expanded to include/seize these items.</p>
+                                </div>
+                                <div class="p-4 bg-gray-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Vehicle Exception ("Automobile Exception")</h4>
+                                    <p class="text-sm">Warrantless search when probable cause exists, due to vehicle's mobility and risk of evidence destruction (Carroll v. United States).</p>
+                                </div>
+                                <div class="p-4 bg-gray-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Medical Safety</h4>
+                                    <p class="text-sm">Search permitted for safety of transporting armed/dangerous individuals for medical care in government vehicle. Citizen can refuse, but LEO/Medical not required to transport/treat further.</p>
+                                </div>
+                                <div class="p-4 bg-gray-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Consent</h4>
+                                    <p class="text-sm">Valid if properly documented and freely given permission to search property without warrant.</p>
+                                    </div>
+                            </div>
+                            <div class="p-4 bg-green-100 border-2 border-green-500 rounded-lg text-center">
+                                <h4 class="font-bold text-xl mb-1">Search of Person/Vehicle During Detention/Arrest</h4>
+                                <p class="text-sm mt-1">Subject to immediate search of person if: subject to transport/arrest to document possessions, sufficient probable cause of illegal items, or need to identify suspect. Vehicles in operation/constructive possession during crime or subject to impoundment are also subject to search without warrant.</p>
+                            </div>
+                            <div class="flex justify-center text-2xl font-bold text-gray-500">↓ Special Warrant Requests ↓</div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="p-4 bg-yellow-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Sealing</h4>
+                                    <p class="text-sm">Personal names/records withheld from record to protect citizens.</p>
+                                </div>
+                                <div class="p-4 bg-yellow-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Raid</h4>
+                                    <p class="text-sm">Execution of warrant without primary citizen(s) in custody.</p>
+                                </div>
+                                <div class="p-4 bg-yellow-100 rounded-lg border">
+                                    <h4 class="font-bold text-lg mb-1">Delayed Notice</h4>
+                                    <p class="text-sm">Extra time before notification of signed warrant sent to citizen(s).</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <p class="mt-6 text-center font-semibold text-red-600">Defense Note: Challenge any unlawful or overly broad search as unconstitutional under state and common law.</p>
+                    </div>
+                </div>
+
+                <div id="foia" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">FOIA & Evidence Disclosure</h2>
+                    </div>
+                    <p class="mb-6 text-gray-600">The state's case is built on evidence, and you have a right to see it. This section details the formal process for requesting police reports via the Freedom of Information Act (FOIA) and the steps to take if your request is denied. Mastering this process is key to ensuring you have all necessary discovery.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-xl mb-4 text-center">FOIA Request Process</h3>
+                        <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                                <p class="font-bold">Step 1: Submit Request</p>
+                                <p class="text-sm">Written communication (email/letter) to PD Dispatch/Reception/On-Duty LEO through an attorney. Must clearly describe records and include contact info.</p>
+                            </div>
+                            <p class="text-2xl font-bold text-blue-500">→</p>
+                            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                                <p class="font-bold">Step 2: Review Protocol</p>
+                                <p class="text-sm">FOIA'd Officer acknowledges in 24 hrs. Standard review 24 hrs to check exemptions.</p>
+                            </div>
+                            <p class="text-2xl font-bold text-blue-500">→</p>
+                            <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                                <p class="font-bold">Step 3: Response & Delivery</p>
+                                <p class="text-sm">Max 3 days from request for response. Delivered via formal written documentation (email/text).</p>
+                            </div>
+                            <p class="text-2xl font-bold text-blue-500">→</p>
+                            <div class="p-4 bg-yellow-100 rounded-lg shadow-sm">
+                                <p class="font-bold">Step 4: If Denied?</p>
+                                <p class="text-sm">File an appeal to a sitting Judge/Justice within 48 hours of denial. Determination made within 48 hours.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t">
+                            <h4 class="font-semibold text-lg">Exemptions & Compelling Evidence:</h4>
+                            <ul class="list-disc list-inside mt-2 text-gray-600 text-sm space-y-1">
+                                <li>Exemptions: Active Investigation, Active Arrest Warrant, Trade Secrets, Internal Government Communications, Warrant/Subpoena (separate provisions).</li>
+                                <li>Compelling Evidence: Use subpoenas or discovery orders when FOIA is insufficient.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="caselaw" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Case Law Library</h2>
+                    </div>
+                    <p class="mb-6 text-gray-600">Landmark common law and case precedents provide powerful tools to restrict police overreach and protect client rights. This interactive library details key cases recognized in San Andreas. Click on each case name to see its core principle and how to apply it in your defense strategy to suppress improperly obtained evidence or statements, and understand the nuances of the law.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex flex-wrap border-b mb-4">
+                            <!-- Removed static active classes and added new active-case-tab-underline class management via JS -->
+                            <button data-case="terry" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Terry v. Ohio</button>
+                            <button data-case="miranda" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Miranda v. Arizona</button>
+                            <button data-case="tekoh" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Tekoh v. Vega (2022)</button>
+                            <button data-case="garner" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Tennessee v. Garner</button>
+                            <button data-case="mimms" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Pennsylvania v. Mimms</button>
+                            <button data-case="houghton" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Wyoming v. Houghton</button>
+                            <button data-case="carroll" class="case-tab p-3 font-semibold text-gray-500 flex-shrink-0">Carroll v. United States</button>
+                        </div>
+                        <div id="case-content-area">
+                            <div id="case-terry" class="case-content">
+                                <h4 class="font-bold text-xl">"Stop and Frisk" Principle</h4>
+                                <p class="mt-2 text-gray-600">Police may stop and frisk without probable cause for arrest if they have reasonable suspicion that the person has committed, is committing, or is about to commit a crime AND has a reasonable belief the person "may be armed and presently dangerous."</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: Suppress any evidence obtained from a "stop and frisk" that was not supported by articulable reasonable suspicion of both criminal activity AND being armed/dangerous.</p>
+                            </div>
+                            <div id="case-miranda" class="case-content hidden">
+                                <h4 class="font-bold text-xl">Custodial Interrogation Warnings</h4>
+                                <p class="mt-2 text-gray-600">Statements from a defendant in custody during interrogation are admissible ONLY if law enforcement informed them of their right to remain silent and right to an attorney before interrogation, and these rights were exercised or waived knowingly, voluntarily, and intelligently.</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: Suppress any statements taken from a client during a custodial interrogation where Miranda warnings were not properly given.</p>
+                            </div>
+                            <div id="case-tekoh" class="case-content hidden">
+                                <h4 class="font-bold text-xl">Un-Mirandized Statements Inadmissibility</h4>
+                                <p class="mt-2 text-gray-600">Statements taken without Miranda warnings are only inadmissible if the prosecution attempts to use them for incriminating purposes. LEOs are not required to Mirandize someone if they don't intend to ask incriminating questions.</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: Argue for the suppression of any un-Mirandized statement if the prosecution attempts to introduce it, even indirectly, to incriminate your client. If questions are non-incriminating, the lack of Miranda may not be grounds for suppression.</p>
+                            </div>
+                            <div id="case-garner" class="case-content hidden">
+                                <h4 class="font-bold text-xl">Deadly Force Against Fleeing Suspects</h4>
+                                <p class="mt-2 text-gray-600">The use of deadly force to prevent the escape of an unarmed, non-dangerous fleeing suspect is an unreasonable seizure. Deadly force may only be used if the officer has probable cause to believe the suspect poses a significant threat of death or serious physical injury to the officer or others.</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: Challenge the use of deadly force if the client was unarmed and not posing a significant threat, arguing for suppression of evidence or charges related to an unlawful seizure.</p>
+                            </div>
+                            <div id="case-mimms" class="case-content hidden">
+                                <h4 class="font-bold text-xl">Ordering Driver Out of Vehicle</h4>
+                                <p class="mt-2 text-gray-600">Law enforcement may give a lawful order to the driver of a vehicle to exit the vehicle during a lawful detention (e.g., traffic stop) without infringing on the individual's rights. Officer safety is considered sufficient reason.</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: While officers can order a driver out, challenge any subsequent searches or actions if they exceed the scope of the initial lawful detention, or if the initial detention itself was unlawful.</p>
+                            </div>
+                            <div id="case-houghton" class="case-content hidden">
+                                <h4 class="font-bold text-xl">Vehicle Search & Passenger Belongings</h4>
+                                <p class="mt-2 text-gray-600">If a search of a vehicle is being conducted with probable cause, law enforcement may inspect anything found within the vehicle if that item had the ability to conceal an item of interest, even if it belongs to a passenger.</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: Challenge if the initial probable cause for the vehicle search was lacking, or if the item searched could not reasonably conceal the object of interest (e.g., searching a small coin purse for a large weapon).</p>
+                            </div>
+                            <div id="case-carroll" class="case-content hidden">
+                                <h4 class="font-bold text-xl">"Automobile Exception"</h4>
+                                <p class="mt-2 text-gray-600">As long as law enforcement has probable cause to search a vehicle, they are not required to obtain a search warrant. This is due to the vehicle's mobility and the increased risk of evidence tampering compared to stationary property.</p>
+                                <p class="mt-4 font-semibold text-green-700">Defense Application: Focus challenges on whether genuine probable cause existed before the search. If probable cause was absent, the search is unlawful despite the exception.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="strategy" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Strategic Defense in High-Profile Cases</h2>
+                    </div>
+                    <p class="mb-6 text-red-700 bg-red-100 p-3 rounded-lg border border-red-300">
+                        Disclaimer: These are useful steps and potential defenses for your cases, but hard work, meticulous preparation, and extensive research are the only ways to ensure a successful case outcome. Each case is unique and requires a tailored approach.
+                    </p>
+                    <p class="mb-6 text-gray-600">High-stakes cases require tailored defense strategies that target common prosecution tactics. This section provides key strategic points for specific types of high-profile cases. Click each topic to expand and view critical areas to challenge, from search warrants to forensic evidence, and how to leverage specific legal concepts.</p>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-lg shadow-sm">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                                <span>Drug Trafficking</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                                    <li>Challenge the scope of search and seizure warrants. Were they overly broad or unsupported by probable cause?</li>
+                                    <li>Leverage the <a href="#laws" class="text-blue-600 hover:underline">Marijuana Decriminalization Act</a>: mere presence or personal use of marijuana is not probable cause for further searching (refer to "Enforcement" details).</li>
+                                    <li>Examine warrant justifications for overreach, staleness, or lack of probable cause (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a>).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-sm">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                                <span>Possession of Controlled Substances</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                                    <li>Challenge lack of knowledge or intent: Was the client aware of the substance's presence or its illegal nature?</li>
+                                    <li>Move to suppress evidence based on unlawful search and seizure (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a> and <a href="#caselaw" class="text-blue-600 hover:underline">relevant Case Law</a>).</li>
+                                    <li>Challenge the chain of custody for the seized substance: Were proper procedures followed from collection to lab analysis?</li>
+                                    <li>Argue for personal use quantity vs. intent to distribute based on amount and packaging.</li>
+                                    <li>Explore medical necessity defense if applicable (requires verifiable medical documentation).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-sm">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                                <span>Grand Theft Auto</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                                    <li>Challenge intent: Was there intent to permanently deprive the owner of the vehicle, or merely joyriding (temporary use)?</li>
+                                    <li>Argue mistaken identity: Was the client clearly identified as the person who stole the vehicle?</li>
+                                    <li>Assert consent: Did the client have permission from the owner (or someone with apparent authority) to use the vehicle?</li>
+                                    <li>Investigate if the vehicle was already stolen or abandoned: Was the client aware of its status?</li>
+                                    <li>Move to suppress evidence if the vehicle was recovered via an unlawful search or seizure (refer to <a href="#search" class="text-blue-600 hover:underline">Search & Seizure Protocols</a> and <a href="#caselaw" class="text-blue-600 hover:underline">Carroll v. United States</a>).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-sm">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                                <span>Obstruction of a Government Official & Obstruction of Justice</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                                    <li>Dispute intent: Did the client specifically intend to obstruct an official act, or were their actions misinterpreted?</li>
+                                    <li>Argue that actions were within legal rights: e.g., refusing a search without a warrant, or exercising right to remain silent (refer to <a href="#constitution" class="text-blue-600 hover:underline">Core Constitutional Rights</a> and <a href="#caselaw" class="text-blue-600 hover:underline">Miranda v. Arizona</a>).</li>
+                                    <li>Challenge knowledge of official status: Was it clear that the individual being "obstructed" was a government official acting in their capacity?</li>
+                                    <li>Investigate the "official act" itself: Was the government official performing a lawful duty at the time of the alleged obstruction?</li>
+                                    <li>Seek clarification on the distinction between mere uncooperativeness and active obstruction.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-sm">
+                            <button class="accordion-toggle w-full flex justify-between items-center p-4 font-bold text-xl text-left">
+                                <span>Murder & Attempted Murder</span>
+                                <span class="transform transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                                    <li>Demand full disclosure of all forensic evidence, including collection timelines and lab reports.</li>
+                                    <li>Utilize the <a href="#laws" class="text-blue-600 hover:underline">Stand Your Ground Doctrine</a> where applicable to justify your client's actions, ensuring all "reasonable steps" were considered.</li>
+                                    <li>Aggressively cross-examine witnesses on inconsistencies and challenge any gaps in the chain of custody for evidence.</li>
+                                    <li>Consider <a href="#dueprocess" class="text-blue-600 hover:underline">Double Jeopardy</a> defense if client was previously tried for related lesser charges and new charges arise from the same incident.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="leos" class="content-section">
+                    <div class="clearfix">
+                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Law Enforcement Powers & Definitions</h2>
+                    </div>
+                    <p class="mb-6 text-gray-600">Understanding the roles and jurisdictions of various Law Enforcement Agencies (LEOs) is crucial for defense attorneys. This section defines LEOs, outlines their granted powers, and details the geographical and hierarchical jurisdictions of the Los Santos Police Department (LSPD), Blaine County Sheriff's Office (BCSO), and San Andreas State Police (SASP). This knowledge helps in challenging jurisdictional overreach or improper application of force.</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-xl mb-3">Definitions & Granted Powers</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                            <li>Law Enforcement Officer (LEO): A sworn officer of the BCSO, LSPD, or SASP.</li>
+                            <li>Granted Powers: Enforce all state-wide and local laws, issue citations, provide investigative duties within their jurisdictions, and utilize appropriate force to protect citizens, themselves, and others.</li>
+                        </ul>
+                        <h3 class="font-bold text-xl mt-4 mb-3">Jurisdictions</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                            <li>Blaine County Sheriff's Office (BCSO): Ultimate law enforcement authority in Blaine County.</li>
+                            <li>Los Santos Police Department (LSPD): Ultimate law enforcement authority in Los Santos.</li>
+                            <li>San Andreas State Police (SASP): Ultimate law enforcement authority in the State of San Andreas. SASP has full jurisdiction and ultimate authority over all LEO agencies in conflicts or overlapping jurisdictions.</li>
+                            <li>State Jurisdiction: BCSO and LSPD may patrol and enforce State laws in State jurisdiction. Waters and surrounding islands are under shared State Jurisdiction. Air is governed by jurisdiction below up to 10 miles; above is State authority. Undesignated areas are de facto State property with equal LEO powers.</li>
+                        </ul>
+                        <h4 class="font-bold text-lg mt-4 mb-2">Sub-Authority Rules:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm">
+                            <li>Los Santos: BCSO may patrol/enforce as sub-authority to LSPD; BCSO must defer to LSPD in conflicts.</li>
+                            <li>Blaine County: LSPD may patrol/enforce as sub-authority to BCSO; LSPD must defer to BCSO in conflicts.</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div id="tools" class="content-section">
                     <div class="clearfix">
                         <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Important Legal Tools and Administrative Processes</h2>
+                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Legal Tools & Administrative Processes</h2>
                     </div>
                     <p class="mb-6 text-gray-600">Beyond courtroom strategy, several administrative processes are vital for client advocacy. This section covers expungement, a tool for clearing a client's record, the protocols for accessing sensitive medical records, and the process for Authority Conduct Reviews/Impeachments. The charts visualize fee structures, providing a quick reference for client consultations.</p>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1463,33 +1501,6 @@
                                 <li>People's Petition: $15,000 OR 20 verifiable signatures</li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-
-                <div id="leos" class="content-section">
-                    <div class="clearfix">
-                        <img src="https://www.justice.gov/d9/styles/coh_medium/public/2025-03/doj-seal-257x257.png?itok=gCU0Ex9z" alt="Department of Justice Seal" class="float-right w-24 h-24 ml-4 rounded-full shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/96x96/cccccc/000000?text=Image+Error';">
-                        <h2 class="text-3xl font-bold mb-4 text-gray-900">Law Enforcement Officer Powers & Definitions</h2>
-                    </div>
-                    <p class="mb-6 text-gray-600">Understanding the roles and jurisdictions of various Law Enforcement Agencies (LEOs) is crucial for defense attorneys. This section defines LEOs, outlines their granted powers, and details the geographical and hierarchical jurisdictions of the Los Santos Police Department (LSPD), Blaine County Sheriff's Office (BCSO), and San Andreas State Police (SASP). This knowledge helps in challenging jurisdictional overreach or improper application of force.</p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-xl mb-3">Definitions & Granted Powers</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                            <li>Law Enforcement Officer (LEO): A sworn officer of the BCSO, LSPD, or SASP.</li>
-                            <li>Granted Powers: Enforce all state-wide and local laws, issue citations, provide investigative duties within their jurisdictions, and utilize appropriate force to protect citizens, themselves, and others.</li>
-                        </ul>
-                        <h3 class="font-bold text-xl mt-4 mb-3">Jurisdictions</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                            <li>Blaine County Sheriff's Office (BCSO): Ultimate law enforcement authority in Blaine County.</li>
-                            <li>Los Santos Police Department (LSPD): Ultimate law enforcement authority in Los Santos.</li>
-                            <li>San Andreas State Police (SASP): Ultimate law enforcement authority in the State of San Andreas. SASP has full jurisdiction and ultimate authority over all LEO agencies in conflicts or overlapping jurisdictions.</li>
-                            <li>State Jurisdiction: BCSO and LSPD may patrol and enforce State laws in State jurisdiction. Waters and surrounding islands are under shared State Jurisdiction. Air is governed by jurisdiction below up to 10 miles; above is State authority. Undesignated areas are de facto State property with equal LEO powers.</li>
-                        </ul>
-                        <h4 class="font-bold text-lg mt-4 mb-2">Sub-Authority Rules:</h4>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm">
-                            <li>Los Santos: BCSO may patrol/enforce as sub-authority to LSPD; BCSO must defer to LSPD in conflicts.</li>
-                            <li>Blaine County: LSPD may patrol/enforce as sub-authority to BCSO; LSPD must defer to BCSO in conflicts.</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -1996,11 +2007,12 @@
                 tab.addEventListener('click', function() {
                     const targetCase = this.dataset.case;
 
+                    // Remove active classes from all tabs and add to the clicked one
                     caseTabs.forEach(t => {
-                        t.classList.remove('border-blue-500', 'text-blue-600');
+                        t.classList.remove('active-case-tab-underline', 'text-blue-600');
                         t.classList.add('text-gray-500');
                     });
-                    this.classList.add('border-blue-500', 'text-blue-600');
+                    this.classList.add('active-case-tab-underline', 'text-blue-600');
                     this.classList.remove('text-gray-500');
 
                     caseContents.forEach(content => {
@@ -2012,6 +2024,17 @@
                     });
                 });
             });
+
+            // Set initial active tab for Case Law on page load
+            if (document.querySelector('#caselaw').classList.contains('active')) {
+                // Default to 'terry' tab if #caselaw is the active section
+                const defaultTab = document.querySelector('.case-tab[data-case="terry"]');
+                if (defaultTab) {
+                    defaultTab.classList.add('active-case-tab-underline', 'text-blue-600');
+                    document.getElementById('case-terry').classList.remove('hidden');
+                }
+            }
+
 
             // Accordion for Strategic Defense and Specific Legislation (Rewritten)
             const accordionToggles = document.querySelectorAll('.accordion-toggle');
@@ -2373,6 +2396,11 @@
                                 createMedianSentencingChart();
                                 createMedianFinesChart();
                                 document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+                           } else if (targetElement.id === 'caselaw') { // Initialize case law tabs when this section becomes active
+                                const defaultTab = document.querySelector('.case-tab[data-case="terry"]');
+                                if (defaultTab) {
+                                    defaultTab.click(); // Simulate a click to activate it
+                                }
                            }
                         }
                     }
@@ -2397,9 +2425,15 @@
                 createMedianSentencingChart();
                 createMedianFinesChart();
                 document.getElementById('totalChargesCount').textContent = penalCodesData.length;
+            } else if (document.querySelector('#caselaw').classList.contains('active')) {
+                // Ensure the default tab is active when the page loads directly to the caselaw section
+                const defaultTab = document.querySelector('.case-tab[data-case="terry"]');
+                if (defaultTab) {
+                    defaultTab.classList.add('active-case-tab-underline', 'text-blue-600');
+                    document.getElementById('case-terry').classList.remove('hidden');
+                }
             }
         });
     </script>
 </body>
 </html>
-�
